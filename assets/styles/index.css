@@ -1,0 +1,42 @@
+
+@import "./main.css"; 
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: black;
+}
+
+section {
+    display: flex;
+    margin: auto;
+    flex-direction: row;
+    max-width: 144rem;
+    padding:3rem;
+    gap:10rem;
+}
+
+.account-connect {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--white-color);
+    padding: 4rem 3rem;
+    border-radius: var(--default-radius);
+    min-width: 40%;
+}
+
+.account-connect__tabs {
+    display: flex;
+    gap:1.5rem;
+    padding-bottom:2rem;
+}
+
+.account-connect__login {
+    display: flex;
+    flex-direction: column;
+    gap:1rem
+}
+
+.account-connect__register {
+    display: none;
+}

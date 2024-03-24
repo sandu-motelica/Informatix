@@ -1,0 +1,69 @@
+:root {
+  /* colors */
+    --white-color:#fff;
+    --primary-color:#1da09c;
+    --secondary-color:#fea116;
+    --error-color:red;
+
+  /* radiuses  */
+    --default-radius:6px;
+    --rounded-radius:100px;
+
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+input {
+  all: initial;
+  height:4rem;
+  border-radius: var(--default-radius);
+  outline: none;
+  padding: 0 1.2rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+}
+
+.btn {
+  outline: none;
+  border: none;
+  color: var(--white-color);
+  padding: 1rem 2rem;
+  cursor: pointer;
+  border-radius: var(--rounded-radius);
+  width: fit-content;
+  text-transform: capitalize;
+}
+
+
+.btn-primary {
+  background-color: var(--primary-color);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-color);
+}
+
+.btn-outline-primary {
+  background-color: var(--white-color);
+  color: var(--primary-color);
+  border: .1rem solid var(--primary-color);
+}
+
+.btn-outline-secondary {
+  background-color: var(--white-color);
+  color: var(--secondary-color);
+  border: .1rem solid var(--secondary-color);
+}
+
+.error {
+  color: var(--error-color);
+  font-size: 1.2rem;
+  /* opacity: 0; */
+}
