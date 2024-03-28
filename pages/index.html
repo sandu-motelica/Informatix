@@ -24,8 +24,8 @@
       </div>
       <div class="account-connect">
         <div class="account-connect__tabs">
-          <button class="btn btn-secondary">Logare</button>
-          <button class="btn btn-outline-secondary">Inregistrare</button>
+          <button id="tab-login"  class="btn btn-secondary" onclick="activateTab('login')">Logare</button>
+          <button id="tab-register" class="btn btn-outline-secondary" onclick="activateTab('register')">Inregistrare</button>
         </div>
         <form class="account-connect__login">
           <input placeholder="Email" type="email" />
@@ -60,9 +60,10 @@
           </fieldset>
 
           <span class="error">Date incorecte</span>
-          <button>Inregistrare</button>
+          <button class="btn btn-primary">Inregistrare</button>
         </form>
       </div>
     </section>
   </body>
+  <script src="../assets/scripts/login-register-form.js"></script>
 </html>

@@ -6,8 +6,8 @@
   --error-color: red;
 
   /* radiuses  */
-  --default-radius: 6px;
-  --rounded-radius: 100px;
+  --default-radius: .6rem;
+  --rounded-radius: 10rem;
 
   /* font-size */
   /* header */

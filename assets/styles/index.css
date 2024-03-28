@@ -44,6 +44,7 @@ section {
   padding: 4rem 3.6rem;
   border-radius: var(--default-radius);
   min-width: 35%;
+  min-height: 38rem;
 }
 
 .account-connect__tabs {
@@ -60,4 +61,26 @@ section {
 
 .account-connect__register {
   display: none;
+  flex-direction: column;
+  gap:1.5rem;
+}
+
+fieldset {
+  display: flex;
+  flex-direction: row;
+  gap: 1.5rem;
+}
+
+fieldset>div{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+}
+
+@media screen and (max-width: 1024px) {
+  section {
+    flex-direction: column;
+    gap: 2rem;
+  }
 }
