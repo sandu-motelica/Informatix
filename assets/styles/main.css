@@ -9,7 +9,7 @@
   --light-color: #f1f3f5;
 
   /* radiuses  */
-  --default-radius: .6rem;
+  --default-radius: 0.6rem;
   --rounded-radius: 10rem;
 
   /* font-size */
@@ -88,4 +88,12 @@ input {
   font-weight: 700;
   font-size: 2.4rem;
   margin-bottom: 1.2rem;
+}
+
+.grid {
+  display: grid;
+}
+
+.grid--2 {
+  grid-template-columns: 3fr 1fr;
 }

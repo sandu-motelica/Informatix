@@ -6,6 +6,7 @@
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 1.4rem;
+  width: 100%;
 }
 
 .problems-table thead tr {
