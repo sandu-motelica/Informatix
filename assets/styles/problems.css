@@ -24,11 +24,11 @@
 }
 
 .problems__table tbody tr:nth-child(even) {
-  background-color: #313131;
+  background-color: var(--dark-color-2);
 }
 
 .problems__tags {
-  background-color: #282828;
+  background-color: var(--dark-color-3);
   width: 100%;
   padding: 2rem 1rem;
   height: fit-content;
@@ -38,6 +38,8 @@
 
 .problems__tags input {
   width: 100%;
+  background-color: var(--dark-color-2);
+  color: var(--white-color);
 }
 
 .problems__tags-wrapper {
@@ -50,8 +52,8 @@
 
 .problems__tags-wrapper>button {
   display: flex;
-  background-color: #313131;
-  color: white;
+  background-color: var(--dark-color-2);
+  color: var(--white-color);
   border: none;
   padding: .5rem .7rem;
   border-radius: 10rem;
@@ -59,11 +61,10 @@
   cursor: pointer;
 }
 
-
 .problems__tags-wrapper>button>div {
   background-color: var(--secondary-color);
   border-radius: 10rem;
   padding: .1rem .5rem;
   font-size: 1rem;
-  color: #262626;
+  color: var(--dark-color-3);
 }
