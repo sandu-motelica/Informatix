@@ -1,28 +1,69 @@
-.problems-section {
+.problems {
   padding: 3rem;
 }
 
-.problems-table {
+.problems__table {
   border-collapse: collapse;
   border-spacing: 0;
   font-size: 1.4rem;
   width: 100%;
 }
 
-.problems-table thead tr {
+.problems__table thead tr {
   border-bottom: 1px solid #767676;
 }
 
-.problems-table thead th {
+.problems__table thead th {
   font-weight: 500;
 }
 
-.problems-table th {
+.problems__table th {
   text-align: start;
   font-weight: 400;
   padding: 1.2rem;
 }
 
-.problems-table tbody tr:nth-child(even) {
+.problems__table tbody tr:nth-child(even) {
   background-color: #313131;
+}
+
+.problems__tags {
+  background-color: #282828;
+  width: 100%;
+  padding: 2rem 1rem;
+  height: fit-content;
+  border-radius: .5rem;
+  margin-top: 5rem;
+}
+
+.problems__tags input {
+  width: 100%;
+}
+
+.problems__tags-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-top: 1rem;
+
+}
+
+.problems__tags-wrapper>button {
+  display: flex;
+  background-color: #313131;
+  color: white;
+  border: none;
+  padding: .5rem .7rem;
+  border-radius: 10rem;
+  gap: 1rem;
+  cursor: pointer;
+}
+
+
+.problems__tags-wrapper>button>div {
+  background-color: var(--secondary-color);
+  border-radius: 10rem;
+  padding: .1rem .5rem;
+  font-size: 1rem;
+  color: #262626;
 }

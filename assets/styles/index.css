@@ -70,6 +70,7 @@ fieldset {
   display: flex;
   flex-direction: row;
   gap: 1.5rem;
+  color: var(--dark-color);
 }
 
 fieldset>div{

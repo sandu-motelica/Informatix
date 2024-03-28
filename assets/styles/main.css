@@ -4,7 +4,7 @@
   --primary-color: #1da09c;
   --secondary-color: #fea116;
   --error-color: red;
-  --background-color: #1a1a1a;
+  --dark-color: #1a1a1a;
   /* font colors */
   --light-color: #f1f3f5;
 
@@ -29,7 +29,7 @@ html {
 }
 
 body {
-  background-color: var(--background-color);
+  background-color: var(--dark-color);
   color: var(--light-color);
 }
 
