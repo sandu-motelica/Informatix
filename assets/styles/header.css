@@ -16,9 +16,22 @@
   align-items: center;
 }
 
-.logo {
-  height: 100%;
-  object-fit: cover;
+.logo,
+.logo:link,
+.logo:visited {
+  font-size: 2.2rem;
+  font-weight: 700;
+  text-shadow: rgb(254, 161, 22, 0.25) 1px 0 4px;
+}
+
+.logo:hover,
+.logo:active {
+  text-shadow: rgb(254, 161, 22, 0.5) 1px 0 6px;
+  color: #d9dbdd;
+}
+
+.logo-color {
+  color: var(--secondary-color);
 }
 
 .nav-list {

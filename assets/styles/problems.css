@@ -47,6 +47,7 @@
 
 .problems__tags-wrapper > button {
   display: flex;
+  align-items: center;
   background-color: var(--dark-color-2);
   color: var(--white-color);
   border: none;
