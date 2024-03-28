@@ -1,0 +1,27 @@
+.problems-section {
+  padding: 3rem;
+}
+
+.problems-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1.4rem;
+}
+
+.problems-table thead tr {
+  border-bottom: 1px solid #767676;
+}
+
+.problems-table thead th {
+  font-weight: 500;
+}
+
+.problems-table th {
+  text-align: start;
+  font-weight: 400;
+  padding: 1.2rem;
+}
+
+.problems-table tbody tr:nth-child(even) {
+  background-color: #313131;
+}

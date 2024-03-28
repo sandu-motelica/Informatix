@@ -4,6 +4,9 @@
   --primary-color: #1da09c;
   --secondary-color: #fea116;
   --error-color: red;
+  --background-color: #1a1a1a;
+  /* font colors */
+  --light-color: #f1f3f5;
 
   /* radiuses  */
   --default-radius: .6rem;
@@ -25,12 +28,22 @@ html {
   font-family: "Roboto", sans-serif;
 }
 
+body {
+  background-color: var(--background-color);
+  color: var(--light-color);
+}
+
 input {
   height: 4rem;
   border-radius: var(--default-radius);
   outline: none;
   padding: 0 1.2rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.container {
+  max-width: 120rem;
+  margin: 0 auto;
 }
 
 .btn {
@@ -68,4 +81,11 @@ input {
   color: var(--error-color);
   font-size: 1.2rem;
   /* opacity: 0; */
+}
+
+.header-secondary {
+  color: var(--secondary-color);
+  font-weight: 700;
+  font-size: 2.4rem;
+  margin-bottom: 1.2rem;
 }
