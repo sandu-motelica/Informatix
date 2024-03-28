@@ -1,0 +1,27 @@
+.header {
+  height: 6.4rem;
+  width: 100%;
+  position: sticky;
+  left: 0;
+  top: 0;
+  background-color: #2c2c2c;
+  border-bottom: 1px solid #464646;
+  font-size: 1.6rem;
+}
+
+.header-main {
+  height: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  height: 100%;
+  object-fit: cover;
+}
+
+.nav-list {
+  display: flex;
+  gap: 4.8rem;
+}
