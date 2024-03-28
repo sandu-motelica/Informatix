@@ -9,6 +9,7 @@
   --dark-color-3:#282828;
   /* font colors */
   --light-color: #f1f3f5;
+  --semilight-color: #c1c2c4;
 
   /* radiuses  */
   --default-radius: 0.6rem;
@@ -43,8 +44,27 @@ input {
   border: 1px solid rgba(0, 0, 0, 0.2);
 }
 
+ul {
+  list-style: none;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--semilight-color);
+  transition: all 0.3s;
+}
+
+a:hover,
+a:active {
+  cursor: pointer;
+  color: var(--light-color);
+}
+
 .container {
-  max-width: 120rem;
+  max-width: 128rem;
+  padding: 0 4rem;
   margin: 0 auto;
 }
 
@@ -94,8 +114,14 @@ input {
 
 .grid {
   display: grid;
+  height: 200vh;
 }
 
 .grid--2 {
   grid-template-columns: 3fr 1fr;
+  column-gap: 3.2rem;
+}
+
+.margin-top-sm {
+  margin-top: 3.2rem;
 }

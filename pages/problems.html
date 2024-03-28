@@ -9,10 +9,28 @@
     />
     <link rel="stylesheet" href="../assets/styles/main.css" />
     <link rel="stylesheet" href="../assets/styles/problems.css" />
+    <link rel="stylesheet" href="../assets/styles/header.css" />
     <title>Informatix</title>
   </head>
   <body>
-    <main class="container grid grid--2">
+    <header class="header">
+      <div class="container header-main">
+        <img
+          class="logo"
+          src="../assets/images/general/informatix_logo.png"
+          alt="Logo pagina"
+        />
+        <nav>
+          <ul class="nav-list">
+            <li><a href="">Probleme</a></li>
+            <li><a href="">Discutii</a></li>
+            <li><a href="">Clase</a></li>
+            <li><a href="">Profil</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <main class="container grid grid--2 margin-top-sm">
       <section class="problems">
         <h2 class="header-secondary">Probleme propuse</h2>
         <table class="problems__table">
@@ -55,7 +73,7 @@
         </table>
       </section>
       <section class="problems__tags">
-        <input type="text" placeholder="Cauta" oninput="searchTag(event)">
+        <input type="text" placeholder="Cauta" oninput="searchTag(event)"/>
         <div class="problems__tags-wrapper">
           <button class="tag" data-name="Divizibilitate">Divizibilitate<div>120</div></button>
           <button class="tag" data-name="Primalitate">Primalitate <div>22</div></button>
