@@ -5,8 +5,8 @@ body {
   min-height: 100vh;
   background-image: linear-gradient(
       to right,
-      rgb(52, 58, 64, 0.9),
-      rgb(52, 58, 64, 0.9)
+      rgb(26, 26, 26, 0.9),
+      rgb(26, 26, 26, 0.9)
     ),
     url(../images/connect/connect-background.jpg);
 }
