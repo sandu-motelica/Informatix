@@ -3,12 +3,14 @@
 body {
   display: flex;
   min-height: 100vh;
+  background-position: center;
+  background-size: cover;
   background-image: linear-gradient(
       to right,
-      rgb(26, 26, 26, 0.9),
-      rgb(26, 26, 26, 0.9)
+      rgb(26, 26, 26, 0.85),
+      rgb(26, 26, 26, 0.85)
     ),
-    url(../images/connect/connect-background.jpg);
+    url(../images/connect/trevor-vannoy-UNzohJgG8W0-unsplash.jpg);
 }
 
 section {
@@ -40,11 +42,11 @@ section {
 .account-connect {
   display: flex;
   flex-direction: column;
-  background-color: var(--white-color);
+  background-color: rgb(255, 255, 255);
   padding: 4rem 3.6rem;
   border-radius: var(--default-radius);
   min-width: 35%;
-  min-height: 38rem;
+  height: 38rem;
   width: 45rem;
 }
 
@@ -57,23 +59,25 @@ section {
 .account-connect__login {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
 }
 
 .account-connect__register {
   display: none;
   flex-direction: column;
-  gap:1.5rem;
+  gap: 1.5rem;
 }
 
 fieldset {
   display: flex;
   flex-direction: row;
+  border: none;
   gap: 1.5rem;
+  font-size: 1.4rem;
   color: var(--dark-color);
 }
 
-fieldset>div{
+fieldset > div {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -84,7 +88,6 @@ fieldset>div{
   section {
     flex-direction: column;
     gap: 2rem;
-
   }
 
   .account-connect {
