@@ -3,6 +3,7 @@
   /* colors */
   --white-color: #fff;
   --primary-color: #1da09c;
+  --primary-gradient: linear-gradient(120deg, #1da09c, #4ab3b0);
   --secondary-color: #fea116;
   --error-color: red;
   --dark-color: #1a1a1a;
@@ -78,6 +79,7 @@ a:active {
   border-radius: var(--rounded-radius);
   width: fit-content;
   font-weight: 500;
+  font-size: 1.6rem;
 }
 
 .btn-primary {

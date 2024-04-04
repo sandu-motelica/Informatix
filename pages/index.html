@@ -14,12 +14,14 @@
   </head>
   <body>
     <div class="logo-component">
-      <a href="#" class="logo"
-        >In<span class="logo-color">&lt;form&gt;</span>mati<span
-          class="logo-color"
-          >X</span
-        ></a
-      >
+      <div class="logo-align">
+        <a href="#" class="logo"
+          >In<span class="logo-color">&lt;form&gt;</span>mati<span
+            class="logo-color"
+            >X</span
+          ></a
+        >
+      </div>
     </div>
     <section>
       <div class="description">
@@ -30,58 +32,66 @@
           dolorum ipsa.
         </p>
       </div>
-      <div class="account-connect">
-        <div class="account-connect__tabs">
-          <button
-            id="tab-login"
-            class="btn btn-secondary"
-            onclick="activateTab('login')"
-          >
-            Logare
-          </button>
-          <button
-            id="tab-register"
-            class="btn btn-outline-secondary"
-            onclick="activateTab('register')"
-          >
-            Inregistrare
-          </button>
+      <div class="account-content">
+        <div class="account-connect account-connect__login">
+          <div class="header-account-connect header-login">
+            <h2>Intră în cont</h2>
+            <span
+              >Nou pe aici?
+              <a id="tab-register" onclick="activateTab('login')"
+                >Creează un cont!</a
+              ></span
+            >
+          </div>
+          <form>
+            <input placeholder="Email" type="email" />
+            <input placeholder="Parola" type="password" />
+            <span class="error">Date incorecte</span>
+            <button class="btn btn-primary btn-connect">Autentificare</button>
+          </form>
         </div>
-        <form class="account-connect__login">
-          <input placeholder="Email" type="email" />
-          <input placeholder="Parola" type="password" />
-          <span class="error">Date incorecte</span>
-          <button class="btn btn-primary">Login</button>
-        </form>
-        <form class="account-connect__register">
-          <input placeholder="Email" type="email" />
-          <input placeholder="Parola" type="password" />
-          <fieldset>
-            <legend>Tip utilizator:</legend>
-            <div>
-              <input
-                type="radio"
-                id="elev"
-                name="tip_utilizator"
-                value="elev"
-                checked
-              />
-              <label for="elev">Elev</label>
-            </div>
-            <div>
-              <input
-                type="radio"
-                id="profesor"
-                name="tip_utilizator"
-                value="profesor"
-              />
-              <label for="profesor">Profesor</label>
-            </div>
-          </fieldset>
+        <div
+          class="account-connect account-connect__register account-connect-hide"
+        >
+          <div class="header-account-connect header-register">
+            <h2>Creare cont</h2>
+            <span
+              >Ai deja un cont?
+              <a id="tab-login" onclick="activateTab('register')"
+                >Conectează-te!</a
+              ></span
+            >
+          </div>
+          <form>
+            <input placeholder="Email" type="email" />
+            <input placeholder="Parola" type="password" />
+            <fieldset>
+              <legend>Tip utilizator:</legend>
+              <div>
+                <input
+                  type="radio"
+                  id="elev"
+                  name="tip_utilizator"
+                  value="elev"
+                  checked
+                />
+                <label for="elev">Elev</label>
+              </div>
+              <div>
+                <input
+                  type="radio"
+                  id="profesor"
+                  name="tip_utilizator"
+                  value="profesor"
+                />
+                <label for="profesor">Profesor</label>
+              </div>
+            </fieldset>
 
-          <span class="error">Date incorecte</span>
-          <button class="btn btn-primary">Inregistrare</button>
-        </form>
+            <span class="error">Date incorecte</span>
+            <button class="btn btn-primary btn-connect">Inregistrare</button>
+          </form>
+        </div>
       </div>
     </section>
   </body>

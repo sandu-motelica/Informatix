@@ -7,18 +7,14 @@ const registerForm = document.getElementsByClassName(
 
 const activateTab = (tab) => {
   if (tab === "login") {
-    loginBtnTab.classList.add("btn-secondary");
-    loginBtnTab.classList.remove("btn-outline-secondary");
-    registerBtnTab.classList.add("btn-outline-secondary");
-    registerBtnTab.classList.remove("btn-secondary");
-    loginForm.style.display = "flex";
-    registerForm.style.display = "none";
+    // loginForm.style.display = "none";
+    // registerForm.style.display = "flex";
+    registerForm.classList.remove("account-connect-hide");
+    loginForm.classList.add("account-connect-hide");
   } else {
-    registerBtnTab.classList.add("btn-secondary");
-    registerBtnTab.classList.remove("btn-outline-secondary");
-    loginBtnTab.classList.add("btn-outline-secondary");
-    loginBtnTab.classList.remove("btn-secondary");
-    registerForm.style.display = "flex";
-    loginForm.style.display = "none";
+    // registerForm.style.display = "none";
+    // loginForm.style.display = "flex";
+    registerForm.classList.add("account-connect-hide");
+    loginForm.classList.remove("account-connect-hide");
   }
 };

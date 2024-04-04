@@ -5,27 +5,36 @@ body {
   min-height: 100vh;
   background-position: center;
   background-size: cover;
+  background-repeat: no-repeat;
   background-image: linear-gradient(
       to right bottom,
       rgb(39, 39, 39, 0.85),
-      rgb(26, 26, 26, 0.95)
+      rgb(26, 26, 26, 1)
     ),
     url(../images/connect/trevor-vannoy-UNzohJgG8W0-unsplash.jpg);
   position: relative;
+  overflow-x: hidden;
 }
 
 section {
   display: flex;
   margin: auto;
   flex-direction: row;
-  max-width: 144rem;
+  max-width: 140rem;
   padding: 4rem;
   gap: 10rem;
 }
 
 .logo-component {
   position: absolute;
-  padding: 4rem 8.6rem;
+  width: 100%;
+  padding: 4rem 0;
+}
+
+.logo-align {
+  max-width: 140rem;
+  margin: 0 auto;
+  padding: 0 4rem;
 }
 
 .logo-component .logo {
@@ -49,21 +58,47 @@ section {
   line-height: 1.6;
 }
 
-.account-connect {
-  display: flex;
-  flex-direction: column;
+.account-content {
   background-color: transparent;
-  /* background-image: linear-gradient(
-    to right bottom,
-    rgba(85, 52, 3, 0.12),
-    rgba(70, 43, 2, 0.14)
-  ); */
-  /* background-color: rgb(255, 255, 255); */
   padding: 4rem 3.6rem;
-  border-radius: var(--default-radius);
   min-width: 35%;
   height: 38rem;
   width: 45rem;
+  position: relative;
+}
+
+.account-connect {
+  display: flex;
+  flex-direction: column;
+  opacity: 1;
+  transition: all 0.3s ease-out;
+  width: calc(100% - 3.6rem);
+  position: absolute;
+  transform: translate(0);
+}
+
+.account-connect-hide {
+  transform: translateX(8rem);
+  opacity: 0;
+  pointer-events: none;
+}
+
+.header-account-connect {
+  margin-bottom: 3rem;
+}
+
+.header-account-connect h2 {
+  font-size: 3rem;
+  color: var(--primary-gradient);
+  margin-bottom: 0.8rem;
+}
+
+.header-account-connect span {
+  font-size: 1.4rem;
+}
+.header-account-connect span a {
+  color: var(--primary-color);
+  margin-left: 0.2rem;
 }
 
 .account-connect__tabs {
@@ -72,16 +107,15 @@ section {
   padding-bottom: 2rem;
 }
 
-.account-connect__login {
+form {
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
 }
 
-.account-connect__register {
-  display: none;
-  flex-direction: column;
-  gap: 1.5rem;
+.btn-connect {
+  width: 100%;
+  margin-top: 2.4rem;
 }
 
 input {
@@ -95,6 +129,9 @@ input {
 
 input:focus {
   border-bottom: 1px solid var(--secondary-color);
+}
+input[type="radio"] {
+  accent-color: var(--primary-color);
 }
 
 fieldset {
@@ -115,14 +152,20 @@ fieldset > div {
 
 @media screen and (max-width: 1024px) {
   section {
+    margin-top: 9.8rem;
     flex-direction: column;
     gap: 2rem;
   }
+  .logo-component {
+    padding: 4rem;
+  }
+  .description {
+    padding: 0 4rem;
+  }
 
   .account-connect {
-    margin-left: auto;
-    margin-right: auto;
+    margin: 0 auto;
     width: 40rem;
-    max-width: 90vw;
+    /* max-width: 80vw; */
   }
 }
