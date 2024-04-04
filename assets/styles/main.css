@@ -1,4 +1,4 @@
-@import './header.css';
+@import "./header.css";
 :root {
   /* colors */
   --white-color: #fff;
@@ -89,13 +89,15 @@ a:active {
 }
 
 .btn-outline-primary {
-  background-color: var(--white-color);
+  /* background-color: var(--white-color); */
+  background-color: transparent;
   color: var(--primary-color);
   border: 0.1rem solid var(--primary-color);
 }
 
 .btn-outline-secondary {
-  background-color: var(--white-color);
+  background-color: transparent;
+  /* background-color: var(--white-color); */
   color: var(--secondary-color);
   border: 0.1rem solid var(--secondary-color);
 }
@@ -125,4 +127,8 @@ a:active {
 
 .margin-top-sm {
   margin-top: 3.2rem;
+}
+
+.margin-top-md {
+  margin-top: 5.4rem;
 }

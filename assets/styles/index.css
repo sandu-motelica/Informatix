@@ -6,11 +6,12 @@ body {
   background-position: center;
   background-size: cover;
   background-image: linear-gradient(
-      to right,
-      rgb(26, 26, 26, 0.85),
-      rgb(26, 26, 26, 0.85)
+      to right bottom,
+      rgb(39, 39, 39, 0.85),
+      rgb(26, 26, 26, 0.95)
     ),
     url(../images/connect/trevor-vannoy-UNzohJgG8W0-unsplash.jpg);
+  position: relative;
 }
 
 section {
@@ -20,6 +21,15 @@ section {
   max-width: 144rem;
   padding: 4rem;
   gap: 10rem;
+}
+
+.logo-component {
+  position: absolute;
+  padding: 4rem 8.6rem;
+}
+
+.logo-component .logo {
+  font-size: 2.6rem;
 }
 
 .description {
@@ -42,7 +52,13 @@ section {
 .account-connect {
   display: flex;
   flex-direction: column;
-  background-color: rgb(255, 255, 255);
+  background-color: transparent;
+  /* background-image: linear-gradient(
+    to right bottom,
+    rgba(85, 52, 3, 0.12),
+    rgba(70, 43, 2, 0.14)
+  ); */
+  /* background-color: rgb(255, 255, 255); */
   padding: 4rem 3.6rem;
   border-radius: var(--default-radius);
   min-width: 35%;
@@ -68,13 +84,26 @@ section {
   gap: 1.5rem;
 }
 
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--primary-color);
+  border-radius: 0;
+  color: var(--light-color);
+  transition: all 0.3s;
+}
+
+input:focus {
+  border-bottom: 1px solid var(--secondary-color);
+}
+
 fieldset {
   display: flex;
   flex-direction: row;
   border: none;
   gap: 1.5rem;
   font-size: 1.4rem;
-  color: var(--dark-color);
+  color: var(--semilight-color);
 }
 
 fieldset > div {
