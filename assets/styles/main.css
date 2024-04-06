@@ -89,6 +89,9 @@ a:active {
   width: fit-content;
   font-weight: 500;
   font-size: 1.6rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn-primary {
@@ -126,9 +129,16 @@ a:active {
   margin-bottom: 1.2rem;
 }
 
+.flex {
+  display: flex;
+}
+
+.gap-sm {
+  gap: 1rem;
+}
+
 .grid {
   display: grid;
-  height: 200vh;
 }
 
 .grid--2 {
@@ -142,4 +152,8 @@ a:active {
 
 .margin-top-md {
   margin-top: 5.4rem;
+}
+
+.margin-bt-bg {
+  margin-bottom: 9.6rem;
 }

@@ -104,9 +104,65 @@
 }
 
 .problems__filter-tab {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
   margin-bottom: 2rem;
+}
+
+.problems__filter-tab li {
+  height: 3.2rem;
+}
+
+.problems__filter-tab select {
+  height: 100%;
 }
 
 select option:disabled {
   display: none;
+}
+
+.problems__filter-tab input {
+  background-color: transparent;
+  border: none;
+  color: var(--white-color);
+  height: 100%;
+  padding: 0 1rem 0 0;
+}
+
+.filter__search-tab {
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-color-2);
+  border-radius: var(--default-radius);
+}
+
+.search-icon {
+  height: 1.6rem;
+  padding: 0 1rem;
+}
+
+.pick-one {
+  flex-grow: 1;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 1rem;
+  cursor: pointer;
+}
+.pick-one span {
+  color: var(--primary-color);
+  font-size: 1.4rem;
+}
+
+.btn-pick {
+  height: 100%;
+  width: 3.2rem;
+  padding: 0;
+  border: 50%;
+  background-color: var(--primary-color);
+}
+
+.pick-one-icon {
+  height: 2.2rem;
 }
