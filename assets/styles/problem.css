@@ -11,9 +11,33 @@
   width: 50%;
 }
 
+.problem__form,
+.problem__main {
+  border-radius: var(--default-radius);
+  overflow: hidden;
+}
+
+.problem__header {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 0.8rem 2rem;
+  background-color: var(--dark-color-2);
+}
+
+.problem__header h2 {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.problem__header .problem-icon {
+  color: var(--primary-color);
+  height: 1.6rem;
+}
+
 textarea {
   background-color: #262626;
-  height: 80vh;
+  height: 75vh;
   width: 100%;
   border: none;
   padding: 2rem;
@@ -21,4 +45,32 @@ textarea {
   outline: none;
   resize: none;
   overflow-y: auto;
+}
+
+.problem__content {
+  background-color: #262626;
+  height: 75vh;
+  padding: 3rem 2rem 2rem;
+  color: var(--color-white);
+  overflow-y: auto;
+}
+
+.problem__title {
+  font-size: 2.4rem;
+  margin-bottom: 1.6rem;
+  line-height: 0.8;
+}
+
+.problem__content-text {
+  font-size: 1.6rem;
+  font-size: 400;
+}
+
+.problem__dificulty {
+  padding: 0.6rem 1rem;
+  border-radius: var(--rounded-radius);
+  background-color: var(--dark-color-2);
+  display: inline-block;
+  margin-bottom: 1.6rem;
+  color: var(--primary-color);
 }
