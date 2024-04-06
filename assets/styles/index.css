@@ -8,10 +8,10 @@ body {
   background-repeat: no-repeat;
   background-image: linear-gradient(
       to right bottom,
-      rgb(39, 39, 39, 0.85),
+      rgb(39, 39, 39, 0.75),
       rgb(26, 26, 26, 1)
     ),
-    url(../images/connect/trevor-vannoy-UNzohJgG8W0-unsplash.jpg);
+    url(../images/connect/connect-background.jpg);
   position: relative;
   overflow-x: hidden;
 }
@@ -99,12 +99,6 @@ section {
 .header-account-connect span a {
   color: var(--primary-color);
   margin-left: 0.2rem;
-}
-
-.account-connect__tabs {
-  display: flex;
-  gap: 1.5rem;
-  padding-bottom: 2rem;
 }
 
 form {

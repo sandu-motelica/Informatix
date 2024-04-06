@@ -1,25 +1,24 @@
 @import "./main.css";
 
-
 .problem {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    gap: 2rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  gap: 2rem;
 }
 
 .problem > div {
-    width: 50%;
+  width: 50%;
 }
 
 textarea {
-    background-color: #262626;
-    height: 80vh;
-    width: 100%;
-    border: none;
-    padding: 2rem;
-    color: var(--color-white);
-    outline: none;
-    resize: none;
-    overflow-y: auto;
+  background-color: #262626;
+  height: 80vh;
+  width: 100%;
+  border: none;
+  padding: 2rem;
+  color: var(--color-white);
+  outline: none;
+  resize: none;
+  overflow-y: auto;
 }

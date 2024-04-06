@@ -4,6 +4,7 @@
   border-spacing: 0;
   font-size: 1.4rem;
   width: 100%;
+  margin-bottom: 3.2rem;
 }
 
 .problems__table thead tr {
@@ -64,4 +65,48 @@
   padding: 0.1rem 0.5rem;
   font-size: 1rem;
   color: var(--dark-color-3);
+}
+
+.status-icon {
+  height: 2rem;
+  stroke: var(--primary-color);
+}
+
+.problems-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.8rem;
+}
+
+.problems-pagination li {
+  background-color: var(--dark-color-2);
+  border-radius: var(--default-radius);
+  font-size: 1.4rem;
+}
+.problems-pagination li a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 3.2rem;
+  height: 3.2rem;
+}
+
+.problems-pagination .pagination-page-active {
+  background-color: #444;
+}
+
+.pagination-page-active a {
+  color: #fff;
+}
+
+.pagination-arrow {
+  height: 2rem;
+}
+
+.problems__filter-tab {
+  margin-bottom: 2rem;
+}
+
+select option:disabled {
+  display: none;
 }

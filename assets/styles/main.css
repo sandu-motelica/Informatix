@@ -6,7 +6,7 @@
   --primary-gradient: linear-gradient(120deg, #1da09c, #4ab3b0);
   --secondary-color: #fea116;
   --error-color: red;
-  --dark-color: #1a1a1a;
+  --dark-color: #222;
   --dark-color-2: #313131;
   --dark-color-3: #282828;
   /* font colors */
@@ -48,6 +48,15 @@ input {
 
 ul {
   list-style: none;
+}
+
+select {
+  background-color: var(--dark-color-2);
+  border: none;
+  outline: none;
+  color: var(--light-color);
+  padding: 0.8rem 1.2rem;
+  border-radius: 6px;
 }
 
 a,

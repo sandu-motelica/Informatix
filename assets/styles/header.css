@@ -1,5 +1,5 @@
 .header {
-  height: 6.4rem;
+  height: 5.4rem;
   width: 100%;
   position: sticky;
   left: 0;
@@ -33,7 +33,27 @@
   color: var(--secondary-color);
 }
 
-.nav-list {
+nav,
+.nav-list,
+.page-active {
   display: flex;
-  gap: 4.8rem;
+  gap: 1.6rem;
+  height: 100%;
+}
+
+.nav-list li {
+  display: flex;
+  align-items: center;
+  padding: 0 1.2rem;
+  font-weight: 400;
+}
+.page-active {
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.page-active a,
+.page-active a:visited,
+.page-active a:link {
+  color: var(--secondary-color);
+  font-weight: 500;
 }
