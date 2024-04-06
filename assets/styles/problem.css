@@ -45,6 +45,8 @@ textarea {
   outline: none;
   resize: none;
   overflow-y: auto;
+  scrollbar-color: #555 #313131;
+  scrollbar-width: thin;
 }
 
 .problem__content {
@@ -53,6 +55,8 @@ textarea {
   padding: 3rem 2rem 2rem;
   color: var(--color-white);
   overflow-y: auto;
+  scrollbar-color: #555 #313131;
+  scrollbar-width: thin;
 }
 
 .problem__title {
