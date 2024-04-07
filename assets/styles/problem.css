@@ -78,3 +78,16 @@ textarea {
   margin-bottom: 1.6rem;
   color: var(--primary-color);
 }
+
+@media screen and (max-width: 53em) {
+  .problem > div {
+    width: 100%;
+  }
+  .problem {
+    flex-direction: column;
+    margin-bottom: 9.6rem;
+  }
+  .problem__content {
+    height: auto;
+  }
+}

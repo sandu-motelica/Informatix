@@ -58,8 +58,31 @@ nav,
   font-weight: 500;
 }
 
-@media screen and (max-width: 43em) {
+.header__menu {
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  display: none;
+}
+
+.header__menu-btn {
+  cursor: pointer;
+  height: 60%;
+}
+
+@media screen and (max-width: 40em) {
   .nav-list {
-    gap: 0rem;
+    /* display: none; */
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .header__menu {
+    display: flex;
   }
 }
