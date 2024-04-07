@@ -7,6 +7,11 @@
   margin-bottom: 3.2rem;
 }
 
+.problems-grid {
+  grid-template-columns: 3fr 1fr;
+  column-gap: 3.2rem;
+}
+
 .problems__table thead tr {
   border-bottom: 1px solid #767676;
 }
@@ -138,6 +143,7 @@ select option:disabled {
 }
 
 .search-icon {
+  flex-shrink: 0;
   height: 1.6rem;
   padding: 0 1rem;
 }
@@ -159,10 +165,36 @@ select option:disabled {
   height: 100%;
   width: 3.2rem;
   padding: 0;
-  border: 50%;
+  border-radius: 50%;
   background-color: var(--primary-color);
 }
 
 .pick-one-icon {
   height: 2.2rem;
+}
+
+@media screen and (max-width: 57em) {
+  .problems-grid {
+    grid-template-columns: 1fr;
+  }
+}
+@media screen and (max-width: 43em) {
+  html {
+    font-size: 56.25%;
+  }
+  .problems__filter-tab input {
+    width: 100%;
+  }
+  .problems__filter-tab {
+    gap: 1rem;
+  }
+  .pick-one {
+    flex-shrink: 0;
+  }
+  table tr th:first-child {
+    display: none;
+  }
+  .pick-one span {
+    display: none;
+  }
 }

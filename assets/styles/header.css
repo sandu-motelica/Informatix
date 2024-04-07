@@ -57,3 +57,9 @@ nav,
   color: var(--secondary-color);
   font-weight: 500;
 }
+
+@media screen and (max-width: 43em) {
+  .nav-list {
+    gap: 0rem;
+  }
+}
