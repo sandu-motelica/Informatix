@@ -36,6 +36,8 @@ html {
 body {
   background-color: var(--dark-color);
   color: var(--light-color);
+  position: relative;
+  overflow-x: hidden;
 }
 
 input {

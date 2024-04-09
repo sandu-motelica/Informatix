@@ -89,7 +89,6 @@ section {
 
 .header-account-connect h2 {
   font-size: 3rem;
-  color: var(--primary-gradient);
   margin-bottom: 0.8rem;
 }
 
@@ -97,7 +96,7 @@ section {
   font-size: 1.4rem;
 }
 .header-account-connect span a {
-  color: var(--primary-color);
+  color: var(--secondary-color);
   margin-left: 0.2rem;
 }
 
@@ -115,14 +114,14 @@ form {
 input {
   background-color: transparent;
   border: none;
-  border-bottom: 1px solid var(--primary-color);
+  border-bottom: 1px solid var(--secondary-color);
   border-radius: 0;
   color: var(--light-color);
   transition: all 0.3s;
 }
 
 input:focus {
-  border-bottom: 1px solid var(--secondary-color);
+  border-bottom: 1px solid var(--primary-color);
 }
 input[type="radio"] {
   accent-color: var(--primary-color);
