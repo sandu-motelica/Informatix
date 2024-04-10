@@ -1,6 +1,6 @@
-const template = document.createElement("template");
-template.innerHTML = `
-<header class="header">
+const header = document.createElement("header");
+header.classList.add('header');
+header.innerHTML = `
 <div class="container header-main">
   <div>
     <a href="#" class="logo"
@@ -59,9 +59,12 @@ template.innerHTML = `
     </div>
   </nav>
 </div>
-</header>`;
+`;
 
-document.body.appendChild(template);
+const mainElement = document.getElementsByTagName('main')[0];
+
+
+mainElement.insertAdjacentElement('beforebegin', header);
 
 // const menuBtn = document.querySelector(".header__menu");
 // const closeBtn = document.querySelector(".header__menu-close");
