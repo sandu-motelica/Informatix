@@ -1,6 +1,8 @@
 @import "./main.css";
 
 body {
+  display: flex;
+  min-height: 100vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -10,23 +12,23 @@ body {
       rgb(26, 26, 26, 1)
     ),
     url(../images/connect/connect-background.jpg);
+  position: relative;
+  overflow-x: hidden;
 }
 
-.connect-section {
+section {
   display: flex;
   margin: auto;
   flex-direction: row;
-  align-items: center;
   max-width: 140rem;
   padding: 4rem;
   gap: 10rem;
-  height: calc(100vh - 8.12rem);
 }
 
 .logo-component {
+  position: absolute;
   width: 100%;
-  height: 8.12rem;
-  padding: 4rem 0 1rem;
+  padding: 4rem 0;
 }
 
 .logo-align {
@@ -59,7 +61,7 @@ body {
 .account-content {
   background-color: transparent;
   padding: 4rem 3.6rem;
-  min-width: 40%;
+  min-width: 35%;
   height: 38rem;
   position: relative;
 }
@@ -69,7 +71,7 @@ body {
   flex-direction: column;
   opacity: 1;
   transition: all 0.3s ease-out;
-  width: calc(100% - 7.2rem);
+  width: calc(100% - 3.6rem);
   position: absolute;
   transform: translate(0);
 }
