@@ -159,3 +159,9 @@ a:active {
 .margin-bt-bg {
   margin-bottom: 9.6rem;
 }
+
+@media screen and (max-width: 43em) {
+  html {
+    font-size: 56.25%;
+  }
+}

@@ -1,8 +1,6 @@
 @import "./main.css";
 
 body {
-  display: flex;
-  min-height: 100vh;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -12,23 +10,23 @@ body {
       rgb(26, 26, 26, 1)
     ),
     url(../images/connect/connect-background.jpg);
-  position: relative;
-  overflow-x: hidden;
 }
 
-section {
+.connect-section {
   display: flex;
   margin: auto;
   flex-direction: row;
+  align-items: center;
   max-width: 140rem;
   padding: 4rem;
   gap: 10rem;
+  height: calc(100vh - 8.12rem);
 }
 
 .logo-component {
-  position: absolute;
   width: 100%;
-  padding: 4rem 0;
+  height: 8.12rem;
+  padding: 4rem 0 1rem;
 }
 
 .logo-align {
@@ -61,9 +59,8 @@ section {
 .account-content {
   background-color: transparent;
   padding: 4rem 3.6rem;
-  min-width: 35%;
+  min-width: 40%;
   height: 38rem;
-  width: 45rem;
   position: relative;
 }
 
@@ -72,7 +69,7 @@ section {
   flex-direction: column;
   opacity: 1;
   transition: all 0.3s ease-out;
-  width: calc(100% - 3.6rem);
+  width: calc(100% - 7.2rem);
   position: absolute;
   transform: translate(0);
 }
@@ -157,8 +154,26 @@ fieldset > div {
   }
 
   .account-connect {
-    margin: 0 auto;
-    width: 40rem;
-    /* max-width: 80vw; */
+    padding: 0 4rem;
+    width: 100%;
+  }
+  .account-content {
+    padding: 3rem 0;
+    max-width: 45rem;
+  }
+}
+
+@media screen and (max-width: 29em) {
+  section {
+    margin-top: 12.8rem;
+  }
+  .logo-component {
+    padding: 4rem 0;
+  }
+  .account-connect {
+    padding: 0;
+  }
+  .description {
+    padding: 0;
   }
 }

@@ -179,9 +179,6 @@ select option:disabled {
   }
 }
 @media screen and (max-width: 43em) {
-  html {
-    font-size: 56.25%;
-  }
   .problems__filter-tab input {
     width: 100%;
   }
