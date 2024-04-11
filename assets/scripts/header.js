@@ -1,5 +1,5 @@
 const header = document.createElement("header");
-header.classList.add('header');
+header.classList.add("header");
 header.innerHTML = `
 <div class="container header-main">
   <div>
@@ -61,18 +61,17 @@ header.innerHTML = `
 </div>
 `;
 
-const mainElement = document.getElementsByTagName('main')[0];
+const mainElement = document.getElementsByTagName("main")[0];
 
+mainElement.insertAdjacentElement("beforebegin", header);
 
-mainElement.insertAdjacentElement('beforebegin', header);
+const menuBtn = document.querySelector(".header__menu");
+const closeBtn = document.querySelector(".header__menu-close");
+const navMenu = document.querySelector(".nav-list");
 
-// const menuBtn = document.querySelector(".header__menu");
-// const closeBtn = document.querySelector(".header__menu-close");
-// const navMenu = document.querySelector(".nav-list");
-
-// menuBtn.addEventListener("click", () => {
-//   navMenu.classList.add("open-menu");
-// });
-// closeBtn.addEventListener("click", () => {
-//   navMenu.classList.remove("open-menu");
-// });
+menuBtn.addEventListener("click", () => {
+  navMenu.classList.add("open-menu");
+});
+closeBtn.addEventListener("click", () => {
+  navMenu.classList.remove("open-menu");
+});
