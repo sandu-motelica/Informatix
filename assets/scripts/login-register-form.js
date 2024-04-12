@@ -7,13 +7,9 @@ const registerForm = document.getElementsByClassName(
 
 const activateTab = (tab) => {
   if (tab === "login") {
-    // loginForm.style.display = "none";
-    // registerForm.style.display = "flex";
     registerForm.classList.remove("account-connect-hide");
     loginForm.classList.add("account-connect-hide");
   } else {
-    // registerForm.style.display = "none";
-    // loginForm.style.display = "flex";
     registerForm.classList.add("account-connect-hide");
     loginForm.classList.remove("account-connect-hide");
   }

@@ -13,9 +13,12 @@
 
 .problem__form,
 .problem__main {
+  display: flex;
+  flex-direction: column;
   border-radius: var(--default-radius);
   overflow: hidden;
   box-shadow: 0 0 1px 1px rgb(255, 255, 255, 0.2);
+  height: 80vh;
 }
 
 .problem__header,
@@ -39,10 +42,11 @@
 
 textarea {
   background-color: #262626;
-  height: 70vh;
   width: 100%;
   border: none;
   padding: 2rem;
+  /* flex: 1; */
+  height: 100%;
   color: var(--color-white);
   outline: none;
   resize: none;
@@ -53,7 +57,7 @@ textarea {
 
 .problem__content {
   background-color: #262626;
-  height: 70vh;
+  flex: 1;
   padding: 3rem 2rem 2rem;
   color: var(--color-white);
   overflow-y: auto;
@@ -93,21 +97,42 @@ textarea {
   gap: 0.2rem;
 }
 
-.problem__comments {
+.problem__comments,
+.problem__submit {
   display: flex;
   align-items: center;
   gap: 0.5rem;
   font-size: 1.3rem;
   color: #bbb;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.problem__comments:hover {
+  color: #cfcfcf;
 }
 
 .comments-icon {
   height: 1.6rem;
 }
 
+.send-icon {
+  height: 1.5rem;
+}
+
+.problem__submit {
+  color: var(--primary-color);
+  font-weight: 500;
+}
+
 .rating-star-icon {
   height: 1.6rem;
   color: #666;
+  cursor: pointer;
+}
+
+.rating-star-selected {
+  color: var(--secondary-color);
 }
 
 @media screen and (max-width: 53em) {
