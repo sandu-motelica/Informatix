@@ -5,3 +5,5 @@ const problemHeadline = document.getElementsByClassName("problem__title")[0];
 if (searchParams.has("id")) {
   // problemHeadline.append(searchParams.get('id'))
 } else window.location.href = `${rootPath}/problems.html`;
+
+const starEl = document.querySelector();

@@ -15,9 +15,11 @@
 .problem__main {
   border-radius: var(--default-radius);
   overflow: hidden;
+  box-shadow: 0 0 1px 1px rgb(255, 255, 255, 0.2);
 }
 
-.problem__header {
+.problem__header,
+.problem__footer {
   display: flex;
   gap: 1rem;
   align-items: center;
@@ -37,7 +39,7 @@
 
 textarea {
   background-color: #262626;
-  height: 75vh;
+  height: 70vh;
   width: 100%;
   border: none;
   padding: 2rem;
@@ -51,7 +53,7 @@ textarea {
 
 .problem__content {
   background-color: #262626;
-  height: 75vh;
+  height: 70vh;
   padding: 3rem 2rem 2rem;
   color: var(--color-white);
   overflow-y: auto;
@@ -77,6 +79,35 @@ textarea {
   display: inline-block;
   margin-bottom: 1.6rem;
   color: var(--primary-color);
+}
+
+.problem__footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.problem__evaluate {
+  display: flex;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.problem__comments {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.3rem;
+  color: #bbb;
+}
+
+.comments-icon {
+  height: 1.6rem;
+}
+
+.rating-star-icon {
+  height: 1.6rem;
+  color: #666;
 }
 
 @media screen and (max-width: 53em) {
