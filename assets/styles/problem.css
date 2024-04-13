@@ -85,10 +85,12 @@ textarea {
   color: var(--primary-color);
 }
 
-.problem__footer {
-  display: flex;
+.problem__footer-main {
   justify-content: space-between;
-  align-items: center;
+}
+
+.problem__footer-form {
+  background-color: #262626;
 }
 
 .problem__evaluate {
@@ -121,8 +123,9 @@ textarea {
 }
 
 .problem__submit {
-  color: var(--primary-color);
   font-weight: 500;
+  height: 2.8rem;
+  color: var(--color-white);
 }
 
 .rating-star-icon {
