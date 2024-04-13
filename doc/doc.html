@@ -59,6 +59,24 @@
                 <a href="#d3"
                   ><span>2.3</span> User Classes and Characteristics</a
                 >
+                <ol role="directory">
+                  <li>
+                    <a href="#students"> <span>2.3.1</span> Students </a>
+                  </li>
+                  <li>
+                    <a href="#teachers"> <span>2.3.2</span> Teachers </a>
+                  </li>
+                  <li>
+                    <a href="#administrators">
+                      <span>2.3.3</span> Administrators
+                    </a>
+                  </li>
+                  <li>
+                    <a href="#extern_app">
+                      <span>2.3.4</span> External Applications
+                    </a>
+                  </li>
+                </ol>
               </li>
               <li>
                 <a href="#d4"><span>2.4</span> Operating Environment</a>
@@ -198,8 +216,8 @@
           systems. Below is a simplified diagram illustrating the major
           components of the overall system:
         </p>
-        <div style="margin-left: 20%">
-          <img src="#" alt="diagram" /><br />
+        <div style="text-align: center">
+          <img src="./images/informatix-diagram.png" alt="diagram" /><br />
           <label for="img"
             >A simple diagram that shows the major components of the
             system</label
@@ -254,7 +272,7 @@
             fostering collaborative learning environments.
           </p>
         </section>
-        <section id="students">
+        <section id="administrators">
           <h4><span>2.3.3</span> Administrators</h4>
           <p>
             Administrators maintain Informatix's smooth operation, handling
@@ -265,7 +283,7 @@
             role in providing technical support to users.
           </p>
         </section>
-        <section id="students">
+        <section id="extern_app">
           <h4><span>2.3.4</span> External Applications (via API)</h4>
           <p>
             External applications integrate seamlessly with Informatix via its
@@ -290,15 +308,18 @@
           <li>Mozilla Firefox</li>
         </ul>
       </section>
-
       <section id="d5">
         <h3><span>2.5</span> Design and Implementation Constraints</h3>
         <p>
-          Informatix is developed with a robust technology stack, ensuring both
-          functionality and user experience. The backend is built on NodeJS,
-          providing a solid foundation for server-side operations. HTML5, CSS3
-          and JAVASCRIPT are utilized for the frontend, guaranteeing a
-          responsive and intuitive user interface.
+          Developers need to consider various factors while building the
+          application. These include adhering to regulatory policies like GDPR
+          for user data protection, implementing robust security measures
+          against common threats, designing a scalable architecture to handle
+          potential user growth, ensuring cross-browser compatibility and
+          accessibility, and providing documentation and ongoing support for
+          maintenance. Additionally, they must focus on data validation, API
+          design for interoperability, performance optimization, and error
+          handling for a seamless user experience.
         </p>
       </section>
 
@@ -310,6 +331,15 @@
       </section>
       <section id="d7">
         <h3><span>2.7</span> Assumptions and Dependencies</h3>
+        <p>
+          Technologies used in implementation of the project are HTML5, CSS3,
+          JavaScript (frontend). The backend development relies on the Node.js
+          ecosystem, including libraries (like JWT) and package management tools
+          (like npm). We plan to use PostgreSQL database. PostgreSQL is known
+          for its reliability, performance, and robust feature set, making it a
+          popular choice for both small-scale applications and large-scale
+          enterprise systems.
+        </p>
       </section>
     </section>
 
@@ -393,6 +423,15 @@
       </section>
       <section id="communications">
         <h3>3.4 Communications Interfaces</h3>
+        <p>
+          Internet Protocol (IP) shall be used by the software interfaces to
+          connect to the internet.
+        </p>
+        <p>
+          The communication architecture must follow the client-server model.
+          Communication between the client and server must be served over HTTP
+          Secure (HTTPS).
+        </p>
       </section>
     </section>
 
