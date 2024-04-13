@@ -38,6 +38,10 @@
   border-radius: 0.5rem;
   margin-top: 5rem;
 }
+.problems__tags h2 {
+  font-size: 1.6rem;
+  font-weight: 500;
+}
 
 .problems__tags input {
   width: 100%;
@@ -64,7 +68,7 @@
   cursor: pointer;
 }
 
-.problems__tags-wrapper > button > div {
+.problems__tags-wrapper > button > span {
   background-color: var(--secondary-color);
   border-radius: 10rem;
   padding: 0.1rem 0.5rem;

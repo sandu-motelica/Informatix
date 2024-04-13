@@ -45,7 +45,6 @@ textarea {
   width: 100%;
   border: none;
   padding: 2rem;
-  /* flex: 1; */
   height: 100%;
   color: var(--color-white);
   outline: none;
@@ -73,7 +72,7 @@ textarea {
 
 .problem__content-text {
   font-size: 1.6rem;
-  font-size: 400;
+  font-weight: 400;
 }
 
 .problem__dificulty {
