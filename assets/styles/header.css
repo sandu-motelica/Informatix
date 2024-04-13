@@ -98,6 +98,22 @@ nav,
   display: none;
 }
 
+.nav-list-el .btn-logout {
+  background-image: linear-gradient(110deg, #c2255c, #881a40);
+  height: 3rem;
+}
+
+.disconnect-link {
+  display: none;
+  font-weight: 500;
+}
+
+.logout-icon {
+  color: var(--white-color);
+  height: 2.2rem;
+  width: 2.2rem;
+}
+
 @media screen and (max-width: 40em) {
   .nav-list {
     transform: translateX(100%);
@@ -137,5 +153,15 @@ nav,
   .nav-list .header__menu-close,
   .logo-mobile-menu .logo {
     display: inline-block;
+  }
+  .nav-list .btn-logout {
+    display: none;
+  }
+  .nav-list .disconnect-link {
+    display: inline-block;
+    color: #c2255c;
+  }
+  .nav-list .disconnect {
+    border-bottom: none;
   }
 }
