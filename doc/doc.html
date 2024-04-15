@@ -12,7 +12,8 @@
       href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
       rel="stylesheet"
     />
-    <title>Scholarly HTML</title>
+    <link rel="icon" href="../assets/images/general/logo.png" />
+    <title>InformatiX Documentation</title>
     <link rel="stylesheet" href="./doc.css" />
   </head>
 
@@ -87,10 +88,7 @@
                 >
               </li>
               <li>
-                <a href="#d6"><span>2.6</span> User Documentation</a>
-              </li>
-              <li>
-                <a href="#d7"><span>2.7</span> Assumptions and Dependencies</a>
+                <a href="#d6"><span>2.6</span> Assumptions and Dependencies</a>
               </li>
             </ol>
           </li>
@@ -196,10 +194,14 @@
 
         <dt>Authors</dt>
         <dd>
-          <a href="#">Bucătaru Florin</a>
+          <a target="_blank" href="https://github.com/FlorinInfo"
+            >Bucătaru Florin</a
+          >
         </dd>
         <dd>
-          <a href="#">Motelică Sandu</a>
+          <a target="_blank" href="https://github.com/sandu-motelica"
+            >Motelică Sandu</a
+          >
         </dd>
       </dl>
     </div>
@@ -242,11 +244,11 @@
         <p>
           This document is intended for various stakeholders involved in the
           development, management, and usage of the application, including
-          developers, educators, students, and administrators. For developers,
-          it provides detailed technical specifications. Educators can
-          understand the platform's capabilities for integrating it into their
-          teaching methods. Students can comprehend the features available for
-          their learning journey. Administrators can oversee the application's
+          developers, teachers, students, and administrators. For developers, it
+          provides detailed technical specifications. Teachers can understand
+          the platform's capabilities for integrating it into their teaching
+          methods. Students can comprehend the features available for their
+          learning journey. Administrators can oversee the application's
           deployment and maintenance. For optimal understanding, readers are
           encouraged to begin with the overview sections and then navigate to
           sections relevant to their roles or interests.
@@ -257,26 +259,26 @@
         <dl>
           <dt id="ref-heroicons">Heroicons</dt>
           <dd>
-            <a href="https://heroicons.com/">
+            <a target="_blank" href="https://heroicons.com/">
               Icon set used for the user interface design.</a
             >
           </dd>
           <dt id="ref-heroicons">draw.io</dt>
           <dd>
-            <a href="https://www.drawio.com/">
+            <a target="_blank" href="https://www.drawio.com/">
               Diagramming tool used for system architecture and workflow
               visualization.</a
             >
           </dd>
           <dt id="ref-heroicons">Dribbble</dt>
           <dd>
-            <a href="https://dribbble.com/">
+            <a target="_blank" href="https://dribbble.com/">
               Source of design inspiration and reference for UI/UX elements.</a
             >
           </dd>
           <dt id="ref-heroicons">JWT.io</dt>
           <dd>
-            <a href="https://jwt.io/">
+            <a target="_blank" href="https://jwt.io/">
               JSON Web Tokens (JWT) technology used for authentication and
               authorization.</a
             >
@@ -293,24 +295,22 @@
         <p>
           The web application described in this SRS stands as an independent
           product tailored specifically for the educational domain, focusing on
-          programming learning for high school students. While it functions as a
-          standalone platform, it can also be integrated into larger educational
-          systems or platforms. This application is not a replacement for
-          existing systems but rather serves as a complementary tool to enhance
-          the learning experience in programming-related subjects. It provides a
-          novel approach to learning by engaging students in problem-solving
-          activities under the guidance of their teachers. In the context of a
-          larger educational ecosystem, this software interfaces with existing
-          learning management systems, student information systems, and other
-          educational platforms. It provides seamless integration through its
-          API, allowing data exchange and interoperability with external
-          systems. Below is a simplified diagram illustrating the major
-          components of the overall system:
+          programming learning for high school students. This application is not
+          a replacement for existing systems but rather serves as a
+          complementary tool to enhance the learning experience in
+          programming-related subjects. It provides a novel approach to learning
+          by engaging students in problem-solving activities under the guidance
+          of their teachers. In the context of a larger educational ecosystem,
+          this software interfaces with existing learning management systems,
+          student information systems, and other educational platforms. It
+          provides seamless integration through its API, allowing data exchange
+          and interoperability with external systems. Below is a simplified
+          diagram illustrating the main functionalities of the overall system:
         </p>
         <div style="text-align: center">
           <img src="./images/informatix-diagram.png" alt="diagram" /><br />
           <label for="img"
-            >A simple diagram that shows the major components of the
+            >A simple diagram that shows the major functionalities of the
             system</label
           >
         </div>
@@ -395,8 +395,8 @@
         <ul>
           <li>Apple Safari</li>
           <li>Google Chrome</li>
-          <li>Microsoft Internet Explorer</li>
           <li>Mozilla Firefox</li>
+          <li>Opera</li>
         </ul>
       </section>
       <section id="d5">
@@ -413,15 +413,8 @@
           handling for a seamless user experience.
         </p>
       </section>
-
       <section id="d6">
-        <h3>
-          <span>2.6</span>
-          <a href="#">User Documentation</a>
-        </h3>
-      </section>
-      <section id="d7">
-        <h3><span>2.7</span> Assumptions and Dependencies</h3>
+        <h3><span>2.6</span> Assumptions and Dependencies</h3>
         <p>
           Technologies used in implementation of the project are HTML5, CSS3,
           JavaScript (frontend). The backend development relies on the Node.js
