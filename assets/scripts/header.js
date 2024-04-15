@@ -12,10 +12,10 @@ header.innerHTML = `
         </div>
         <nav>
           <ul class="nav-list">
-            <li class="nav-list-el page-active"><a href="">Probleme</a></li>
-            <li class="nav-list-el"><a href="">Discutii</a></li>
-            <li class="nav-list-el"><a href="">Clase</a></li>
-            <li class="nav-list-el"><a href="">Profil</a></li>
+            <li class="nav-list-el page-active"><a href="/pages/problems.html">Probleme</a></li>
+            <li class="nav-list-el"><a href="/pages/discutii.html">Discutii</a></li>
+            <li class="nav-list-el"><a href="/pages/classes.html">Clase</a></li>
+            <li class="nav-list-el"><a href="/pages/account.html">Profil</a></li>
             <li class="nav-list-el disconnect">
               <button class="btn btn-logout">
                 <svg
@@ -93,4 +93,12 @@ menuBtn.addEventListener("click", () => {
 });
 closeBtn.addEventListener("click", () => {
   navMenu.classList.remove("open-menu");
+});
+
+const navElements = document.getElementsByClassName("nav-list-el");
+
+Array.from(navElements).forEach((item) => {
+  if (item.getElementsByTagName("a")[0].href == window.location.href) {
+    item.classList.add("page-active");
+  } else item.classList.remove("page-active");
 });
