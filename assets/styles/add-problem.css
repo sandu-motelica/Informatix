@@ -1,0 +1,85 @@
+@import "./main.css";
+
+.add-problem {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 3.2rem;
+}
+
+.add-problems__block {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  padding: 2rem;
+  border-radius: var(--default-radius);
+  background-color: var(--dark-color-3);
+  height: fit-content;
+}
+
+.add-problems__content > form {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.add-problems__content textarea,
+.add-problems__content input {
+  background-color: #262626;
+  width: 100%;
+  border: none;
+  padding: 2rem;
+  height: 100%;
+  color: var(--color-white);
+  outline: none;
+  resize: none;
+  overflow-y: auto;
+  scrollbar-color: #555 #313131;
+  scrollbar-width: thin;
+}
+
+.add-problems__content textarea {
+  min-height: 20rem;
+}
+
+.add-problems__content > form > .btn {
+  display: block;
+  margin-left: auto;
+}
+
+.add-problems__difficulty,
+.add-problems__category {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.4rem;
+}
+
+.add-problems__difficulty > div {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  align-items: center;
+}
+
+.add-problems__difficulty > div > input {
+  width: fit-content;
+}
+
+.problems__tags {
+  margin-top: 2rem !important;
+  margin-top: 0;
+  padding: 0;
+}
+
+.problems__empty-categories {
+  display: none;
+}
+
+.problems__empty-categories > button {
+  margin: 2rem auto 0 auto;
+}
+
+@media screen and (max-width: 70rem) {
+  .add-problem {
+    grid-template-columns: 1fr;
+  }
+}

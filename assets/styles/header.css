@@ -108,6 +108,9 @@ nav,
   display: none;
   font-weight: 500;
 }
+.nav-list .disconnect {
+  border-bottom: none !important;
+}
 
 .logout-icon {
   color: var(--white-color);
@@ -161,8 +164,5 @@ nav,
   .nav-list .disconnect-link {
     display: inline-block;
     color: #c2255c;
-  }
-  .nav-list .disconnect {
-    border-bottom: none;
   }
 }
