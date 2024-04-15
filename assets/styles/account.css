@@ -4,6 +4,7 @@
   display: grid;
   grid-template-columns: 1fr 3fr;
   column-gap: 3.2rem;
+  margin-bottom: 9.2rem;
 }
 
 .account__info {

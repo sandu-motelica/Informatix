@@ -110,6 +110,12 @@ form {
   margin-top: 2.4rem;
 }
 
+.btn-connect a {
+  height: 100%;
+  width: 100%;
+  color: var(--white-color);
+}
+
 input {
   background-color: transparent;
   border: none;

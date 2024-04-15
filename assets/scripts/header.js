@@ -3,7 +3,7 @@ header.classList.add("header");
 header.innerHTML = `
 <div class="container header-main">
         <div>
-          <a href="#" class="logo"
+          <a href="./problems.html" class="logo"
             >In<span class="logo-color">&lt;form&gt;</span>mati<span
               class="logo-color"
               >X</span
@@ -12,12 +12,12 @@ header.innerHTML = `
         </div>
         <nav>
           <ul class="nav-list">
-            <li class="nav-list-el page-active"><a href="">Probleme</a></li>
+            <li class="nav-list-el page-active"><a href="./problems.html">Probleme</a></li>
             <li class="nav-list-el"><a href="">Discutii</a></li>
             <li class="nav-list-el"><a href="">Clase</a></li>
-            <li class="nav-list-el"><a href="">Profil</a></li>
+            <li class="nav-list-el"><a href="./account.html">Profil</a></li>
             <li class="nav-list-el disconnect">
-              <button class="btn btn-logout">
+              <a href="./index.html" class="btn btn-logout">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -32,7 +32,7 @@ header.innerHTML = `
                     d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
                   />
                 </svg>
-              </button>
+              </a>
               <a class="disconnect-link" href="">Deconectare</a>
             </li>
             <li class="logo-mobile-menu">
