@@ -1,0 +1,169 @@
+@import "./main.css";
+
+.account-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  column-gap: 3.2rem;
+}
+
+.account__info {
+  padding: 2rem;
+  border-radius: var(--default-radius);
+  background-color: var(--dark-color-3);
+  height: fit-content;
+}
+
+.account__info > button {
+  width: 100%;
+  margin-top: 2rem;
+}
+
+.account__info__details {
+  display: flex;
+  flex-direction: row;
+  gap: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 0.1rem solid;
+}
+
+.account__info__details > img {
+  max-width: 8rem;
+  border-radius: var(--default-radius);
+  display: block;
+}
+
+.account__info__details > div {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 1rem 0;
+}
+
+.account__info__name {
+  font-size: 1.6rem;
+  font-weight: bold;
+}
+
+.account__info__rank {
+  font-size: 1.3rem;
+}
+
+.account__stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.account__stats {
+  padding: 2rem;
+  border-radius: var(--default-radius);
+  background-color: var(--dark-color-3);
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.account__stats__title {
+  font-size: 1.5rem;
+  border-bottom: 0.1rem solid rgba(245, 245, 220, 0.152);
+  padding-bottom: 1rem;
+}
+
+.account__statistic {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.account__statistic__numbers {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  padding: 0 1rem;
+  font-size: 1.4rem;
+}
+
+.account__statistic__bar {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 0.5rem;
+
+  border-radius: var(--default-radius);
+}
+
+.account__statistic__bar--filled {
+  position: absolute;
+
+  height: 100%;
+  border-radius: var(--default-radius);
+}
+
+.account__statistic--easy .account__statistic__bar {
+  background-color: rgba(0, 128, 0, 0.478);
+}
+
+.account__statistic--easy .account__statistic__bar--filled {
+  background-color: green;
+  width: 7%;
+}
+
+.account__statistic--medium .account__statistic__bar {
+  background-color: rgba(255, 255, 0, 0.541);
+}
+
+.account__statistic--medium .account__statistic__bar--filled {
+  background-color: yellow;
+  width: 2%;
+}
+
+.account__statistic--hard .account__statistic__bar {
+  background-color: rgba(255, 0, 0, 0.514);
+}
+
+.account__statistic--hard .account__statistic__bar--filled {
+  background-color: red;
+  width: 5%;
+}
+
+.account__stats-solved-problems {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+a.account__stats__problem {
+  display: flex;
+  justify-content: space-between;
+  padding: 1.5rem 1rem;
+  font-size: 1.4rem;
+  color: white;
+  border-radius: var(--default-radius);
+}
+
+.account__stats__problem:nth-child(odd) {
+  background-color: var(--dark-color);
+}
+
+input {
+  background-color: transparent;
+  border: none;
+  border-bottom: 1px solid var(--secondary-color);
+  border-radius: 0;
+  color: var(--light-color);
+  transition: all 0.3s;
+  width: 100%;
+}
+
+input:focus {
+  border-bottom: 1px solid var(--primary-color);
+}
+input[type="radio"] {
+  accent-color: var(--primary-color);
+}
+
+@media screen and (max-width: 60rem) {
+  .account-wrapper {
+    grid-template-columns: 1fr;
+  }
+}
