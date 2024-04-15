@@ -13,13 +13,7 @@ header.innerHTML = `
         <nav>
           <ul class="nav-list">
             <li class="nav-list-el page-active"><a href="/pages/problems.html">Probleme</a></li>
-            <li class="nav-list-el"><a href="/pages/discutii.html">Discutii</a></li>
-            <li class="nav-list-el"><a href="/pages/classes.html">Clase</a></li>
             <li class="nav-list-el"><a href="/pages/account.html">Profil</a></li>
-            <li class="nav-list-el page-active"><a href="./problems.html">Probleme</a></li>
-            <li class="nav-list-el"><a href="">Discutii</a></li>
-            <li class="nav-list-el"><a href="">Clase</a></li>
-            <li class="nav-list-el"><a href="./account.html">Profil</a></li>
             <li class="nav-list-el disconnect">
               <a href="./index.html" class="btn btn-logout">
                 <svg
