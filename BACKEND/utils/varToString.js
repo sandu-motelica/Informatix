@@ -1,0 +1,1 @@
+export default (varName)=> Object.keys(varName)[0];
