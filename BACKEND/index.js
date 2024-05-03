@@ -1,6 +1,4 @@
 import { createServer } from "node:http";
-import cookieParser from "cookie-parser";
-import cors from "cors";
 import "dotenv/config.js";
 import { connectDB } from "./utils/db-connection.js";
 import { router } from "./routes/index.js";

@@ -74,7 +74,7 @@ export const userLogout = async (req, res) => {
       "Set-Cookie",
       "refreshToken=deleted; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
     );
-    res.end(JSON.stringify(refreshToken));
+    res.end(JSON.stringify({ token: refreshToken }));
   } catch (e) {
     errorMiddleware(res, 500, "Server error");
   }
