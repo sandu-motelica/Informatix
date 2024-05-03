@@ -1,3 +1,5 @@
+import { logout } from "./logout.js";
+
 const header = document.createElement("header");
 header.classList.add("header");
 header.innerHTML = `
@@ -17,7 +19,7 @@ header.innerHTML = `
             <li class="nav-list-el"><a href="#">Clase</a></li>
             <li class="nav-list-el"><a href="/pages/account.html">Profil</a></li>
             <li class="nav-list-el disconnect">
-              <a href="./index.html" class="btn btn-logout">
+              <button class="btn btn-logout">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -32,8 +34,8 @@ header.innerHTML = `
                     d="M8.25 9V5.25A2.25 2.25 0 0 1 10.5 3h6a2.25 2.25 0 0 1 2.25 2.25v13.5A2.25 2.25 0 0 1 16.5 21h-6a2.25 2.25 0 0 1-2.25-2.25V15m-3 0-3-3m0 0 3-3m-3 3H15"
                   />
                 </svg>
-              </a>
-              <a class="disconnect-link" href="">Deconectare</a>
+              </button>
+              <a class="disconnect-link" type="button">Deconectare</a>
             </li>
             <li class="logo-mobile-menu">
               <span class="logo"
@@ -87,18 +89,29 @@ mainElement.insertAdjacentElement("beforebegin", header);
 const menuBtn = document.querySelector(".header__menu");
 const closeBtn = document.querySelector(".header__menu-close");
 const navMenu = document.querySelector(".nav-list");
+const logoutBtn = document.querySelector(".btn-logout");
+const logoutMobileBtn = document.querySelector(".disconnect-link");
 
 menuBtn.addEventListener("click", () => {
   navMenu.classList.add("open-menu");
 });
+
 closeBtn.addEventListener("click", () => {
   navMenu.classList.remove("open-menu");
+});
+
+logoutBtn.addEventListener("click", () => {
+  logout();
+});
+
+logoutMobileBtn.addEventListener("click", () => {
+  logout();
 });
 
 const navElements = document.getElementsByClassName("nav-list-el");
 
 Array.from(navElements).forEach((item) => {
-  if (item.getElementsByTagName("a")[0].href == window.location.href) {
+  if (item.getElementsByTagName("a")[0]?.href == window.location.href) {
     item.classList.add("page-active");
   } else item.classList.remove("page-active");
 });
