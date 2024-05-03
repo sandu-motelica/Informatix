@@ -2,11 +2,13 @@ import mongoose from "mongoose";
 
 const problemTagsSchema = new mongoose.Schema({
   id_problem: {
-    type: Number,
+    type: Schema.Types.ObjectId,
+    ref: "Problem",
     required: true,
   },
   id_tag: {
-    type: Number,
+    type: Schema.Types.ObjectId,
+    ref: "Tag",
     required: true,
   },
 });
