@@ -84,6 +84,7 @@ export const userRegister = async (req, res) => {
   try {
     const body = JSON.parse(req.data);
     const { username, email, role, password } = body;
+
     userRegisterValidation(username, email, password, role);
 
     let usernameExists = false;
@@ -94,7 +95,7 @@ export const userRegister = async (req, res) => {
     ]);
     console.log(username, email);
     if (usernameExists || emailExists) {
-      errorMiddleware(res, 409, "Username or email are already registered");
+      errorMiddleware(res, 409, "Username or email is already registered");
     }
     const hashPassword = await hash(password, 3);
     const user = await User.create({
@@ -119,6 +120,7 @@ export const userRegister = async (req, res) => {
       })
     );
   } catch (e) {
+    console.log(e);
     if (e instanceof ApiError)
       return errorMiddleware(res, e.status, e.message, e.errors);
     errorMiddleware(res, 500, "Server error");
