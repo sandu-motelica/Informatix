@@ -35,13 +35,63 @@ window.login = async (e) => {
     email,
     password,
   });
-  console.log(data);
+
   if (data.statusCode != 200) {
     const errElement = document?.querySelector(
       ".account-connect__login .error"
     );
     if (errElement) {
       errElement.textContent = data?.message || "Invalid data";
+    }
+  } else {
+    localStorage.setItem("user", JSON.stringify(data.user));
+    localStorage.setItem("token", data.accessToken);
+    loggedRedirect();
+  }
+};
+
+window.register = async () => {
+  let username = document.querySelector(
+    '.account-connect__register input[type="text"]'
+  )?.value;
+  let email = document.querySelector(
+    '.account-connect__register input[type="email"]'
+  )?.value;
+  let password = document.querySelector(
+    '.account-connect__register input[type="password"]'
+  )?.value;
+
+  const fieldset = document.querySelector(".account-connect__register");
+  const radioButtons = fieldset.querySelectorAll(
+    '.account-connect__register fieldset input[type="radio"]'
+  );
+  let role = null;
+  radioButtons.forEach((radioButton) => {
+    if (radioButton.checked) {
+      role = radioButton.value;
+    }
+  });
+
+  const data = await Fetch.create("/user/register", {
+    username,
+    email,
+    password,
+    role,
+  });
+
+  if (data.statusCode != 200) {
+    console.log(data);
+    const errElement = document?.querySelector(
+      ".account-connect__register .error"
+    );
+    if (errElement && data.errors.length === 0) {
+      errElement.textContent = data?.message || "Invalid data";
+    } else {
+      if (data.errors.length) {
+        errElement.textContent = data.errors[0].msg;
+      } else {
+        errElement.textContent = "";
+      }
     }
   } else {
     localStorage.setItem("user", JSON.stringify(data.user));
