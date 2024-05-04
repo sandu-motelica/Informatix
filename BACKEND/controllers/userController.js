@@ -21,7 +21,7 @@ export const getUsers = async (req, res) => {
     res.statusCode = 200;
     res.end(JSON.stringify(users));
   } catch (e) {
-    return errorMiddleware(res, e.status, e.message, e.errors);
+    errorMiddleware(res, e);
   }
 };
 
@@ -58,10 +58,7 @@ export const userLogin = async (req, res) => {
       })
     );
   } catch (e) {
-    if (e instanceof ApiError)
-      return errorMiddleware(res, e.status, e.message, e.errors);
-    console.log(e);
-    errorMiddleware(res, 500, "Server error");
+    errorMiddleware(res, e);
   }
 };
 
@@ -76,7 +73,7 @@ export const userLogout = async (req, res) => {
     );
     res.end(JSON.stringify({ token: refreshToken }));
   } catch (e) {
-    errorMiddleware(res, 500, "Server error");
+    errorMiddleware(res, e);
   }
 };
 
@@ -95,7 +92,10 @@ export const userRegister = async (req, res) => {
     ]);
     console.log(username, email);
     if (usernameExists || emailExists) {
-      errorMiddleware(res, 409, "Username or email is already registered");
+      errorMiddleware(res, {
+        status: 409,
+        message: "Username or email is already registered",
+      });
     }
     const hashPassword = await hash(password, 3);
     const user = await User.create({
@@ -120,10 +120,7 @@ export const userRegister = async (req, res) => {
       })
     );
   } catch (e) {
-    console.log(e);
-    if (e instanceof ApiError)
-      return errorMiddleware(res, e.status, e.message, e.errors);
-    errorMiddleware(res, 500, "Server error");
+    errorMiddleware(res, e);
   }
 };
 
@@ -133,6 +130,6 @@ export const userRefresh = async (req, res) => {
     const refreshToken = cookies["refreshToken"];
     res.end(JSON.stringify(updateToken(refreshToken)));
   } catch (e) {
-    errorMiddleware(res, 500, "Server error");
+    errorMiddleware(res, e);
   }
 };
