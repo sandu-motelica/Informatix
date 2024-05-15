@@ -79,3 +79,33 @@ export const addProblem = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
+export const removeProblem = async (req, res) => {
+  try {
+    const body = JSON.parse(req.data);
+    const { userId, problemId } = body;
+
+    const problem = await Problem.findOne({ _id: problemId });
+    if (!problem) {
+      throw ApiError.BadRequest("Problem does not exist");
+    }
+
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+
+    if (problem.id_author.toString() !== userId && user.role !== "admin") {
+      throw ApiError.Unauthorized(
+        "You are not the author of this problem or an admin"
+      );
+    }
+
+    await Problem.deleteOne({ _id: problemId });
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ message: "Problem successfully deleted" }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};

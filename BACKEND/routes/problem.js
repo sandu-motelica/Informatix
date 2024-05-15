@@ -1,5 +1,6 @@
 import {
   addProblem,
+  removeProblem,
   getProblems,
   getTags,
   getProblemTag,
@@ -10,6 +11,7 @@ const DEFAULT_PATH = "/problem";
 
 router.on("GET", `${DEFAULT_PATH}`, getProblems);
 router.on("POST", `${DEFAULT_PATH}/add`, addProblem);
+router.on("POST", `${DEFAULT_PATH}/remove`, removeProblem);
 router.on("GET", `${DEFAULT_PATH}/tags`, getTags);
 router.on("GET", `${DEFAULT_PATH}/tagproblem`, getProblemTag);
 
