@@ -9,7 +9,8 @@ const classSchema = new mongoose.Schema({
   id_profesor: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
   },
 });
 
-export const Clasa = mongoose.model("Clasa", classSchema, "classes");
+export const Class = mongoose.model("Class", classSchema, "classes");
