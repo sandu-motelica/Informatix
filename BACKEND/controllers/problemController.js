@@ -1,5 +1,4 @@
 import bcrypt from "bcryptjs";
-const { hash } = bcrypt;
 import { Problem } from "../models/problemModel.js";
 import { User } from "../models/userModel.js";
 import { Tag } from "../models/tagModel.js";
@@ -13,8 +12,6 @@ import {
 } from "../utils/token.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
-import { userRegisterValidation } from "../validations/userValidation.js";
-import cookieParser from "../utils/cookieParser.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 
 export const getProblems = async (req, res) => {
@@ -54,7 +51,7 @@ export const addProblem = async (req, res) => {
     const body = JSON.parse(req.data);
     const { id_author, title, description, difficulty, tagName } = body;
 
-    const user = await User.findOne({ id: id_author });
+    const user = await User.findOne({ _id: id_author });
     if (!user) {
       throw ApiError.BadRequest("User does not exist");
     }

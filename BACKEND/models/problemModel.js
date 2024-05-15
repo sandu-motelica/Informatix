@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const problemSchema = new mongoose.Schema({
   title: {
@@ -12,7 +12,8 @@ const problemSchema = new mongoose.Schema({
   },
 
   id_author: {
-    type: Number,
+    type: Schema.Types.ObjectId,
+    ref: "User",
     required: true,
   },
   difficulty: {
