@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const problemTagsSchema = new mongoose.Schema({
   id_problem: {

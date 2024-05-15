@@ -1,7 +1,7 @@
 import bcrypt from "bcryptjs";
 const { hash } = bcrypt;
 import { User } from "../models/userModel.js";
-import UserDto from "../dtos/userDto.js";
+import UserDto from "../dtos/UserDto.js";
 import {
   deleteToken,
   generateTokens,

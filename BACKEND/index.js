@@ -3,6 +3,7 @@ import "dotenv/config.js";
 import { connectDB } from "./utils/db-connection.js";
 import { router } from "./routes/index.js";
 import userRouter from "./routes/user.js";
+import problemRuter from "./routes/problem.js";
 
 const hostname = "localhost";
 
