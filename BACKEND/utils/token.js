@@ -5,12 +5,20 @@ import { User } from "../models/userModel.js";
 import UserDto from "../dtos/UserDto.js";
 
 export const generateTokens = (payload) => {
-  const accessToken = jwt.sign(payload, process.env.JWT_ACCESS_SECRET, {
-    expiresIn: "30m",
-  });
-  const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH_SECRET, {
-    expiresIn: "30d",
-  });
+  const accessToken = jwt.sign(
+    { payload: payload },
+    process.env.JWT_ACCESS_SECRET,
+    {
+      expiresIn: "5d",
+    }
+  );
+  const refreshToken = jwt.sign(
+    { payload: payload },
+    process.env.JWT_REFRESH_SECRET,
+    {
+      expiresIn: "30d",
+    }
+  );
 
   return {
     accessToken,
@@ -53,13 +61,16 @@ export const validateRefreshToken = async (token) => {
 };
 
 export const updateToken = async (refreshToken) => {
+  console.log(refreshToken);
   if (!refreshToken) throw ApiError.UnauthorizedError();
-  const userData = await validateRefreshToken(refreshToken);
+  const { payload } = await validateRefreshToken(refreshToken);
   const tokenData = await Token.findOne({ refreshToken });
-  if (!userData || !tokenData) {
+  if (!payload || !tokenData) {
     throw ApiError.UnauthorizedError();
   }
-  const user = await User.findById(userData.id);
+
+  const user = await User.findById(payload.id);
+
   const userDto = new UserDto(user);
   const tokens = generateTokens(userDto);
   saveToken(userDto.id, tokens.refreshToken);

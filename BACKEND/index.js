@@ -4,6 +4,7 @@ import { connectDB } from "./utils/db-connection.js";
 import { router } from "./routes/index.js";
 import userRouter from "./routes/user.js";
 import problemRuter from "./routes/problem.js";
+import tagRouter from "./routes/tag.js";
 
 const hostname = "localhost";
 
@@ -13,16 +14,18 @@ connectDB()
   .then(async () => {
     console.log("connected");
     const server = createServer(async (req, res) => {
-      res.setHeader("Access-Control-Allow-Origin", "*");
-      res.setHeader("Access-Control-Allow-Credentials", "true");
+      res.setHeader("Access-Control-Allow-Origin", "http://127.0.0.1:5500");
+      res.setHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
       res.setHeader(
-        "Access-Control-Allow-Methods",
-        "GET,HEAD,OPTIONS,POST,PUT"
+        "Access-Control-Allow-Headers",
+        "Content-Type, Authorization"
       );
-      res.setHeader("Access-Control-Allow-Headers", "*");
-      res.setHeader("HOST", "http://127.0.0.1:5500");
+      res.setHeader("Access-Control-Allow-Credentials", "true");
+
       if (req.method === "OPTIONS") {
         res.writeHead(200);
+        res.end();
+        return;
       }
 
       // cookieParser()(req, res, async () => {
