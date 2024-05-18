@@ -101,9 +101,11 @@ export const addProblem = async (req, res) => {
 
 export const removeProblem = async (req, res) => {
   try {
+    await authMiddleware(req, res);
     const body = JSON.parse(req.data);
-    const { userId, problemId } = body;
-
+    const { problemId } = body;
+    const userId = req.user.payload.id;
+    console.log("userId: " + userId);
     const problem = await Problem.findOne({ _id: problemId });
     if (!problem) {
       throw ApiError.BadRequest("Problem does not exist");

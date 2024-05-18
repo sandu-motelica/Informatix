@@ -5,6 +5,7 @@ import { router } from "./routes/index.js";
 import UserRouter from "./routes/user.js";
 import ProblemRuter from "./routes/problem.js";
 import TagRuter from "./routes/tag.js";
+import SolutionRuter from "./routes/solution.js";
 
 const hostname = "localhost";
 

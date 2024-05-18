@@ -140,3 +140,11 @@ export const userRefresh = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
+export const userInfo = async (req, res) => {
+  await authMiddleware(req, res);
+  const userId = req.user.payload.id;
+  const user = await User.findOne({ _id: userId });
+  res.statusCode = 200;
+  res.end(JSON.stringify(new UserDto(user)));
+};

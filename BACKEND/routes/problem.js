@@ -2,7 +2,7 @@ import {
   addProblem,
   removeProblem,
   getProblems,
-} from "../controllers/ProblemController.js";
+} from "../controllers/problemController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/problem";
