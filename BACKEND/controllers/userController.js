@@ -47,10 +47,11 @@ export const userLogin = async (req, res) => {
     await saveToken(userDto.id, tokens.refreshToken);
     const tokenExpiryDate = new Date();
     tokenExpiryDate.setDate(tokenExpiryDate.getDate() + 30);
-    res.setHeader(
-      "Set-Cookie",
-      `refreshToken=${tokens.refreshToken}; Expires=${tokenExpiryDate.toUTCString()}; HttpOnly`
-    );
+    res.writeHead(200, {
+      "Set-Cookie": `refreshToken=${tokens.refreshToken}; Expires=${tokenExpiryDate.toUTCString()}; HttpOnly`,
+      "Content-Type": `text/plain`,
+    });
+
     return res.end(
       JSON.stringify({
         ...tokens,
@@ -71,6 +72,7 @@ export const userLogout = async (req, res) => {
       "Set-Cookie",
       "refreshToken=deleted; Max-Age=0; Expires=Thu, 01 Jan 1970 00:00:00 GMT"
     );
+    res.writeHead(200);
     res.end(JSON.stringify({ token: refreshToken }));
   } catch (e) {
     errorMiddleware(res, e);
@@ -113,6 +115,7 @@ export const userRegister = async (req, res) => {
       "Set-Cookie",
       `refreshToken=${tokens.refreshToken}; Expires=${tokenExpiryDate.toUTCString()}; HttpOnly`
     );
+    res.writeHead(200);
     return res.end(
       JSON.stringify({
         ...tokens,
@@ -128,8 +131,12 @@ export const userRefresh = async (req, res) => {
   try {
     const cookies = cookieParser(req.headers.cookie);
     const refreshToken = cookies["refreshToken"];
-    res.end(JSON.stringify(updateToken(refreshToken)));
+    console.log("cookiess", req.headers);
+    const updatedRefreshToken = await updateToken(refreshToken);
+    console.log(updatedRefreshToken);
+    res.end(JSON.stringify(updatedRefreshToken));
   } catch (e) {
+    console.log(e);
     errorMiddleware(res, e);
   }
 };

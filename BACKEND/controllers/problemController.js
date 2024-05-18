@@ -12,7 +12,7 @@ export const getProblems = async (req, res) => {
     // await authMiddleware(req, res);
     const problems = await Problem.find({});
     res.statusCode = 200;
-    res.end(JSON.stringify(problems));
+    res.end(JSON.stringify({ problems: problems }));
   } catch (e) {
     errorMiddleware(res, e);
   }
