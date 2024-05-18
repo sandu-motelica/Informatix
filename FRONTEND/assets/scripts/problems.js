@@ -33,8 +33,9 @@ const getProblems = async () => {
     try {
       const { problems } = data;
       problems.forEach((item) => {
+        console.log(item);
         let tr = document.createElement("tr");
-        tr.setAttribute("data-id", item?._id);
+        tr.setAttribute("data-id", item?.id);
 
         const dateStr = item?.created_time;
         const date = new Date(dateStr);
@@ -44,7 +45,7 @@ const getProblems = async () => {
 
         tr.innerHTML = `
           <th>${day}/${month}/${year}</th>
-          <th><a href="./problem.html?id=${item?._id}">${item?.title}</a></th>
+          <th><a href="./problem.html?id=${item?.id}">${item?.title}</a></th>
           <th>${item?.difficulty}</th>
           <th>5/13</th>
           <th>${item?.tags[0]}</th>
