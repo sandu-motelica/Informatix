@@ -18,7 +18,15 @@ window.searchTag = (event) => {
   });
 };
 
-export const getProblems = async () => {
+window.openRandomProblem = (event) => {
+  const rows = document.querySelectorAll("#problems-list tr");
+  const problemIDS = Array.from(rows).map((row) => row.getAttribute("data-id"));
+  window.location.href = `/FRONTEND/pages/problem.html?id=${
+    problemIDS[parseInt(Math.random() * problemIDS.length)]
+  }`;
+};
+
+const getProblems = async () => {
   const data = await Fetch.get("/problem");
   if (data?.statusCode === 200) {
     console.log(data);
@@ -26,6 +34,7 @@ export const getProblems = async () => {
       const { problems } = data;
       problems.forEach((item) => {
         let tr = document.createElement("tr");
+        tr.setAttribute("data-id", item?._id);
         tr.innerHTML = `
           <th>12.01.2022</th>
           <th><a href="./problem.html?id=${item?._id}">${item?.title}</a></th>
