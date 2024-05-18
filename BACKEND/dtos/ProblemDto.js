@@ -3,13 +3,15 @@ export default class ProblemDto {
   title;
   description;
   id_author;
-  dificulty;
+  difficulty;
+  created_time;
 
   constructor(model) {
     this.id = model._id;
     this.title = model.title;
     this.description = model.description;
     this.id_author = model.id_author;
-    this.dificulty = model.dificulty;
+    this.difficulty = model.difficulty;
+    this.created_time = model.created_time;
   }
 }

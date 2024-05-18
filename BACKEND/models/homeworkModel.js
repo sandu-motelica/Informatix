@@ -13,6 +13,11 @@ const homeworkSchema = new mongoose.Schema({
   time_limit: {
     type: Date,
   },
+  created_time: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
 });
 
 export const Homework = mongoose.model("Homework", homeworkSchema, "homeworks");

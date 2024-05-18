@@ -22,6 +22,11 @@ const solutionSchema = new mongoose.Schema({
   grade: {
     type: Number,
   },
+  created_time: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
 });
 
 export const Solution = mongoose.model("Solution", solutionSchema, "solutions");

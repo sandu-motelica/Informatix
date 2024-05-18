@@ -14,10 +14,10 @@ header.innerHTML = `
         </div>
         <nav>
           <ul class="nav-list">
-            <li class="nav-list-el page-active"><a href="/pages/problems.html">Probleme</a></li>
+            <li class="nav-list-el page-active"><a href="/FRONTEND/pages/problems.html">Probleme</a></li>
             <li class="nav-list-el"><a href="#">Discuții</a></li>
             <li class="nav-list-el"><a href="#">Clase</a></li>
-            <li class="nav-list-el"><a href="/pages/account.html">Profil</a></li>
+            <li class="nav-list-el"><a href="/FRONTEND/pages/account.html">Profil</a></li>
             <li class="nav-list-el disconnect">
               <button class="btn btn-logout">
                 <svg

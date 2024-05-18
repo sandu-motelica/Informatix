@@ -32,6 +32,11 @@ const problemSchema = new mongoose.Schema({
     default: 0,
     required: true,
   },
+  created_time: {
+    type: Date,
+    default: Date.now,
+    required: true,
+  },
 });
 
 export const Problem = mongoose.model("Problem", problemSchema, "problems");

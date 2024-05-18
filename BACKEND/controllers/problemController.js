@@ -2,6 +2,7 @@ import { Problem } from "../models/problemModel.js";
 import { User } from "../models/userModel.js";
 import { Tag } from "../models/tagModel.js";
 import { ProblemTags } from "../models/problemTagsModel.js";
+import { Solution } from "../models/solutionModel.js";
 import ProblemDto from "../dtos/problemDto.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
@@ -9,25 +10,64 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 
 export const getProblems = async (req, res) => {
   try {
-    // await authMiddleware(req, res);
+    await authMiddleware(req, res);
+
+    const userId = req.user.payload.id;
+
     const problems = await Problem.find({});
+
+    const problemTagsMap = {};
+
+    const problemTags = await ProblemTags.find({}).lean();
+    const tagIds = problemTags.map((pt) => pt.id_tag);
+
+    const tags = await Tag.find({ _id: { $in: tagIds } }).lean();
+
+    const tagsMap = tags.reduce((acc, tag) => {
+      acc[tag._id] = tag.name;
+      return acc;
+    }, {});
+
+    problemTags.forEach((pt) => {
+      if (!problemTagsMap[pt.id_problem]) {
+        problemTagsMap[pt.id_problem] = [];
+      }
+      problemTagsMap[pt.id_problem].push(tagsMap[pt.id_tag]);
+    });
+
+    const userSolutions = await Solution.find({ id_student: userId }).lean();
+
+    const solvedProblemsSet = new Set(
+      userSolutions.map((solution) => solution.id_problem.toString())
+    );
+
+    const problemsWithDetails = problems.map((problem) => {
+      return {
+        ...new ProblemDto(problem),
+        tags: problemTagsMap[problem._id] || [],
+        is_solved: solvedProblemsSet.has(problem._id.toString()),
+      };
+    });
+
     res.statusCode = 200;
-    res.end(JSON.stringify({ problems: problems }));
+    res.end(JSON.stringify({ problems: problemsWithDetails.reverse() }));
   } catch (e) {
     errorMiddleware(res, e);
   }
 };
-
 export const addProblem = async (req, res) => {
   try {
+    await authMiddleware(req, res);
     const body = JSON.parse(req.data);
-    const { id_author, title, description, difficulty, tagNames } = body;
+    const { title, description, difficulty, tagNames } = body;
 
     if (title.length < 5 || description.length < 5)
       throw ApiError.BadRequest(
         "Invalid problem title or description (min 5 characters)"
       );
-
+    if (tagNames.length < 1)
+      throw ApiError.BadRequest("Select problem category (at least one)");
+    const id_author = req.user.payload.id;
     const user = await User.findOne({ _id: id_author });
     if (!user) {
       throw ApiError.BadRequest("User does not exist");
