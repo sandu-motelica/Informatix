@@ -18,7 +18,13 @@
           <div class="add-problems__difficulty">
             <p>Selecteaza dificultatea problemei:</p>
             <div>
-              <input type="radio" id="easy" name="dificulty" value="easy" />
+              <input
+                checked
+                type="radio"
+                id="easy"
+                name="dificulty"
+                value="easy"
+              />
               <label for="easy">Ușor</label><br />
             </div>
             <div>
@@ -39,27 +45,9 @@
                 placeholder="Cauta"
                 oninput="searchTag(event)"
               />
-              <div class="problems__tags-wrapper">
-                <button class="tag" data-name="Divizibilitate">
-                  Divizibilitate
-                  <span>120</span>
-                </button>
-                <button class="tag" data-name="Primalitate">
-                  Primalitate
-                  <span>22</span>
-                </button>
-                <button class="tag" data-name="Tablouri unidimensionale">
-                  Tablouri unidimensionale
-                  <span>11</span>
-                </button>
-                <button class="tag" data-name="Tablouri bidimensionale">
-                  Tablouri bidimensionale
-                  <span>1120</span>
-                </button>
-                <button class="tag" data-name="Olimpiada">
-                  Olimpiada
-                  <span>129990</span>
-                </button>
+              <div>
+                <div class="problems__tags-wrapper" id="choice-tags-list"></div>
+                <div class="problems__tags-wrapper" id="tags-list"></div>
                 <div class="problems__empty-categories">
                   <p>Nu există această categorie. Dorești să o adaugi?</p>
                   <button
@@ -75,12 +63,20 @@
         </div>
         <div class="add-problems__block add-problems__content">
           <form>
-            <input type="text" placeholder="Titlul problemei" />
+            <input
+              type="text"
+              placeholder="Titlul problemei"
+              name="titlu_problema"
+            />
             <textarea
               placeholder="Conditia problemei"
               maxlength="2500"
             ></textarea>
-            <button class="btn btn-primary" type="button">
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="addProblem()"
+            >
               Adauga problema
             </button>
           </form>
@@ -88,6 +84,6 @@
       </section>
     </main>
     <script type="module" src="../assets/scripts/header.js"></script>
-    <script src="../assets/scripts/add-problem.js"></script>
+    <script type="module" src="../assets/scripts/add-problem.js"></script>
   </body>
 </html>

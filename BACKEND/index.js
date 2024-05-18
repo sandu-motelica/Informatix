@@ -2,8 +2,9 @@ import { createServer } from "node:http";
 import "dotenv/config.js";
 import { connectDB } from "./utils/db-connection.js";
 import { router } from "./routes/index.js";
-import userRouter from "./routes/user.js";
-import problemRuter from "./routes/problem.js";
+import UserRouter from "./routes/user.js";
+import ProblemRuter from "./routes/problem.js";
+import TagRuter from "./routes/tag.js";
 
 const hostname = "localhost";
 

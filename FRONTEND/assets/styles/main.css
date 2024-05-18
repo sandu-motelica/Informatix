@@ -187,7 +187,7 @@ a:active {
   margin-top: 1rem;
 }
 
-.problems__tags-wrapper > button {
+.problems__tags-wrapper button {
   display: flex;
   align-items: center;
   background-color: var(--dark-color-2);
@@ -199,12 +199,16 @@ a:active {
   cursor: pointer;
 }
 
-.problems__tags-wrapper > button > span {
+.problems__tags-wrapper button > span {
   background-color: var(--secondary-color);
   border-radius: 10rem;
   padding: 0.1rem 0.5rem;
   font-size: 1rem;
   color: var(--dark-color-3);
+}
+
+#choice-tags-list button {
+  background-color: var(--primary-color);
 }
 
 @media screen and (max-width: 43em) {

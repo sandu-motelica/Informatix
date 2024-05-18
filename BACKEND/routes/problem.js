@@ -2,9 +2,7 @@ import {
   addProblem,
   removeProblem,
   getProblems,
-  getTags,
-  getProblemTag,
-} from "../controllers/problemController.js";
+} from "../controllers/ProblemController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/problem";
@@ -12,7 +10,5 @@ const DEFAULT_PATH = "/problem";
 router.on("GET", `${DEFAULT_PATH}`, getProblems);
 router.on("POST", `${DEFAULT_PATH}/add`, addProblem);
 router.on("POST", `${DEFAULT_PATH}/remove`, removeProblem);
-router.on("GET", `${DEFAULT_PATH}/tags`, getTags);
-router.on("GET", `${DEFAULT_PATH}/tagproblem`, getProblemTag);
 
 export default router;
