@@ -25,8 +25,9 @@
           </select>
         </li>
         <li>
-          <select name="status" id="status-select">
+          <select name="status" id="status-select" onchange="filterProblems()">
             <option selected disabled value="">Stare</option>
+            <option value="all">Toate</option>
             <option value="resolved">Rezolvată</option>
             <option value="unresolved">Nerezolvată</option>
           </select>

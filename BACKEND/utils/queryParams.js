@@ -1,9 +1,14 @@
+import parseBoolean from "./parseBoolean.js";
 export default (req) => {
   const urlParams = req.url.substring(req.url.indexOf("?") + 1);
-  console.log(urlParams);
   if (urlParams) {
     const params = new URLSearchParams(urlParams);
-    return Object.fromEntries(params.entries());
+    const objParams = Object.fromEntries(params.entries());
+    for (const item in objParams) {
+      let val = parseBoolean(objParams[item]);
+      if (val != undefined) objParams[item] = val;
+    }
+    return objParams;
   }
   return {};
 };

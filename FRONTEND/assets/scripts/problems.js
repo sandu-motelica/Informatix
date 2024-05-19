@@ -28,9 +28,13 @@ window.openRandomProblem = (event) => {
 
 const getProblems = async () => {
   const difficulty = document.getElementById("dificulty-select").value;
+  const is_solved = document.getElementById("status-select").value;
   console.log(difficulty);
   const data = await Fetch.get("/problem", {
     ...(difficulty && difficulty != "all" ? { difficulty } : {}),
+    ...(is_solved && is_solved != "all"
+      ? { is_solved: is_solved === "resolved" ? true : false }
+      : {}),
   });
   if (data?.statusCode === 200) {
     console.log(data);
