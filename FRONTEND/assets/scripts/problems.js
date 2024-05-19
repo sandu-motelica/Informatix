@@ -27,7 +27,11 @@ window.openRandomProblem = (event) => {
 };
 
 const getProblems = async () => {
-  const data = await Fetch.get("/problem");
+  const difficulty = document.getElementById("dificulty-select").value;
+  console.log(difficulty);
+  const data = await Fetch.get("/problem", {
+    ...(difficulty && difficulty != "all" ? { difficulty } : {}),
+  });
   if (data?.statusCode === 200) {
     console.log(data);
     try {
@@ -69,6 +73,14 @@ const getProblems = async () => {
       console.log(e);
     }
   }
+};
+
+window.filterProblems = (e) => {
+  const problemsList = document.getElementById("problems-list");
+  while (problemsList.lastElementChild) {
+    problemsList.removeChild(problemsList.lastElementChild);
+  }
+  getProblems();
 };
 
 getProblems();
