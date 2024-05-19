@@ -7,14 +7,17 @@ import ProblemDto from "../dtos/problemDto.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
+import queryParams from "../utils/queryParams.js";
 
 export const getProblems = async (req, res) => {
   try {
     await authMiddleware(req, res);
 
+    const data = queryParams(req);
+
     const userId = req.user.payload.id;
 
-    const problems = await Problem.find({});
+    const problems = await Problem.find(data);
 
     const problemTagsMap = {};
 
