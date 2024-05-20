@@ -75,7 +75,7 @@ textarea {
   font-weight: 400;
 }
 
-.problem__dificulty {
+.problem__difficulty {
   padding: 0.6rem 1rem;
   border-radius: var(--rounded-radius);
   background-color: var(--dark-color-2);

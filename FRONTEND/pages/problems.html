@@ -16,16 +16,18 @@
       <h2 class="header-secondary">Probleme propuse</h2>
       <ul class="problems__filter-tab">
         <li>
-          <select name="dificulty-level" id="dificulty-select">
+          <select name="dificulty-level" id="dificulty-select" onchange="filterProblems()">
             <option selected disabled value="">Dificultate</option>
+            <option value="all">Toate</option>
             <option value="easy">Usor</option>
             <option value="medium">Mediu</option>
             <option value="hard">Dificil</option>
           </select>
         </li>
         <li>
-          <select name="status" id="status-select">
+          <select name="status" id="status-select" onchange="filterProblems()">
             <option selected disabled value="">Stare</option>
+            <option value="all">Toate</option>
             <option value="resolved">Rezolvată</option>
             <option value="unresolved">Nerezolvată</option>
           </select>

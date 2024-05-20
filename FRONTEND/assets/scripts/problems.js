@@ -27,14 +27,23 @@ window.openRandomProblem = (event) => {
 };
 
 const getProblems = async () => {
-  const data = await Fetch.get("/problem");
+  const difficulty = document.getElementById("dificulty-select").value;
+  const is_solved = document.getElementById("status-select").value;
+  console.log(difficulty);
+  const data = await Fetch.get("/problem", {
+    ...(difficulty && difficulty != "all" ? { difficulty } : {}),
+    ...(is_solved && is_solved != "all"
+      ? { is_solved: is_solved === "resolved" ? true : false }
+      : {}),
+  });
   if (data?.statusCode === 200) {
     console.log(data);
     try {
       const { problems } = data;
       problems.forEach((item) => {
+        console.log(item);
         let tr = document.createElement("tr");
-        tr.setAttribute("data-id", item?._id);
+        tr.setAttribute("data-id", item?.id);
 
         const dateStr = item?.created_time;
         const date = new Date(dateStr);
@@ -44,7 +53,7 @@ const getProblems = async () => {
 
         tr.innerHTML = `
           <th>${day}/${month}/${year}</th>
-          <th><a href="./problem.html?id=${item?._id}">${item?.title}</a></th>
+          <th><a href="./problem.html?id=${item?.id}">${item?.title}</a></th>
           <th>${item?.difficulty}</th>
           <th>5/13</th>
           <th>${item?.tags[0]}</th>
@@ -68,6 +77,14 @@ const getProblems = async () => {
       console.log(e);
     }
   }
+};
+
+window.filterProblems = (e) => {
+  const problemsList = document.getElementById("problems-list");
+  while (problemsList.lastElementChild) {
+    problemsList.removeChild(problemsList.lastElementChild);
+  }
+  getProblems();
 };
 
 getProblems();

@@ -7,14 +7,26 @@ import ProblemDto from "../dtos/problemDto.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
+import queryParams from "../utils/queryParams.js";
+import { problemSchema } from "../models/problemModel.js";
+import { solutionSchema } from "../models/solutionModel.js";
 
 export const getProblems = async (req, res) => {
   try {
     await authMiddleware(req, res);
 
+    const data = queryParams(req);
+
     const userId = req.user.payload.id;
 
-    const problems = await Problem.find({});
+    //TODO: Improve this part
+    //Get specific fields only for problem model
+    const problemsFilter = {};
+    Object.keys(problemSchema.paths).forEach((key) => {
+      if (data[key]) problemsFilter[key] = data[key];
+    });
+
+    const problems = await Problem.find(problemsFilter);
 
     const problemTagsMap = {};
 
@@ -35,13 +47,15 @@ export const getProblems = async (req, res) => {
       problemTagsMap[pt.id_problem].push(tagsMap[pt.id_tag]);
     });
 
-    const userSolutions = await Solution.find({ id_student: userId }).lean();
+    const userSolutions = await Solution.find({
+      id_student: userId,
+    }).lean();
 
     const solvedProblemsSet = new Set(
       userSolutions.map((solution) => solution.id_problem.toString())
     );
 
-    const problemsWithDetails = problems.map((problem) => {
+    let problemsWithDetails = problems.map((problem) => {
       return {
         ...new ProblemDto(problem),
         tags: problemTagsMap[problem._id] || [],
@@ -49,9 +63,19 @@ export const getProblems = async (req, res) => {
       };
     });
 
+    if (data?.is_solved != undefined) {
+      problemsWithDetails = problemsWithDetails.filter((item) => {
+        if (item.is_solved === data.is_solved) {
+          return item;
+        }
+      });
+      console.log(data.is_solved);
+    }
+
     res.statusCode = 200;
     res.end(JSON.stringify({ problems: problemsWithDetails.reverse() }));
   } catch (e) {
+    console.log(e);
     errorMiddleware(res, e);
   }
 };
@@ -105,7 +129,6 @@ export const removeProblem = async (req, res) => {
     const body = JSON.parse(req.data);
     const { problemId } = body;
     const userId = req.user.payload.id;
-    console.log("userId: " + userId);
     const problem = await Problem.findOne({ _id: problemId });
     if (!problem) {
       throw ApiError.BadRequest("Problem does not exist");

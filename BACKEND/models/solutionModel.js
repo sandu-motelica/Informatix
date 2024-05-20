@@ -1,6 +1,6 @@
 import mongoose, { Schema } from "mongoose";
 
-const solutionSchema = new mongoose.Schema({
+export const solutionSchema = new mongoose.Schema({
   id_problem: {
     type: Schema.Types.ObjectId,
     ref: "Problem",
