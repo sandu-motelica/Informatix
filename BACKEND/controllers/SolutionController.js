@@ -1,16 +1,24 @@
-import { Solution } from "../models/solutionModel.js";
+import { Solution, solutionSchema } from "../models/solutionModel.js";
 import { Problem } from "../models/problemModel.js";
 import { User } from "../models/userModel.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import SolutionDto from "../dtos/SolutionDto.js";
+import queryParams from "../utils/queryParams.js";
 
 export const getSolutions = async (req, res) => {
   try {
     await authMiddleware(req, res);
-    const solutions = await Solution.find({});
+    const data = queryParams(req);
+
+    const solutionsFilter = {};
+    Object.keys(solutionSchema.paths).forEach((key) => {
+      if (data[key]) solutionsFilter[key] = data[key];
+    });
+
+    const solutions = await Solution.find(solutionsFilter);
     res.statusCode = 200;
-    res.end(JSON.stringify(solutions));
+    res.end(JSON.stringify({ solutions: solutions }));
   } catch (e) {
     errorMiddleware(res, e);
   }
@@ -56,6 +64,23 @@ export const getSolutionsWithDiff = async (req, res) => {
     const solutions = await Solution.find({
       id_student: userId,
       id_problem: { $in: problemIds },
+    }).lean();
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ count: solutions.length }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
+export const getNumberOfSolutionProblem = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { id_problem } = body;
+
+    const solutions = await Solution.find({
+      id_problem,
     }).lean();
 
     res.statusCode = 200;

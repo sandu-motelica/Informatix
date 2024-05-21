@@ -1,6 +1,8 @@
 import bcrypt from "bcryptjs";
 const { hash } = bcrypt;
 import { User } from "../models/userModel.js";
+import { Solution } from "../models/solutionModel.js";
+import { Problem } from "../models/problemModel.js";
 import UserDto from "../dtos/UserDto.js";
 import {
   deleteToken,
@@ -145,6 +147,25 @@ export const userInfo = async (req, res) => {
   await authMiddleware(req, res);
   const userId = req.user.payload.id;
   const user = await User.findOne({ _id: userId });
+
+  const solutions = await Solution.find({ id_student: userId }).lean();
+  const problems = await Problem.find().lean();
+  const problemDifficultyMap = {};
+  problems.forEach((problem) => {
+    problemDifficultyMap[problem._id.toString()] = problem.difficulty;
+  });
+
+  const solutionsWithDifficulty = solutions.map((solution) => {
+    const problemId = solution.id_problem.toString();
+    const difficulty = problemDifficultyMap[problemId];
+    return { ...solution, difficulty };
+  });
+
   res.statusCode = 200;
-  res.end(JSON.stringify(new UserDto(user)));
+  res.end(
+    JSON.stringify({
+      user: new UserDto(user),
+      solutions: solutionsWithDifficulty,
+    })
+  );
 };

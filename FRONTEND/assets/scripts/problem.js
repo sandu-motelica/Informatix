@@ -3,6 +3,32 @@ const searchParams = new URLSearchParams(window.location.search);
 const problemHeadline = document.getElementsByClassName("problem__title")[0];
 import Fetch from "../../utils/Fetch.js";
 
+const getSolution = async () => {
+  try {
+    const data = await Fetch.get("/solution", {
+      _id: searchParams.get("solution"),
+    });
+    if (data.solutions?.length) {
+      const solution = data.solutions[0];
+      const textArea = document.querySelector("textarea");
+      textArea.value = solution.content;
+      textArea.disabled = true;
+    } else {
+      window.location.href = `${rootPath}/problem.html?id=${searchParams.get(
+        "id"
+      )}`;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+console.log(searchParams.get("solution"));
+if (searchParams.get("solution")) {
+  document.querySelector(".problem__submit").style.display = "none";
+  getSolution();
+}
+
 const getProblem = async () => {
   try {
     const data = await Fetch.get("/problem", {

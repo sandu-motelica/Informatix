@@ -1,1 +1,1 @@
-export const rootPath = '/pages';
+export const rootPath = "/FRONTEND/pages";

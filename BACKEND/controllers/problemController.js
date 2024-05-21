@@ -1,4 +1,4 @@
-import { Problem } from "../models/problemModel.js";
+import { Problem, problemSchema } from "../models/problemModel.js";
 import { User } from "../models/userModel.js";
 import { Tag } from "../models/tagModel.js";
 import { ProblemTags } from "../models/problemTagsModel.js";
@@ -8,8 +8,6 @@ import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import queryParams from "../utils/queryParams.js";
-import { problemSchema } from "../models/problemModel.js";
-import { solutionSchema } from "../models/solutionModel.js";
 
 export const getProblems = async (req, res) => {
   try {
@@ -79,6 +77,7 @@ export const getProblems = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
 export const addProblem = async (req, res) => {
   try {
     await authMiddleware(req, res);
@@ -149,6 +148,21 @@ export const removeProblem = async (req, res) => {
 
     res.statusCode = 200;
     res.end(JSON.stringify({ message: "Problem successfully deleted" }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
+export const getNumberOfProbWithDiff = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { difficulty } = body;
+
+    const problems = await Problem.find({ difficulty }).lean();
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ count: problems.length }));
   } catch (e) {
     errorMiddleware(res, e);
   }
