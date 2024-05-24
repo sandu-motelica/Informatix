@@ -53,13 +53,30 @@ export const getProblems = async (req, res) => {
       userSolutions.map((solution) => solution.id_problem.toString())
     );
 
-    let problemsWithDetails = problems.map((problem) => {
-      return {
-        ...new ProblemDto(problem),
-        tags: problemTagsMap[problem._id] || [],
-        is_solved: solvedProblemsSet.has(problem._id.toString()),
-      };
-    });
+    let problemsWithDetails = await Promise.all(
+      problems.map(async (problem) => {
+        const totalSolutions = await Solution.find({
+          id_problem: problem._id,
+        }).lean();
+
+        const successfulSolutions = await Solution.find({
+          id_problem: problem._id,
+          grade: { $gte: 8 },
+        }).lean();
+
+        const successRate =
+          totalSolutions.length > 0
+            ? successfulSolutions.length / totalSolutions.length
+            : 0;
+
+        return {
+          ...new ProblemDto(problem),
+          tags: problemTagsMap[problem._id] || [],
+          is_solved: solvedProblemsSet.has(problem._id.toString()),
+          success_rate: successRate,
+        };
+      })
+    );
 
     if (data?.is_solved != undefined) {
       problemsWithDetails = problemsWithDetails.filter((item) => {

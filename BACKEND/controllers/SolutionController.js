@@ -37,6 +37,10 @@ export const addSolution = async (req, res) => {
     if (!user) {
       throw ApiError.BadRequest("User does not exist");
     }
+    const problem = await Problem.findOne({ _id: id_problem });
+    if (!user) {
+      throw ApiError.BadRequest("Problem does not exist");
+    }
 
     const solution = await Solution.create({
       id_problem,
@@ -81,6 +85,23 @@ export const getNumberOfSolutionProblem = async (req, res) => {
 
     const solutions = await Solution.find({
       id_problem,
+    }).lean();
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ count: solutions.length }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+export const getNumberOfResolvedProblem = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { id_problem } = body;
+
+    const solutions = await Solution.find({
+      id_problem,
+      grade: { $gte: 8 },
     }).lean();
 
     res.statusCode = 200;

@@ -21,6 +21,7 @@ export const solutionSchema = new mongoose.Schema({
   },
   grade: {
     type: Number,
+    default: 0,
   },
   created_time: {
     type: Date,
