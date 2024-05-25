@@ -24,6 +24,11 @@ export const getProblems = async (req, res) => {
       if (data[key]) problemsFilter[key] = data[key];
     });
 
+    if (data.search) {
+      problemsFilter.title = new RegExp(data.search, "i");
+      // problemsFilter.description = new RegExp(data.search, "i");
+    }
+
     const problems = await Problem.find(problemsFilter);
 
     const problemTagsMap = {};
