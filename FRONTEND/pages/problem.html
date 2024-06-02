@@ -85,10 +85,10 @@
           <h2>Soluție:</h2>
         </div>
         <form style="flex: 1;">
-          <textarea placeholder="Solutia problemei" maxlength="2500"></textarea>
+          <textarea id="solution" placeholder="Solutia problemei" maxlength="2500"></textarea>
         </form>
         <div class="problem__footer problem__footer-form">
-          <button class="btn btn-primary problem__submit">
+          <button class="btn btn-primary problem__submit" onclick="sendSolution()">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
               stroke="currentColor" class="send-icon">
               <path stroke-linecap="round" stroke-linejoin="round"
