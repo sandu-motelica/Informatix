@@ -64,3 +64,21 @@ for (let i = 0; i < starEl.length; i++) {
     }
   });
 }
+
+window.sendSolution = async () => {
+  try {
+    const content = document.getElementById("solution").value;
+    const data = await Fetch.create("/solution", {
+      id_problem: searchParams.get("id"),
+      content,
+    });
+    if (data.statusCode >= 400) {
+      alert(data.message);
+      return;
+    }
+
+    window.location.href = window.location.href + `&solution=${data.id}`;
+  } catch (e) {
+    console.log(e);
+  }
+};

@@ -5,6 +5,7 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import SolutionDto from "../dtos/SolutionDto.js";
 import queryParams from "../utils/queryParams.js";
+import ApiError from "../exceptions/apiError.js";
 
 export const getSolutions = async (req, res) => {
   try {
@@ -52,6 +53,7 @@ export const addSolution = async (req, res) => {
     res.end(JSON.stringify(new SolutionDto(solution)));
   } catch (e) {
     errorMiddleware(res, e);
+    console.log(e);
   }
 };
 export const getSolutionsWithDiff = async (req, res) => {

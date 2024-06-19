@@ -150,12 +150,16 @@
           </div>
           <form style="flex: 1">
             <textarea
+              id="solution"
               placeholder="Solutia problemei"
               maxlength="2500"
             ></textarea>
           </form>
           <div class="problem__footer problem__footer-form">
-            <button class="btn btn-primary problem__submit">
+            <button
+              class="btn btn-primary problem__submit"
+              onclick="sendSolution()"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"
@@ -170,6 +174,7 @@
                   d="M3 16.5v2.25A2.25 2.25 0 0 0 5.25 21h13.5A2.25 2.25 0 0 0 21 18.75V16.5m-13.5-9L12 3m0 0 4.5 4.5M12 3v13.5"
                 />
               </svg>
+
               <span>Trimite</span>
             </button>
           </div>

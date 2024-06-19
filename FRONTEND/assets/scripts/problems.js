@@ -26,12 +26,21 @@ window.openRandomProblem = (event) => {
   }`;
 };
 
+window.searchProblem = (event) => {
+  if (event.key === "Enter") {
+    filterProblems();
+  }
+};
+
 const getProblems = async () => {
   const difficulty = document.getElementById("dificulty-select").value;
   const is_solved = document.getElementById("status-select").value;
-  console.log(difficulty);
+  const search = document.getElementById("search-input").value;
+  console.log(search);
+
   const data = await Fetch.get("/problem", {
     ...(difficulty && difficulty != "all" ? { difficulty } : {}),
+    ...(search ? { search } : {}),
     ...(is_solved && is_solved != "all"
       ? { is_solved: is_solved === "resolved" ? true : false }
       : {}),
