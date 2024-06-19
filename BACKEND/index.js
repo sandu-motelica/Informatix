@@ -3,9 +3,10 @@ import "dotenv/config.js";
 import { connectDB } from "./utils/db-connection.js";
 import { router } from "./routes/index.js";
 import UserRouter from "./routes/user.js";
-import ProblemRuter from "./routes/problem.js";
-import TagRuter from "./routes/tag.js";
-import SolutionRuter from "./routes/solution.js";
+import ProblemRouter from "./routes/problem.js";
+import TagRouter from "./routes/tag.js";
+import SolutionRouter from "./routes/solution.js";
+import ClassRouter from "./routes/classes.js";
 
 const hostname = "localhost";
 
