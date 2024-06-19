@@ -11,6 +11,7 @@ const DEFAULT_PATH = "/problem";
 
 router.on("GET", `${DEFAULT_PATH}`, getProblems);
 router.on("POST", `${DEFAULT_PATH}`, addProblem);
+router.on("DELETE", `${DEFAULT_PATH}`, removeProblem);
 router.on("DELETE", `${DEFAULT_PATH}/`, removeProblem);
 router.on("PUT", `${DEFAULT_PATH}`, updateProblem);
 router.on("GET", `${DEFAULT_PATH}/difficulty`, getNumberOfProbWithDiff);

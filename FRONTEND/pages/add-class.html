@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../assets/images/general/logo.png" />
+    <link rel="stylesheet" href="../assets/styles/add-class.css" />
+    <title>InformatiX</title>
+  </head>
+
+  <body>
+    <main class="container margin-top-md">
+      <div class="add-class-container">
+        <h1>Creare clasa</h1>
+        <form method="post" id="class-form">
+          <input type="text" placeholder="Nume clasa" name="nume_clasa" />
+          <span class="error"></span>
+          <button
+            class="btn btn-primary btn-add-class"
+            type="button"
+            onclick="addClass()"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="add-class-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m8.25 4.5 7.5 7.5-7.5 7.5"
+              />
+            </svg>
+          </button>
+        </form>
+      </div>
+    </main>
+    <script type="module" src="../assets/scripts/header.js"></script>
+    <script type="module" src="../assets/scripts/add-class.js"></script>
+  </body>
+</html>

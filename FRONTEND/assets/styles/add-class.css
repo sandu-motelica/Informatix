@@ -1,0 +1,42 @@
+@import "./main.css";
+
+.add-class-container {
+  height: 50rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.add-class-container h1 {
+  margin-bottom: 3rem;
+  font-size: 3rem;
+  width: 36rem;
+}
+
+#class-form {
+  display: flex;
+  gap: 1rem;
+}
+
+#class-form input {
+  background-color: #2c2c2c;
+  border: 1px solid #464646;
+  color: var(--light-color);
+  width: 30rem;
+}
+.btn-add-class {
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 4rem;
+  height: 4rem;
+}
+
+.add-class-icon {
+  height: 2rem;
+  width: 2rem;
+  color: #fff;
+}
