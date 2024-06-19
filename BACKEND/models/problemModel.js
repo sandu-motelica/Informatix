@@ -37,6 +37,12 @@ export const problemSchema = new mongoose.Schema({
     default: Date.now,
     required: true,
   },
+  status: {
+    type: String,
+    enum: ["approved", "pending", "declined"],
+    default: "pending",
+    required: true,
+  },
 });
 
 export const Problem = mongoose.model("Problem", problemSchema, "problems");

@@ -137,7 +137,7 @@ window.addProblem = async () => {
     });
     console.log("taguri " + tagNames);
     const id_author = "663357bbc20d6a0dfb6c4931";
-    const data = await Fetch.create("/problem/add", {
+    const data = await Fetch.create("/problem", {
       id_author,
       title,
       description,

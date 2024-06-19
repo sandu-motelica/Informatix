@@ -3,6 +3,13 @@ const searchParams = new URLSearchParams(window.location.search);
 const problemHeadline = document.getElementsByClassName("problem__title")[0];
 import Fetch from "../../utils/Fetch.js";
 
+const user = JSON.parse(localStorage.getItem("user"));
+if (user.role != "student") {
+  document.querySelector(".problem__submit").style.display = "none";
+} else {
+  document.querySelector(".problem__marks").style.display = "none";
+}
+
 const getSolution = async () => {
   try {
     const data = await Fetch.get("/solution", {

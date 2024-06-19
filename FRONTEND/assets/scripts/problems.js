@@ -44,6 +44,7 @@ const getProblems = async () => {
     ...(is_solved && is_solved != "all"
       ? { is_solved: is_solved === "resolved" ? true : false }
       : {}),
+    status: "approved",
   });
   if (data?.statusCode === 200) {
     console.log(data);

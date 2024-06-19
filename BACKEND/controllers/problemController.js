@@ -189,3 +189,18 @@ export const getNumberOfProbWithDiff = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
+export const updateProblem = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    if (req.user.payload.role != "admin") throw ApiError.UnauthorizedError();
+    const body = JSON.parse(req.data);
+    const { problemId, status } = body;
+    console.log(problemId, status);
+    await Problem.findByIdAndUpdate(problemId, { status: status });
+    res.statusCode = 200;
+    res.end(JSON.stringify({ problemId: problemId }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};

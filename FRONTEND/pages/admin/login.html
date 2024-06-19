@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>InformatiX</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
+    <link rel="icon" href="../assets/images/general/logo.png" />
+
+    <link rel="stylesheet" href="../../assets/styles/index.css" />
+</head>
+
+<body>
+    <header class="logo-component">
+        <div class="logo-align">
+            <a href="/pages/" class="logo">In<span class="logo-color">&lt;form&gt;</span>mati<span
+                    class="logo-color">X</span></a>
+        </div>
+    </header>
+    <section>
+        <div class="description" style="width: 100%;">
+            <h1>Logare admin</h1>
+            <p>
+                Vă rugăm să vă autentificați pentru a accesa panoul de administrare.
+                <br>
+                Mulțumim pentru dedicarea și contribuția dumneavoastră în dezvoltarea educației în informatică!
+                <br>
+                Echipa Platformei InformatiX
+            </p>
+        </div>
+        <div class="account-content">
+            <div class="account-connect account-connect__login">
+                <div class="header-account-connect header-login">
+                    <h2>Intră în cont</h2>
+                </div>
+                <form>
+                    <input placeholder="Email" type="email" />
+                    <input placeholder="Parola" type="password" />
+                    <span class="error"></span>
+                    <button class="btn btn-secondary btn-connect" onclick="login()" type="button">
+                        Autentificare
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+    <script type="module" src="../../assets/scripts/login-register-form.js"></script>
+</body>
+
+</html>

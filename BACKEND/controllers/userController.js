@@ -30,10 +30,13 @@ export const getUsers = async (req, res) => {
 export const userLogin = async (req, res) => {
   try {
     const body = JSON.parse(req.data);
-    const { email, password } = body;
+    const { email, password, admin } = body;
 
     const user = await User.findOne({
       email,
+      ...(admin
+        ? { role: "admin" }
+        : { role: { $in: ["student", "teacher"] } }),
     });
     if (!user) {
       throw ApiError.BadRequest("Invalid email or password");

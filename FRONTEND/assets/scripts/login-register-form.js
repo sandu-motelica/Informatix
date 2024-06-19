@@ -1,8 +1,12 @@
 import Fetch from "../../utils/Fetch.js";
 
+const adminLogin = window.location.href.includes("/admin/login") ? true : false;
+
 const loggedRedirect = () =>
   //TODO: Should be updated
-  (window.location.href = "/FRONTEND/pages/problems.html");
+  (window.location.href = !adminLogin
+    ? "/FRONTEND/pages/problems.html"
+    : "/FRONTEND/pages/admin/dashboard.html");
 
 if (localStorage.getItem("token")) loggedRedirect();
 
@@ -34,6 +38,7 @@ window.login = async (e) => {
   const data = await Fetch.create("/user/login", {
     email,
     password,
+    admin: adminLogin,
   });
 
   if (data.statusCode != 200) {
