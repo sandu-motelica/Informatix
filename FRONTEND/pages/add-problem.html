@@ -10,7 +10,7 @@
   <title>InformatiX</title>
 </head>
 
-<body>
+<body onload="init()">
   <main class="container margin-top-md">
     <section class="add-problem add-problem-wrapper">
       <div class="add-problems__block add-problems__categories">
@@ -55,7 +55,8 @@
           <button class="btn btn-primary" type="button" onclick="addProblem()">
             Adauga problema
           </button>
-
+          <input type="file" name="uploadFile" id="import-file" accept=".json" />
+          <pre id="fileContent"></pre>
         </form>
       </div>
     </section>

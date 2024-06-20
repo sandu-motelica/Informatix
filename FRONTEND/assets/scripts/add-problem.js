@@ -136,9 +136,7 @@ window.addProblem = async () => {
       tagNames.push(tag.getAttribute("data-name"));
     });
     console.log("taguri " + tagNames);
-    const id_author = "663357bbc20d6a0dfb6c4931";
     const data = await Fetch.create("/problem", {
-      id_author,
       title,
       description,
       difficulty,
@@ -161,3 +159,49 @@ window.addProblem = async () => {
     console.log(e);
   }
 };
+
+window.init = () => {
+  document
+    .getElementById("import-file")
+    .addEventListener("change", handleFileSelect, false);
+};
+
+function handleFileSelect(event) {
+  const reader = new FileReader();
+  reader.onload = handleFileLoad;
+  reader.readAsText(event.target.files[0]);
+}
+
+function handleFileLoad(event) {
+  try {
+    // document.getElementById("fileContent").textContent = event.target.result;
+    const { title, description, tags, difficulty } = JSON.parse(
+      event.target.result
+    );
+    if (!title || !description || !difficulty || !tags || tags.length == 0) {
+      alert("Fisier JSON incorect");
+      return;
+    }
+    document.querySelector('.add-problems__content input[type="text"]').value =
+      title;
+    document.querySelector(".add-problems__content textarea").value =
+      description;
+    const difficultyDiv = document.querySelector(".add-problems__difficulty");
+    const difficultyRadioButtons = difficultyDiv.querySelectorAll(
+      'input[type="radio"]'
+    );
+    difficultyRadioButtons.forEach((radioButton) => {
+      if (radioButton.value === difficulty) {
+        radioButton.checked = true;
+      }
+    });
+    const tagsWrapper = document.getElementById("tags-list");
+    const tagsElements = tagsWrapper.querySelectorAll(".tag");
+
+    tagsElements.forEach((tag) => {
+      if (tags.includes(tag.getAttribute("data-name"))) tag.click();
+    });
+  } catch (e) {
+    console.log(e);
+  }
+}

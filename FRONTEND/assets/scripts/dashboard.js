@@ -12,7 +12,7 @@ const updateProblemStatus = async (id, status) => {
     while (problemsList.lastElementChild) {
       problemsList.removeChild(problemsList.lastElementChild);
     }
-    // getProblems();
+    getProblems();
   } else {
     alert("Error");
   }
