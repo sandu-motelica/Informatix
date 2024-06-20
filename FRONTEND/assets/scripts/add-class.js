@@ -17,7 +17,7 @@ window.addClass = async () => {
         errElement.textContent = data.errors[0].msg;
       }
     } else {
-      window.location.href = "/FRONTEND/pages/class.html";
+      window.location.href = `/FRONTEND/pages/class.html?id=${data?.id}`;
     }
   } catch (e) {
     console.log(e);

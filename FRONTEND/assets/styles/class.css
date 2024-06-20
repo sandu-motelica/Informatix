@@ -62,8 +62,26 @@
   height: 2rem;
 }
 
-/* .class-members-list li::before {
-  content: "\00B7";
+.class-content__title {
+  font-size: 2rem;
+  /* position: relative; */
+}
+
+/* .class-content__title::after {
+  content: "";
+  height: 1px;
+  width: 100%;
+  background-color: var(--secondary-color);
   position: absolute;
-  left: -1rem;
+  bottom: -2rem;
+  left: 0;
 } */
+
+.class-content-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.4rem;
+  border-bottom: 2px solid var(--secondary-color);
+  padding-bottom: 2rem;
+}

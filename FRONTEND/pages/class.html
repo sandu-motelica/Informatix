@@ -34,16 +34,7 @@
               </svg>
               Membrii clasei:
             </h2>
-            <ul class="class-members-list">
-              <li>Motelica Sandu</li>
-              <li>Bucataru Florin</li>
-              <li>Croasant Costel</li>
-              <li>Sergiu Sergiugiu</li>
-              <!-- <li>Motelica Sandu</li>
-            <li>Bucataru Florin</li>
-            <li>Croasant Costel</li>
-            <li>Sergiu Sergiugiu</li> -->
-            </ul>
+            <ul class="class-members-list"></ul>
           </section>
           <section class="add-member">
             <h2>
@@ -65,7 +56,6 @@
             </h2>
             <form method="post" id="member-form">
               <input type="text" placeholder="Nume membru" name="nume_membru" />
-              <span class="error"></span>
               <button
                 class="btn btn-primary btn-add-member"
                 type="button"
@@ -87,11 +77,18 @@
                 </svg>
               </button>
             </form>
+            <span class="error"></span>
           </section>
         </div>
-        <div class="class-content"></div>
+        <div class="class-content">
+          <div class="class-content-header">
+            <h1 class="class-content__title"></h1>
+            <span class="class-content__profesor"></span>
+          </div>
+        </div>
       </section>
     </main>
     <script type="module" src="../assets/scripts/header.js"></script>
+    <script type="module" src="../assets/scripts/class.js"></script>
   </body>
 </html>
