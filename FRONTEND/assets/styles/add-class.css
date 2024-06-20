@@ -12,12 +12,13 @@
 .add-class-container h1 {
   margin-bottom: 3rem;
   font-size: 3rem;
-  width: 36rem;
+  width: 35rem;
 }
 
 #class-form {
   display: flex;
   gap: 1rem;
+  margin-bottom: 1.2rem;
 }
 
 #class-form input {
@@ -39,4 +40,8 @@
   height: 2rem;
   width: 2rem;
   color: #fff;
+}
+
+.error {
+  width: 35rem;
 }

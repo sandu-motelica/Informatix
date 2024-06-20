@@ -112,3 +112,35 @@ export const addMember = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
+export const deleteClass = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { classId } = body;
+    if (!classId) {
+      throw ApiError.BadRequest("Class ID is required");
+    }
+
+    const userId = req.user.payload.id;
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+    const classData = await Class.findOne({
+      _id: classId,
+      id_profesor: userId,
+    });
+    if (!classData) {
+      throw ApiError.BadRequest("Class not found or you're not the creator");
+    }
+    await Class.deleteOne({ _id: classId });
+
+    await ClassStudents.deleteMany({ id_class: classId });
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ message: "Class deleted successfully" }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
