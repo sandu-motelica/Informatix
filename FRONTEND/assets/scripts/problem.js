@@ -3,6 +3,8 @@ const searchParams = new URLSearchParams(window.location.search);
 const problemHeadline = document.getElementsByClassName("problem__title")[0];
 import Fetch from "../../utils/Fetch.js";
 
+let problem = {};
+
 const user = JSON.parse(localStorage.getItem("user"));
 if (user.role != "student") {
   document.querySelector(".problem__submit").style.display = "none";
@@ -43,7 +45,8 @@ const getProblem = async () => {
     });
     if (data.problems?.length) {
       console.log(data);
-      const problem = data.problems[0];
+      problem = data.problems[0];
+
       document.querySelector(".problem__title").textContent = problem.title;
       document.querySelector(".problem__content-text").textContent =
         problem.description;
@@ -88,4 +91,22 @@ window.sendSolution = async () => {
   } catch (e) {
     console.log(e);
   }
+};
+
+window.exportProblem = () => {
+  const blob = new Blob([JSON.stringify(problem)], { type: "text/json" });
+  const link = document.createElement("a");
+
+  link.download = problem.title;
+  link.href = window.URL.createObjectURL(blob);
+  link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
+
+  const evt = new MouseEvent("click", {
+    view: window,
+    bubbles: true,
+    cancelable: true,
+  });
+
+  link.dispatchEvent(evt);
+  link.remove();
 };
