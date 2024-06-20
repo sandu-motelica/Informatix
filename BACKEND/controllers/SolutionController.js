@@ -95,6 +95,7 @@ export const getNumberOfSolutionProblem = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
 export const getNumberOfResolvedProblem = async (req, res) => {
   try {
     await authMiddleware(req, res);
@@ -108,6 +109,24 @@ export const getNumberOfResolvedProblem = async (req, res) => {
 
     res.statusCode = 200;
     res.end(JSON.stringify({ count: solutions.length }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
+export const evaluateSolution = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { id, grade } = body;
+    console.log(id, grade);
+
+    const solution = await Solution.findByIdAndUpdate(id, {
+      grade: grade,
+    });
+
+    res.statusCode = 200;
+    res.end(JSON.stringify(solution));
   } catch (e) {
     errorMiddleware(res, e);
   }

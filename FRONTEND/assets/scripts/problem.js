@@ -22,6 +22,14 @@ const getSolution = async () => {
       const textArea = document.querySelector("textarea");
       textArea.value = solution.content;
       textArea.disabled = true;
+      if (solution.grade) {
+        const grades = document.querySelectorAll(".problem__marks button");
+        grades.forEach((grade) => {
+          if (solution.grade != grade.getAttribute("data-value"))
+            grade.disabled = true;
+          else grade.style.pointerEvents = "none";
+        });
+      }
     } else {
       window.location.href = `${rootPath}/problem.html?id=${searchParams.get(
         "id"
@@ -109,4 +117,26 @@ window.exportProblem = () => {
 
   link.dispatchEvent(evt);
   link.remove();
+};
+
+const evaluateSolution = async (grade) => {
+  try {
+    const data = await Fetch.update("/solution", {
+      id: searchParams.get("solution"),
+      grade,
+    });
+    getSolution();
+    // }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+window.init = () => {
+  const grades = document.querySelectorAll(".problem__marks button");
+  grades.forEach((grade) => {
+    grade.addEventListener("click", () =>
+      evaluateSolution(grade.getAttribute("data-value"))
+    );
+  });
 };
