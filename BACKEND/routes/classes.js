@@ -1,11 +1,18 @@
-import { createClass, getClasses } from "../controllers/classController.js";
+import {
+  addMember,
+  createClass,
+  getClasses,
+  deleteClass,
+  deleteUser,
+} from "../controllers/classController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/class";
 
 router.on("GET", `${DEFAULT_PATH}`, getClasses);
 router.on("POST", `${DEFAULT_PATH}`, createClass);
-// router.on("DELETE", `${DEFAULT_PATH}/`, removeProblem);
-// router.on("GET", `${DEFAULT_PATH}/difficulty`, getNumberOfProbWithDiff);
+router.on("POST", `${DEFAULT_PATH}/member`, addMember);
+router.on("DELETE", `${DEFAULT_PATH}`, deleteClass);
+router.on("DELETE", `${DEFAULT_PATH}/member`, deleteUser);
 
 export default router;

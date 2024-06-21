@@ -33,17 +33,17 @@ const getClasses = async () => {
   if (data?.statusCode === 200) {
     console.log(data);
     try {
-      const { classes } = data;
-      if (classes.length == 0 && user.role != "teacher") {
+      const classes = data;
+      // console.log("clasess");
+      if (classes.length === 0 && user.role != "teacher") {
         const defaultMess = document.createElement("p");
         defaultMess.classList.add("default-message");
         defaultMess.textContent = "Nu esti membru la nicio clasa";
         classContainer.after(defaultMess);
       }
       classes.forEach((item) => {
-        console.log(item);
         const classLink = document.createElement("a");
-        classLink.href = "#";
+        classLink.href = `/FRONTEND/pages/class.html?id=${item._id}`;
         classLink.classList.add("class-link");
         classLink.textContent = item.name;
         classContainer.appendChild(classLink);
