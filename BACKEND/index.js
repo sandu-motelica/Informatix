@@ -7,6 +7,7 @@ import ProblemRouter from "./routes/problem.js";
 import TagRouter from "./routes/tag.js";
 import SolutionRouter from "./routes/solution.js";
 import ClassRouter from "./routes/classes.js";
+import HomeworkRouter from "./routes/homework.js";
 
 const hostname = "localhost";
 

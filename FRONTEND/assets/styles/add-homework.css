@@ -1,0 +1,134 @@
+@import "./main.css";
+.add-homework-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 4.5fr;
+  column-gap: 8rem;
+  margin-bottom: 5.4rem;
+}
+
+.add-homework__block {
+  background-color: #2c2c2c;
+  border-radius: var(--default-radius);
+  padding: 2.4rem;
+}
+
+.add-problems__time p {
+  font-size: 1.6rem;
+  margin-bottom: 2rem;
+}
+
+#homework-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+}
+
+#homework-form .titlu-tema {
+  background-color: #262626;
+  width: 100%;
+  border: none;
+  padding: 2rem;
+  height: 100%;
+  color: var(--color-white);
+  outline: none;
+}
+
+.btn-add-homework {
+  height: 8rem;
+  width: 100%;
+  border-radius: var(--default-radius);
+}
+
+.add-homework-icon {
+  height: 2rem;
+  margin-right: 1rem;
+}
+
+.checked-icon {
+  height: 1.8rem;
+}
+
+.problem-info {
+  width: 100%;
+  display: flex;
+}
+
+.problems__table {
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 1.4rem;
+  width: 100%;
+}
+
+.problems__table thead tr {
+  border-bottom: 1px solid #767676;
+}
+
+.problems__table thead th {
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+
+.problems__table th {
+  text-align: start;
+  font-weight: 400;
+  padding: 1.2rem;
+}
+
+.checked .checked-icon {
+  color: var(--primary-color);
+}
+
+#homework-form p {
+  margin-left: 0.4rem;
+  font-size: 1.4rem;
+}
+
+#problems-list tr {
+  cursor: pointer;
+  border-radius: var(--default-radius);
+  transition: all 0.3s;
+}
+
+#problems-list tr:hover {
+  background-color: #313131;
+}
+
+#problems-list .checked {
+  background-color: #313131;
+}
+.add-problem-section {
+  margin-top: 1.6rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.btn-add-problem {
+  font-size: 1.4rem;
+  color: var(--light-color) !important;
+}
+
+.filter__search-tab {
+  display: flex;
+  align-items: center;
+  background-color: var(--dark-color-2);
+  border-radius: var(--default-radius);
+  height: 3.2rem;
+  margin-right: 20rem;
+}
+
+.filter__search-tab input {
+  height: 100%;
+  padding: 1rem;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: var(--light-white);
+}
+
+.search-icon {
+  flex-shrink: 0;
+  height: 1.6rem;
+  padding: 0 1rem;
+}

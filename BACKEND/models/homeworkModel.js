@@ -10,9 +10,6 @@ const homeworkSchema = new mongoose.Schema({
     ref: "Class",
     required: true,
   },
-  time_limit: {
-    type: Date,
-  },
   created_time: {
     type: Date,
     default: Date.now,
