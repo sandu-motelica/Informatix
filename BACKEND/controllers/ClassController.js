@@ -144,3 +144,46 @@ export const deleteClass = async (req, res) => {
     errorMiddleware(res, e);
   }
 };
+
+export const deleteUser = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { idClass, username } = body;
+
+    if (!username) {
+      throw ApiError.BadRequest("Username is required");
+    }
+    if (!idClass) {
+      throw ApiError.BadRequest("Class ID is required");
+    }
+    const userId = req.user.payload.id;
+    const me = await User.findOne({ _id: userId });
+    if (!me) {
+      throw ApiError.BadRequest("User[you] does not exist");
+    }
+    const classData = await Class.findOne({
+      _id: idClass,
+      id_profesor: userId,
+    });
+    if (!classData) {
+      throw ApiError.BadRequest("Class not found or you're not the creator");
+    }
+    const user = await User.findOne({ username });
+    if (!user) {
+      throw ApiError.BadRequest("User[to remove] not found");
+    }
+
+    if (user.role === "student") {
+      await ClassStudents.deleteOne({
+        id_student: user._id,
+        id_class: idClass,
+      });
+    }
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ message: "User deleted successfully" }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};

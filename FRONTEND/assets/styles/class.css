@@ -43,8 +43,10 @@ body {
 }
 
 .class-members-list li {
-  margin-left: 2rem;
+  margin: 0 2rem;
+  position: relative;
 }
+
 #member-form {
   display: flex;
   gap: 0.6rem;
@@ -178,4 +180,26 @@ body {
   bottom: 2rem;
   color: red;
   font-size: 1.1rem;
+}
+
+.delete-member {
+  padding: 0.1rem;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  right: 0;
+  top: 50%;
+  background-color: transparent;
+  display: none;
+  transition: all 0.2s;
+}
+.delete-member:hover {
+  color: #c2255c;
+}
+
+.delete-member__icon {
+  height: 1.3rem;
+}
+
+.class-members-list li:hover .delete-member {
+  display: flex;
 }

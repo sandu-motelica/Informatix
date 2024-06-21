@@ -13,7 +13,6 @@ const problemTagsSchema = new mongoose.Schema({
   },
 });
 
-// problemTagsSchema.index({ id_problem: 1, id_tag: 1 }, { unique: true });
 
 export const ProblemTags = mongoose.model(
   "ProblemTags",

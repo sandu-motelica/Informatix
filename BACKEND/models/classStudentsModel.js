@@ -12,6 +12,7 @@ const classStudentsSchema = new mongoose.Schema({
     required: true,
   },
 });
+classStudentsSchema.index({ id_class: 1, id_student: 1 }, { unique: true });
 
 export const ClassStudents = mongoose.model(
   "ClassStudents",
