@@ -60,9 +60,21 @@ const getProblem = async () => {
         problem.description;
       document.querySelector(".problem__difficulty").textContent =
         problem.difficulty;
+
+      const starEl = document.querySelectorAll(".rating-star-icon");
+
+      for (let i = 0; i < Math.round(problem.rating); i++)
+        starEl[i]?.classList.add("rating-star-selected");
+
+      for (let i = Math.round(problem.rating); i < starEl.length; i++)
+        starEl[i]?.classList.remove("rating-star-selected");
+
+      document.getElementById("problem-rating").textContent =
+        problem.rating.toFixed(1);
     } else {
       window.location.href = `${rootPath}/problems.html`;
     }
+    console.log(data);
   } catch (e) {
     console.log(e);
   }
@@ -71,17 +83,6 @@ const getProblem = async () => {
 if (searchParams.has("id")) {
   getProblem();
 } else window.location.href = `${rootPath}/problems.html`;
-
-const starEl = document.querySelectorAll(".rating-star-icon");
-
-for (let i = 0; i < starEl.length; i++) {
-  starEl[i].addEventListener("click", () => {
-    for (let j = 0; j <= starEl.length; j++) {
-      if (j <= i) starEl[j].classList.add("rating-star-selected");
-      else starEl[j].classList.remove("rating-star-selected");
-    }
-  });
-}
 
 window.sendSolution = async () => {
   try {
@@ -121,7 +122,7 @@ window.exportProblem = () => {
 
 const evaluateSolution = async (grade) => {
   try {
-    const data = await Fetch.update("/solution", {
+    await Fetch.update("/solution", {
       id: searchParams.get("solution"),
       grade,
     });
@@ -132,11 +133,36 @@ const evaluateSolution = async (grade) => {
   }
 };
 
+const rateProblem = async (rate) => {
+  try {
+    const data = await Fetch.create("/problem/rate", {
+      id_problem: searchParams.get("id"),
+      rate,
+    });
+    console.log(data);
+    if (data.statusCode != 200) {
+      alert("Problem was already rated");
+      return;
+    }
+    getProblem();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
 window.init = () => {
   const grades = document.querySelectorAll(".problem__marks button");
   grades.forEach((grade) => {
     grade.addEventListener("click", () =>
       evaluateSolution(grade.getAttribute("data-value"))
+    );
+  });
+
+  const buttonsRate = document.querySelectorAll(".problem__evaluate li");
+  console.log(buttonsRate);
+  buttonsRate.forEach((rating) => {
+    rating.addEventListener("click", () =>
+      rateProblem(rating.getAttribute("data-value"))
     );
   });
 };

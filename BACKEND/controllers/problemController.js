@@ -8,6 +8,7 @@ import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import queryParams from "../utils/queryParams.js";
+import { Rating } from "../models/ratingModel.js";
 
 export const getProblems = async (req, res) => {
   try {
@@ -91,6 +92,15 @@ export const getProblems = async (req, res) => {
       });
       console.log(data.is_solved);
     }
+
+    await Promise.all(
+      problemsWithDetails.map((item) => getProblemsRating(item.id))
+    ).then((results) => {
+      problemsWithDetails.forEach(
+        (item, index) => (item.rating = results[index])
+      );
+    });
+    console.log(problemsWithDetails);
 
     res.statusCode = 200;
     res.end(JSON.stringify({ problems: problemsWithDetails.reverse() }));
@@ -203,4 +213,51 @@ export const updateProblem = async (req, res) => {
   } catch (e) {
     errorMiddleware(res, e);
   }
+};
+
+export const rateProblem = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+
+    const { id_problem, rate } = body;
+
+    const rating = new Rating({
+      id_problema: id_problem,
+      id_user: req.user.payload.id,
+      rate: rate,
+    });
+
+    await rating.save();
+
+    res.statusCode = 200;
+    res.end(
+      JSON.stringify({
+        id_problema: id_problem,
+        id_user: req.user.payload.id,
+        rate,
+      })
+    );
+  } catch (e) {
+    console.log(e);
+    errorMiddleware(res, e);
+  }
+};
+
+const getProblemsRating = async (problemId) => {
+  console.log(problemId);
+  const data = await Rating.aggregate([
+    {
+      $match: {
+        id_problema: problemId,
+      },
+    },
+    {
+      $group: {
+        _id: "$id_problema",
+        averageValue: { $avg: "$rate" },
+      },
+    },
+  ]);
+  return data[0]?.averageValue || 0;
 };
