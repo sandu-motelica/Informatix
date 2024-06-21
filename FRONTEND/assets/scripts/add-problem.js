@@ -1,8 +1,12 @@
 import Fetch from "../../utils/Fetch.js";
+import unauthorized from "./unauthorized.js";
 
 const tags = document.getElementsByClassName("tag");
 const choiceTagsList = document.getElementById("choice-tags-list");
 const errElement = document?.querySelector(".add-problem-wrapper .error");
+
+const userRole = JSON.parse(localStorage.getItem("user"))?.role;
+if (userRole != "teacher") window.location.href = "/FRONTEND/pages/index.html";
 
 const searchTag = (event) => {
   Array.from(tags).forEach((item) => {

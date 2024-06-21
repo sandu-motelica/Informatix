@@ -1,6 +1,8 @@
 import unauthorizedRedirect from "./unauthorized.js";
 import Fetch from "../../utils/Fetch.js";
 unauthorizedRedirect();
+const userRole = JSON.parse(localStorage.getItem("user"))?.role;
+if (userRole != "admin") window.location.href = "/FRONTEND/pages/index.html";
 
 const updateProblemStatus = async (id, status) => {
   const data = await Fetch.update("/problem", {
