@@ -5,17 +5,31 @@ import errorMiddleware from "../middlewares/errorMiddleware.js";
 
 export const getTags = async (req, res) => {
   try {
-    // await authMiddleware(req, res);
+    await authMiddleware(req, res);
     const tags = await Tag.find({}).lean();
-    const tagIds = tags.map((tag) => tag._id);
-    const counts = await ProblemTags.aggregate([
-      { $match: { id_tag: { $in: tagIds } } },
-      { $group: { _id: "$id_tag", count: { $sum: 1 } } },
-    ]);
 
-    tags.forEach((tag, index) => (tag.count = counts[index].count));
+    const problemTags = await ProblemTags.find({})
+      .populate("id_problem")
+      .lean();
+    const filteredProblemTags = problemTags.filter(
+      (item) => item?.id_problem?.status === "approved"
+    );
 
-    console.log(tags);
+    console.log("problemTags", filteredProblemTags);
+    const counter = new Map();
+
+    filteredProblemTags.forEach((item) => {
+      const tag_id = item.id_tag.toString();
+      if (counter.has(tag_id)) {
+        const counterVal = counter.get(tag_id) + 1;
+        counter.set(tag_id, counterVal);
+      } else {
+        counter.set(tag_id, 1);
+      }
+    });
+
+    tags.forEach((tag) => (tag.count = counter.get(tag._id.toString()) || 0));
+
     res.statusCode = 200;
     res.end(JSON.stringify(tags));
   } catch (e) {
@@ -23,13 +37,24 @@ export const getTags = async (req, res) => {
   }
 };
 
-// only for debugging
 export const getProblemTag = async (req, res) => {
   try {
-    // await authMiddleware(req, res);
-    const problemTags = await ProblemTags.find({});
+    const data = queryParams(req);
+    console.log("datax", data);
+  } catch (e) {
+    console.log("eeee", e);
+    errorMiddleware(res, e);
+  }
+};
+
+export const addTag = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const body = JSON.parse(req.data);
+    const { name } = body;
+    const tag = await Tag.create({ name });
     res.statusCode = 200;
-    res.end(JSON.stringify(problemTags));
+    res.end(JSON.stringify(tag));
   } catch (e) {
     errorMiddleware(res, e);
   }
