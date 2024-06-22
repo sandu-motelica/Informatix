@@ -8,7 +8,7 @@ const errElement = document?.querySelector(".add-problem-wrapper .error");
 const userRole = JSON.parse(localStorage.getItem("user"))?.role;
 if (userRole != "teacher") window.location.href = "/FRONTEND/pages/index.html";
 
-const searchTag = (event) => {
+window.searchTag = (event) => {
   Array.from(tags).forEach((item) => {
     if (event.target.value === "") item.style.display = "flex";
     else if (
@@ -69,13 +69,13 @@ function generateTagsButtons(categories) {
 }
 
 // valori temporare
-generateTagsButtons([
-  { name: "Divizibilitate", count: 120 },
-  { name: "Primalitate", count: 22 },
-  { name: "Tablouri unidimensionale", count: 11 },
-  { name: "Tablouri bidimensionale", count: 1120 },
-  { name: "Olimpiada", count: 129990 },
-]);
+// generateTagsButtons([
+//   { name: "Divizibilitate", count: 120 },
+//   { name: "Primalitate", count: 22 },
+//   { name: "Tablouri unidimensionale", count: 11 },
+//   { name: "Tablouri bidimensionale", count: 1120 },
+//   { name: "Olimpiada", count: 129990 },
+// ]);
 
 const resetForm = () => {
   errElement.textContent = "";
@@ -84,18 +84,12 @@ const resetForm = () => {
     choiceTagsList.removeChild(choiceTagsList.firstChild);
   }
   //TODO: Updated with db tags
-  generateTagsButtons([
-    { name: "Divizibilitate", count: 120 },
-    { name: "Primalitate", count: 22 },
-    { name: "Tablouri unidimensionale", count: 11 },
-    { name: "Tablouri bidimensionale", count: 1120 },
-    { name: "Olimpiada", count: 129990 },
-  ]);
+  getTags();
 
   document.getElementById("easy").checked = true;
 };
 
-const addCategory = () => {
+window.addCategory = () => {
   alert("Adaugam categoria in db...");
   try {
     document.querySelector(".problems__tags").querySelector("input").value = "";
@@ -163,6 +157,16 @@ window.addProblem = async () => {
     console.log(e);
   }
 };
+
+const getTags = async () => {
+  const data = await Fetch.get("/tag");
+  console.log(data);
+  return generateTagsButtons(
+    data.map((item) => ({ name: item.name, count: item.count }))
+  );
+};
+
+getTags();
 
 window.init = () => {
   document
