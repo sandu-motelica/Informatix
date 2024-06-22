@@ -191,3 +191,7 @@ body {
   justify-content: space-between;
   align-items: center;
 }
+
+.eval-content {
+  font-size: 1.8rem;
+}

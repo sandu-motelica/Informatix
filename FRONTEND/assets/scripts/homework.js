@@ -112,13 +112,13 @@ const getSolution = async () => {
         console.log(suma);
         if (count === 0) {
           nota.textContent = "Neevaluată";
-          nota.style.color = "yellow";
+          nota.style.color = "#fea116";
         } else if (count < numarProbleme) {
-          nota.textContent = "Evaluate doar " + count;
-          nota.style.color = "yellow";
+          nota.textContent = "Evaluate: " + count + " probleme";
+          nota.style.color = "#fea116";
         } else if (count === numarProbleme) {
-          nota.textContent = "Nota " + suma / count;
-          nota.style.color = "green";
+          nota.textContent = "Nota: " + (suma / count).toFixed(2);
+          nota.style.color = "#1da09c";
         }
         console.log(nota);
       } else {
@@ -162,6 +162,6 @@ const getSolution = async () => {
 };
 
 if (searchParams.has("id")) {
-  getHomeworkInfo();
-  getSolution();
+  await getHomeworkInfo();
+  await getSolution();
 } else window.location.href = `${rootPath}/classes.html`;
