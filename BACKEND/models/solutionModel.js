@@ -11,6 +11,11 @@ export const solutionSchema = new mongoose.Schema({
     ref: "User",
     required: true,
   },
+  id_homework: {
+    type: Schema.Types.ObjectId,
+    ref: "Homework",
+    required: false,
+  },
   content: {
     type: String,
     required: true,
@@ -29,5 +34,9 @@ export const solutionSchema = new mongoose.Schema({
     required: true,
   },
 });
+solutionSchema.index(
+  { id_problem: 1, id_student: 1, id_homework: 1 },
+  { unique: true, sparse: true }
+);
 
 export const Solution = mongoose.model("Solution", solutionSchema, "solutions");

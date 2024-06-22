@@ -1,4 +1,5 @@
 import { Homework } from "../models/homeworkModel.js";
+import { Problem } from "../models/problemModel.js";
 import { HomeworkProblems } from "../models/homeworkProblemsModel.js";
 import { Class } from "../models/classModel.js";
 import { User } from "../models/userModel.js";
@@ -23,7 +24,15 @@ export const getHomeworks = async (req, res) => {
       if (!homework) {
         throw ApiError.BadRequest("Homework not found");
       }
-      homeworks = new HomeworkDto(homework);
+      let problems = await HomeworkProblems.find({
+        id_homework: data.id_homework,
+      }).lean();
+      const problemIds = problems.map((problem) => problem.id_problem);
+      problems = await Problem.find({ _id: { $in: problemIds } });
+      problems = problems.map((problem) => {
+        return { id: problem._id, title: problem.title };
+      });
+      homeworks = { homework: new HomeworkDto(homework), problems: problems };
     } else if (data.id_class) {
       homeworks = await Homework.find({ id_class: data.id_class }).lean();
       homeworks = homeworks.map((hw) => new HomeworkDto(hw));
@@ -103,17 +112,27 @@ export const deleteHomework = async (req, res) => {
 
     const homework = await Homework.findOne({
       _id: homeworkId,
-      id_profesor: userId,
     });
     if (!homework) {
-      throw ApiError.BadRequest("Homework not found or you're not the creator");
+      throw ApiError.BadRequest("Homework not found");
+    }
+    const profesor = await Class.findOne({
+      _id: homework.id_class,
+    });
+    if (profesor.id_profesor.toString() !== userId.toString()) {
+      throw ApiError.BadRequest("Permision denied");
     }
 
     await Homework.deleteOne({ _id: homeworkId });
     await HomeworkProblems.deleteMany({ id_homework: homeworkId });
 
     res.statusCode = 200;
-    res.end(JSON.stringify({ message: "Homework deleted successfully" }));
+    res.end(
+      JSON.stringify({
+        message: "Homework deleted successfully",
+        id_class: homework.id_class,
+      })
+    );
   } catch (e) {
     errorMiddleware(res, e);
   }
