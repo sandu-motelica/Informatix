@@ -89,9 +89,16 @@ const resetForm = () => {
   document.getElementById("easy").checked = true;
 };
 
-window.addCategory = () => {
+window.addCategory = async () => {
   alert("Adaugam categoria in db...");
   try {
+    const name = document
+      .querySelector(".problems__tags")
+      .querySelector("input").value;
+    const data = await Fetch.create("/tag", {
+      name,
+    });
+    await getTags();
     document.querySelector(".problems__tags").querySelector("input").value = "";
     Array.from(tags).forEach((item) => {
       item.style.display = "flex";

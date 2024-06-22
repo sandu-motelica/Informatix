@@ -46,22 +46,32 @@ const getProblems = async () => {
       : {}),
     status: "approved",
   });
+
+  const activeTags = Array.from(
+    document.querySelectorAll("#choice-tags-list button")
+  ).map((item) => item.getAttribute("data-name"));
+
   if (data?.statusCode === 200) {
     console.log(data);
     try {
       const { problems } = data;
       problems.forEach((item) => {
-        console.log(item);
-        let tr = document.createElement("tr");
-        tr.setAttribute("data-id", item?.id);
+        console.log(item.tags);
+        if (
+          activeTags.filter((value) => item.tags.includes(value)).length != 0 ||
+          activeTags.length == 0
+        ) {
+          console.log(activeTags, item.tags);
+          let tr = document.createElement("tr");
+          tr.setAttribute("data-id", item?.id);
 
-        const dateStr = item?.created_time;
-        const date = new Date(dateStr);
-        const month = String(date.getMonth() + 1).padStart(2, "0");
-        const day = String(date.getDate()).padStart(2, "0");
-        const year = date.getFullYear();
+          const dateStr = item?.created_time;
+          const date = new Date(dateStr);
+          const month = String(date.getMonth() + 1).padStart(2, "0");
+          const day = String(date.getDate()).padStart(2, "0");
+          const year = date.getFullYear();
 
-        tr.innerHTML = `
+          tr.innerHTML = `
           <th>${day}/${month}/${year}</th>
           <th><a href="./problem.html?id=${item?.id}">${item?.title}</a></th>
           <th>${item?.difficulty}</th>
@@ -81,7 +91,8 @@ const getProblems = async () => {
             }
           </th>
         `;
-        document.getElementById("problems-list").appendChild(tr);
+          document.getElementById("problems-list").appendChild(tr);
+        }
       });
     } catch (e) {
       console.log(e);
@@ -150,3 +161,48 @@ const getRateData = async () => {
     }
   }
 };
+
+function generateTagsButtons(categories) {
+  const tags = document.getElementsByClassName("tag");
+  const choiceTagsList = document.getElementById("choice-tags-list");
+  const wrapper = document.getElementById("tags-list");
+
+  wrapper.innerHTML = "";
+
+  categories.forEach((category) => {
+    const button = document.createElement("button");
+    button.classList.add("tag");
+    button.setAttribute("data-name", category.name);
+    button.setAttribute("data-value", category.id);
+
+    const textNode = document.createTextNode(category.name);
+    button.appendChild(textNode);
+
+    const span = document.createElement("span");
+    const spanTextNode = document.createTextNode(category.count);
+    span.appendChild(spanTextNode);
+
+    button.appendChild(span);
+
+    button.addEventListener("click", function () {
+      const tagsList = document.getElementById("tags-list");
+      if (this.parentNode === choiceTagsList) {
+        tagsList.appendChild(this);
+      } else {
+        choiceTagsList.appendChild(this);
+      }
+      filterProblems();
+    });
+    wrapper.appendChild(button);
+  });
+}
+
+const getTags = async () => {
+  const data = await Fetch.get("/tag");
+  console.log(data);
+  return generateTagsButtons(
+    data.map((item) => ({ id: item._id, name: item.name, count: item.count }))
+  );
+};
+
+getTags();

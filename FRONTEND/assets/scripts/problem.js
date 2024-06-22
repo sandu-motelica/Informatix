@@ -5,6 +5,10 @@ import Fetch from "../../utils/Fetch.js";
 
 let problem = {};
 
+if (!searchParams.get("solution")) {
+  document.querySelector(".problem__marks").style.display = "none";
+}
+
 const user = JSON.parse(localStorage.getItem("user"));
 if (user.role != "student") {
   document.querySelector(".problem__submit").style.display = "none";

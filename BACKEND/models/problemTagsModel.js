@@ -13,7 +13,6 @@ const problemTagsSchema = new mongoose.Schema({
   },
 });
 
-
 export const ProblemTags = mongoose.model(
   "ProblemTags",
   problemTagsSchema,
