@@ -1,5 +1,7 @@
 import Fetch from "../../utils/Fetch.js";
 import unauthorized from "./unauthorized.js";
+const searchParams = new URLSearchParams(window.location.search);
+import { rootPath } from "./constants.js";
 
 const tags = document.getElementsByClassName("tag");
 const choiceTagsList = document.getElementById("choice-tags-list");
@@ -119,8 +121,6 @@ window.addProblem = async () => {
     let description = document.querySelector(
       ".add-problems__content textarea"
     )?.value;
-    console.log("titlu " + title);
-    console.log("conditie " + description);
 
     const difficultyDiv = document.querySelector(".add-problems__difficulty");
     const difficultyRadioButtons = difficultyDiv.querySelectorAll(
@@ -132,7 +132,6 @@ window.addProblem = async () => {
         difficulty = radioButton.value;
       }
     });
-    console.log("dificultate " + difficulty);
 
     const tagsWrapper = document.getElementById("choice-tags-list");
     const tags = tagsWrapper.querySelectorAll(".tag");
@@ -140,25 +139,39 @@ window.addProblem = async () => {
     tags.forEach((tag) => {
       tagNames.push(tag.getAttribute("data-name"));
     });
-    console.log("taguri " + tagNames);
-    const data = await Fetch.create("/problem", {
-      title,
-      description,
-      difficulty,
-      tagNames,
-    });
+    let data;
+    if (searchParams.get("homework")) {
+      data = await Fetch.create("/problem", {
+        title,
+        description,
+        difficulty,
+        tagNames,
+        homework: true,
+      });
+    } else {
+      data = await Fetch.create("/problem", {
+        title,
+        description,
+        difficulty,
+        tagNames,
+      });
+    }
 
     if (data.statusCode != 201) {
-      console.log(data);
-
       if (!data.errors?.length || data.errors?.length === 0) {
         errElement.textContent = data?.message || "Date invalide";
       } else if (data?.errors?.length) {
         errElement.textContent = data.errors[0].msg;
       }
     } else {
-      alert("Problema a fost adăugată cu succes!");
-      resetForm();
+      if (searchParams.get("homework")) {
+        window.location.href = `${rootPath}/add-homework.html?id=${searchParams.get(
+          "homework"
+        )}`;
+      } else {
+        alert("Problema a fost adăugată cu succes!");
+        resetForm();
+      }
     }
   } catch (e) {
     console.log(e);
@@ -167,7 +180,6 @@ window.addProblem = async () => {
 
 const getTags = async () => {
   const data = await Fetch.get("/tag");
-  console.log(data);
   return generateTagsButtons(
     data.map((item) => ({ name: item.name, count: item.count }))
   );

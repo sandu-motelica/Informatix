@@ -9,6 +9,7 @@ import ApiError from "../exceptions/apiError.js";
 import authMiddleware from "../middlewares/authMiddleware.js";
 import queryParams from "../utils/queryParams.js";
 import { Rating } from "../models/ratingModel.js";
+import { PendingHomeworkProblem } from "../models/pendingHomeworkProblems.js";
 
 export const getProblems = async (req, res) => {
   try {
@@ -110,11 +111,34 @@ export const getProblems = async (req, res) => {
   }
 };
 
+export const getPendingProblems = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const userId = req.user.payload.id;
+    const user = await User.findOne({
+      _id: userId,
+    });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+    const problems = await PendingHomeworkProblem.find({
+      id_author: userId,
+    }).lean();
+    problems.map((problem) => {
+      return { id: problem._id, title: problem.title };
+    });
+    res.statusCode = 200;
+    res.end(JSON.stringify({ problems }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
 export const addProblem = async (req, res) => {
   try {
     await authMiddleware(req, res);
     const body = JSON.parse(req.data);
-    const { title, description, difficulty, tagNames } = body;
+    const { title, description, difficulty, tagNames, homework } = body;
 
     if (title.length < 5 || description.length < 5)
       throw ApiError.BadRequest(
@@ -134,6 +158,14 @@ export const addProblem = async (req, res) => {
       difficulty,
       id_author: user.id,
     });
+
+    if (homework) {
+      const pedingProblem = await PendingHomeworkProblem.create({
+        title,
+        id_problem: problem._id,
+        id_author: user.id,
+      });
+    }
 
     for (let i = 0; i < tagNames.length; i++) {
       let tag = await Tag.findOne({ name: tagNames[i] });

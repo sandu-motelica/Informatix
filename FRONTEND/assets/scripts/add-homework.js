@@ -9,6 +9,11 @@ unauthorizedRedirect();
 const errElement = document?.querySelector(".error");
 
 const problemsList = document.getElementById("problems-list");
+const pedingProblemsList = document.querySelector(".pending-problems");
+
+document.querySelector(
+  ".btn-add-problem"
+).href = `${rootPath}/add-problem.html?homework=${searchParams.get("id")}`;
 
 const getProblems = async () => {
   const search = document.getElementById("search-input").value;
@@ -53,6 +58,25 @@ const getProblems = async () => {
   }
 };
 
+const getPendingProblems = async () => {
+  const data = await Fetch.get("/problem/pending", {});
+  console.log(data);
+  if (data?.statusCode === 200) {
+    try {
+      const { problems } = data;
+      problems.forEach((item) => {
+        const el = document.createElement("li");
+        el.classList.add("pending-pr");
+        el.setAttribute("data-id", item?._id);
+        el.textContent = item.title;
+        pedingProblemsList.appendChild(el);
+      });
+    } catch (e) {
+      console.log(e);
+    }
+  }
+};
+
 const attachCheckedEvents = () => {
   const problemsList = document.querySelectorAll("#problems-list tr");
   problemsList.forEach((line) => {
@@ -64,7 +88,6 @@ const attachCheckedEvents = () => {
 
 window.addHomework = async () => {
   try {
-    console.log("aici");
     let title = document.querySelector(
       ".add-homework__content .titlu-tema"
     )?.value;
@@ -102,6 +125,7 @@ window.addHomework = async () => {
 };
 if (searchParams.has("id")) {
   getProblems();
+  getPendingProblems();
 } else {
   window.location.href = `${rootPath}/classes.html`;
 }
