@@ -4,13 +4,19 @@ const searchParams = new URLSearchParams(window.location.search);
 // const errElement = document?.querySelector(".error");
 // const profName = document.querySelector(".homework-content__profesor");
 const deleteQst = document.querySelector(".popup-delete__qst");
-
+let numarProbleme = 0;
 const problemsList = document.querySelector(".homework-problems");
-
+const solutionList = document.querySelector(".homework-solutions");
+const solutionHeader = document.querySelector(".solutions-section h2");
+const nota = document.querySelector(".eval-content");
+let isStudent = false;
 const user = JSON.parse(localStorage.getItem("user"));
-if (user.role != "teacher") {
+if (user.role === "student") {
   document.querySelector(".delete-btn").style.display = "none";
+  isStudent = true;
+  solutionHeader.textContent = "Soluțiile mele:";
 } else {
+  solutionHeader.textContent = "Soluțiile elevilor:";
   // profName.style.display = "none";
 }
 
@@ -19,18 +25,18 @@ const getHomeworkInfo = async () => {
     const data = await Fetch.get("/homework", {
       id_homework: searchParams.get("id"),
     });
-    console.log(data);
     if (data) {
       document.querySelector(".homework-content__title").textContent =
         data.homework.name;
       deleteQst.textContent = `Confirmi ștergerea temei "${data.homework.name}"?`;
-      console.log(data.problems);
+      numarProbleme = data.problems.length;
       data.problems.forEach((problem) => {
-        console.log("aici");
+        console.log(numarProbleme);
         const el = document.createElement("li");
         const link = document.createElement("a");
         link.classList.add("problem-link");
         link.href = `${rootPath}/problem.html?id=${problem.id}`;
+        if (isStudent) link.href += `&homework=${searchParams.get("id")}`;
         link.textContent = problem.title;
         el.appendChild(link);
         problemsList.appendChild(el);
@@ -75,29 +81,87 @@ window.deleteHomework = async () => {
   }
 };
 
-// const getHomeworks = async () => {
-//   try {
-//     const data = await Fetch.get("/homework", {
-//       id_class: searchParams.get("id"),
-//     });
-//     if (data) {
-//       data.forEach((homework) => {
-//         const el = document.createElement("li");
-//         const link = document.createElement("a");
-//         link.classList.add("homework-link");
-//         link.href = `${rootPath}/homework.html?id=${homework.id}`;
-//         link.textContent = homework.name;
-//         el.appendChild(link);
-//         problemsList.appendChild(el);
-//       });
-//     } else {
-//       window.location.href = `${rootPath}/classes.html`;
-//     }
-//   } catch (e) {
-//     console.log(e);
-//   }
-// };
+const getSolution = async () => {
+  try {
+    const data = await Fetch.get("/solution", {
+      id_homework: searchParams.get("id"),
+    });
+    if (data) {
+      if (isStudent) {
+        let suma = 0,
+          count = 0;
+        data.solutions.forEach((solution) => {
+          suma += solution.grade;
+          count += solution.grade === 0 ? 0 : 1;
+          const el = document.createElement("li");
+          el.classList.add("solution-line");
+          const link = document.createElement("a");
+          link.classList.add("solution-link");
+          link.href = `${rootPath}/problem.html?id=${solution.id_problem}&solution=${solution.id}`;
+          link.textContent = solution.problemName;
+          const evaluateEl = document.createElement("span");
+          evaluateEl.style.fontSize = "1.4rem";
+          evaluateEl.textContent =
+            solution.grade === 0 ? "Neevaluata" : `Evaluata: ${solution.grade}`;
+          link.appendChild(evaluateEl);
+          el.appendChild(link);
+          solutionList.appendChild(el);
+        });
+        console.log(count);
+        console.log(numarProbleme);
+        console.log(suma);
+        if (count === 0) {
+          nota.textContent = "Neevaluată";
+          nota.style.color = "yellow";
+        } else if (count < numarProbleme) {
+          nota.textContent = "Evaluate doar " + count;
+          nota.style.color = "yellow";
+        } else if (count === numarProbleme) {
+          nota.textContent = "Nota " + suma / count;
+          nota.style.color = "green";
+        }
+        console.log(nota);
+      } else {
+        let lastName = null;
+        let list;
+        data.solutions.forEach((solution) => {
+          if (lastName !== solution.studentName) {
+            const st = document.createElement("li");
+            st.classList.add("student-list");
+            const stHeader = document.createElement("h2");
+            stHeader.classList.add("student-name");
+            stHeader.textContent = solution.studentName;
+            list = document.createElement("ul");
+            st.appendChild(stHeader);
+            st.appendChild(list);
+            solutionList.appendChild(st);
+          }
+          const el = document.createElement("li");
+          el.classList.add("solution-line");
+          const link = document.createElement("a");
+          link.classList.add("solution-link");
+          link.href = `${rootPath}/problem.html?id=${
+            solution.id_problem
+          }&solution=${solution.id}&homework=${searchParams.get("id")}`;
+          link.textContent = solution.problemName;
+          const evaluateEl = document.createElement("span");
+          evaluateEl.style.fontSize = "1.4rem";
+          evaluateEl.textContent =
+            solution.grade === 0 ? "Neevaluata" : `Evaluata: ${solution.grade}`;
+          link.appendChild(evaluateEl);
+          el.appendChild(link);
+          list.appendChild(el);
+        });
+      }
+    } else {
+      window.location.href = `${rootPath}/classes.html`;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
 
 if (searchParams.has("id")) {
   getHomeworkInfo();
+  getSolution();
 } else window.location.href = `${rootPath}/classes.html`;
