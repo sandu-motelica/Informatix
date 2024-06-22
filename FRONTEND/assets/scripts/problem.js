@@ -86,17 +86,33 @@ if (searchParams.has("id")) {
 
 window.sendSolution = async () => {
   try {
-    const content = document.getElementById("solution").value;
-    const data = await Fetch.create("/solution", {
-      id_problem: searchParams.get("id"),
-      content,
-    });
-    if (data.statusCode >= 400) {
-      alert(data.message);
-      return;
-    }
+    if (searchParams.get("homework")) {
+      const content = document.getElementById("solution").value;
+      const data = await Fetch.create("/solution", {
+        id_problem: searchParams.get("id"),
+        id_homework: searchParams.get("homework"),
+        content,
+      });
+      if (data.statusCode >= 400) {
+        alert(data.message);
+        return;
+      }
+      window.location.href = `${rootPath}/homework.html?id=${searchParams.get(
+        "homework"
+      )}`;
+    } else {
+      const content = document.getElementById("solution").value;
+      const data = await Fetch.create("/solution", {
+        id_problem: searchParams.get("id"),
+        content,
+      });
+      if (data.statusCode >= 400) {
+        alert(data.message);
+        return;
+      }
 
-    window.location.href = window.location.href + `&solution=${data.id}`;
+      window.location.href = window.location.href + `&solution=${data.id}`;
+    }
   } catch (e) {
     console.log(e);
   }

@@ -148,7 +148,8 @@ body {
   font-size: 1.1rem;
 }
 
-.homework-problems li {
+.homework-problems li,
+.homework-solutions li {
   margin-bottom: 1.6rem;
   width: 100%;
   border-radius: var(--default-radius);
@@ -157,13 +158,36 @@ body {
   overflow: hidden;
 }
 
-.homework-problems li a {
+.homework-problems li a,
+.homework-solutions li a,
+.student-list li a {
   display: inline-block;
   padding: 2rem;
   width: 100%;
   height: 100%;
 }
 
-.problems-section h2 {
+.problems-section h2,
+.solutions-section h2,
+.student-list h2 {
   margin-bottom: 1.6rem;
+}
+
+.student-name {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--secondary-color);
+}
+.student-list {
+  background-color: transparent !important;
+  border-radius: 0 !important;
+}
+.student-list:not(:last-child) {
+  border-bottom: 1px solid #444 !important;
+}
+
+.solution-line .solution-link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
