@@ -1,5 +1,7 @@
 import { Class } from "../models/classModel.js";
 import { User } from "../models/userModel.js";
+import { Homework } from "../models/homeworkModel.js";
+import { HomeworkProblems } from "../models/homeworkProblemsModel.js";
 
 import { ClassStudents } from "../models/classStudentsModel.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
@@ -134,12 +136,24 @@ export const deleteClass = async (req, res) => {
     if (!classData) {
       throw ApiError.BadRequest("Class not found or you're not the creator");
     }
+
+    const homeworks = await Homework.find({ id_class: classId }).lean();
+    const homeworkIds = homeworks.map((homework) => homework._id);
+
+    await HomeworkProblems.deleteMany({ id_homework: { $in: homeworkIds } });
+
+    await Homework.deleteMany({ id_class: classId });
+
     await Class.deleteOne({ _id: classId });
 
     await ClassStudents.deleteMany({ id_class: classId });
 
     res.statusCode = 200;
-    res.end(JSON.stringify({ message: "Class deleted successfully" }));
+    res.end(
+      JSON.stringify({
+        message: "Class and related homeworks deleted successfully",
+      })
+    );
   } catch (e) {
     errorMiddleware(res, e);
   }
