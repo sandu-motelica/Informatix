@@ -1,20 +1,21 @@
-const searchParams = new URLSearchParams(window.location.search);
 import Fetch from "../../utils/Fetch.js";
 import { rootPath } from "./constants.js";
+const searchParams = new URLSearchParams(window.location.search);
 const errElement = document?.querySelector(".error");
 const memberList = document.querySelector(".class-members-list");
 const profName = document.querySelector(".class-content__profesor");
 const deleteQst = document.querySelector(".popup-delete__qst");
+
+const homeworkList = document.querySelector(".class-content-homework");
+
+let deleteMemberBtn = `<span></span>`;
 
 const user = JSON.parse(localStorage.getItem("user"));
 if (user.role != "teacher") {
   document.querySelector(".add-member").style.display = "none";
   document.querySelector(".delete-btn").style.display = "none";
 } else {
-  profName.style.display = "none";
-}
-
-const deleteMemberBtn = `<button class="btn delete-member">
+  deleteMemberBtn = `<button class="btn delete-member">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
@@ -30,6 +31,15 @@ const deleteMemberBtn = `<button class="btn delete-member">
                     />
                   </svg>
                 </button>`;
+  profName.style.display = "none";
+  const el = document.createElement("li");
+  const link = document.createElement("a");
+  link.classList.add("add-homework-link");
+  link.href = `${rootPath}/add-homework.html?id=${searchParams.get("id")}`;
+  link.textContent = "+ Creează tema";
+  el.appendChild(link);
+  homeworkList.appendChild(el);
+}
 
 const getClassInfo = async () => {
   try {
@@ -58,10 +68,6 @@ const getClassInfo = async () => {
     console.log(e);
   }
 };
-
-if (searchParams.has("id")) {
-  getClassInfo();
-} else window.location.href = `${rootPath}/classes.html`;
 
 let last_username;
 
@@ -161,3 +167,31 @@ const attachDeleteEvents = () => {
     });
   });
 };
+
+const getHomeworks = async () => {
+  try {
+    const data = await Fetch.get("/homework", {
+      id_class: searchParams.get("id"),
+    });
+    if (data) {
+      data.forEach((homework) => {
+        const el = document.createElement("li");
+        const link = document.createElement("a");
+        link.classList.add("homework-link");
+        link.href = `${rootPath}/homework.html?id=${homework.id}`;
+        link.textContent = homework.name;
+        el.appendChild(link);
+        homeworkList.appendChild(el);
+      });
+    } else {
+      window.location.href = `${rootPath}/classes.html`;
+    }
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+if (searchParams.has("id")) {
+  getClassInfo();
+  getHomeworks();
+} else window.location.href = `${rootPath}/classes.html`;
