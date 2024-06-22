@@ -193,3 +193,8 @@ input {
   flex-direction: column;
   gap: 2rem;
 }
+
+.discussion-section__form button {
+  margin-left: auto;
+  margin-right: auto;
+}

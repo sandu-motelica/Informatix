@@ -199,7 +199,6 @@ const getComments = async () => {
       let li = document.createElement("li");
       li.innerHTML = `
     <p class="discussion-section__author">@${item.id_user.username}</p>
-    <p class="discussion-section__title">${item.title}
     </p>
     <p class="discussion-section__description">${item.content}</p>
     <p class="discussion-section__date">${new Date(
@@ -208,6 +207,7 @@ const getComments = async () => {
   `;
       document.querySelector(".discussion-section__list").appendChild(li);
     });
+
     console.log("data", data);
   } catch (e) {
     console.log(e);
@@ -218,15 +218,18 @@ getComments();
 
 window.addComment = async () => {
   try {
-    const title = document.getElementById("comment-title").value;
     const description = document.getElementById("comment-description").value;
     const problemId = searchParams.get("id");
     await Fetch.create("/comment", {
-      title,
       content: description,
       problemId,
     });
-    await getProblem();
+    const comments = document.querySelector(".discussion-section__list");
+    while (comments.lastElementChild) {
+      comments.removeChild(comments.lastElementChild);
+    }
+    document.getElementById("comment-description").value = "";
+    await getComments();
   } catch (e) {
     console.log(e);
   }
