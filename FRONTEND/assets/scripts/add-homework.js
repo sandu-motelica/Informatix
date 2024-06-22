@@ -10,6 +10,16 @@ const errElement = document?.querySelector(".error");
 
 const problemsList = document.getElementById("problems-list");
 
+window.searchProblem = (event) => {
+  if (event.key === "Enter") {
+    const problemsList = document.getElementById("problems-list");
+    while (problemsList.lastElementChild) {
+      problemsList.removeChild(problemsList.lastElementChild);
+    }
+    getProblems();
+  }
+};
+
 const getProblems = async () => {
   const search = document.getElementById("search-input").value;
 
