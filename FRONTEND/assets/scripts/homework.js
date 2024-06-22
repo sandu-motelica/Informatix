@@ -31,13 +31,20 @@ const getHomeworkInfo = async () => {
       deleteQst.textContent = `Confirmi ștergerea temei "${data.homework.name}"?`;
       numarProbleme = data.problems.length;
       data.problems.forEach((problem) => {
-        console.log(numarProbleme);
+        if (isStudent && problem.status !== "approved") return;
         const el = document.createElement("li");
         const link = document.createElement("a");
         link.classList.add("problem-link");
+        const probTitle = document.createElement("span");
         link.href = `${rootPath}/problem.html?id=${problem.id}`;
         if (isStudent) link.href += `&homework=${searchParams.get("id")}`;
-        link.textContent = problem.title;
+        probTitle.textContent = problem.title;
+        link.appendChild(probTitle);
+        if (problem.status !== "approved") {
+          const probStatus = document.createElement("span");
+          probStatus.textContent = problem.status;
+          link.appendChild(probStatus);
+        }
         el.appendChild(link);
         problemsList.appendChild(el);
       });

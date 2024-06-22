@@ -186,7 +186,8 @@ body {
   border-bottom: 1px solid #444 !important;
 }
 
-.solution-line .solution-link {
+.solution-line .solution-link,
+.homework-problems .problem-link {
   display: flex;
   justify-content: space-between;
   align-items: center;

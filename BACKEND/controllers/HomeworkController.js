@@ -1,6 +1,7 @@
 import { Homework } from "../models/homeworkModel.js";
 import { Problem } from "../models/problemModel.js";
 import { HomeworkProblems } from "../models/homeworkProblemsModel.js";
+import { PendingHomeworkProblem } from "../models/pendingHomeworkProblems.js";
 import { Class } from "../models/classModel.js";
 import { User } from "../models/userModel.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
@@ -30,7 +31,11 @@ export const getHomeworks = async (req, res) => {
       const problemIds = problems.map((problem) => problem.id_problem);
       problems = await Problem.find({ _id: { $in: problemIds } });
       problems = problems.map((problem) => {
-        return { id: problem._id, title: problem.title };
+        return {
+          id: problem._id,
+          title: problem.title,
+          status: problem.status,
+        };
       });
       homeworks = { homework: new HomeworkDto(homework), problems: problems };
     } else if (data.id_class) {
@@ -52,9 +57,6 @@ export const createHomework = async (req, res) => {
     await authMiddleware(req, res);
     const body = JSON.parse(req.data);
     const { name, id_class, problemIds } = body;
-    console.log(name);
-    console.log(id_class);
-    console.log(problemIds.length);
     if (!name || !id_class || !Array.isArray(problemIds)) {
       throw ApiError.BadRequest("Name and Problems are required");
     }
@@ -86,7 +88,19 @@ export const createHomework = async (req, res) => {
     }));
 
     await HomeworkProblems.insertMany(homeworkProblems);
-    console.log(new HomeworkDto(homework));
+
+    let pendingProblems = await PendingHomeworkProblem.find({
+      id_author: userId,
+    });
+    pendingProblems = pendingProblems.map((problem) => ({
+      id_homework: homework._id,
+      id_problem: problem.id_problem,
+    }));
+    if (pendingProblems.length > 0) {
+      await HomeworkProblems.insertMany(pendingProblems);
+    }
+    await PendingHomeworkProblem.deleteMany({ id_author: userId });
+
     res.statusCode = 201;
     res.end(JSON.stringify(new HomeworkDto(homework)));
   } catch (e) {

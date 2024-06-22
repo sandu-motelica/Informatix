@@ -91,7 +91,6 @@ export const getProblems = async (req, res) => {
           return item;
         }
       });
-      console.log(data.is_solved);
     }
 
     await Promise.all(
@@ -101,7 +100,6 @@ export const getProblems = async (req, res) => {
         (item, index) => (item.rating = results[index])
       );
     });
-    console.log(problemsWithDetails);
 
     res.statusCode = 200;
     res.end(JSON.stringify({ problems: problemsWithDetails.reverse() }));
@@ -238,7 +236,6 @@ export const updateProblem = async (req, res) => {
     if (req.user.payload.role != "admin") throw ApiError.UnauthorizedError();
     const body = JSON.parse(req.data);
     const { problemId, status } = body;
-    console.log(problemId, status);
     await Problem.findByIdAndUpdate(problemId, { status: status });
     res.statusCode = 200;
     res.end(JSON.stringify({ problemId: problemId }));
@@ -277,7 +274,6 @@ export const rateProblem = async (req, res) => {
 };
 
 const getProblemsRating = async (problemId) => {
-  console.log(problemId);
   const data = await Rating.aggregate([
     {
       $match: {

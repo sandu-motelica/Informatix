@@ -54,7 +54,7 @@ const getProblems = async () => {
               />
             </svg>
           </th>
-          <th class="problem-name">${item?.title}</th>
+          <th class="problem-name"><a class="problem-link" href="${rootPath}/problem.html?id=${item?.id}">${item?.title}</a></th>
           <th class="problem-difficulty">${item?.difficulty}</th>
           <th class="problem-category">${item?.tags[0]}</th>
         `;
@@ -70,15 +70,21 @@ const getProblems = async () => {
 
 const getPendingProblems = async () => {
   const data = await Fetch.get("/problem/pending", {});
-  console.log(data);
+
   if (data?.statusCode === 200) {
     try {
       const { problems } = data;
+      if (problems.length > 0) {
+        document.querySelector(".pending-problems-header").style.display =
+          "block";
+      }
       problems.forEach((item) => {
         const el = document.createElement("li");
         el.classList.add("pending-pr");
         el.setAttribute("data-id", item?._id);
-        el.textContent = item.title;
+        const titlu = document.createElement("span");
+        titlu.textContent = item.title;
+        el.appendChild(titlu);
         pedingProblemsList.appendChild(el);
       });
     } catch (e) {
@@ -101,7 +107,6 @@ window.addHomework = async () => {
     let title = document.querySelector(
       ".add-homework__content .titlu-tema"
     )?.value;
-    console.log("titlu " + title);
     let problemsIds = [];
     let i = 0;
     const problemsList = document.querySelectorAll("#problems-list tr");
@@ -117,7 +122,6 @@ window.addHomework = async () => {
       id_class: searchParams.get("id"),
       problemIds: problemsIds,
     });
-    console.log(data);
     if (data.statusCode != 201) {
       if (!data.errors?.length || data.errors?.length === 0) {
         errElement.textContent = data?.message || "Date invalide";
