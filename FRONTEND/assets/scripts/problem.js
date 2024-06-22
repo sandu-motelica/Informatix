@@ -170,3 +170,48 @@ window.init = () => {
     );
   });
 };
+
+const getComments = async () => {
+  try {
+    const data = await Fetch.get("/comment", {
+      problemId: searchParams.get("id"),
+    });
+    document.getElementById("comments-number").innerHTML = `(${
+      data?.length || 0
+    })`;
+    data.forEach((item) => {
+      let li = document.createElement("li");
+      li.innerHTML = `
+    <p class="discussion-section__author">@${item.id_user.username}</p>
+    <p class="discussion-section__title">${item.title}
+    </p>
+    <p class="discussion-section__description">${item.content}</p>
+    <p class="discussion-section__date">${new Date(
+      item.created_time
+    ).toLocaleDateString()}</p>
+  `;
+      document.querySelector(".discussion-section__list").appendChild(li);
+    });
+    console.log("data", data);
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+getComments();
+
+window.addComment = async () => {
+  try {
+    const title = document.getElementById("comment-title").value;
+    const description = document.getElementById("comment-description").value;
+    const problemId = searchParams.get("id");
+    await Fetch.create("/comment", {
+      title,
+      content: description,
+      problemId,
+    });
+    await getProblem();
+  } catch (e) {
+    console.log(e);
+  }
+};

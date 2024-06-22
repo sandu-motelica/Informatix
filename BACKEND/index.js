@@ -8,6 +8,7 @@ import TagRouter from "./routes/tag.js";
 import SolutionRouter from "./routes/solution.js";
 import ClassRouter from "./routes/classes.js";
 import HomeworkRouter from "./routes/homework.js";
+import CommentRouter from "./routes/comments.js";
 
 const hostname = "localhost";
 

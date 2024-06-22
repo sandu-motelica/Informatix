@@ -61,7 +61,6 @@ const getProblems = async () => {
           activeTags.filter((value) => item.tags.includes(value)).length != 0 ||
           activeTags.length == 0
         ) {
-          console.log(activeTags, item.tags);
           let tr = document.createElement("tr");
           tr.setAttribute("data-id", item?.id);
 

@@ -6,9 +6,13 @@ const commentSchema = new mongoose.Schema({
     ref: "Problem",
     required: true,
   },
-  id_student: {
+  id_user: {
     type: Schema.Types.ObjectId,
     ref: "User",
+    required: true,
+  },
+  title: {
+    type: String,
     required: true,
   },
   content: {
