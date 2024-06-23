@@ -64,23 +64,20 @@ const getSolutions = async () => {
     document.querySelector(
       ".account__statistic--hard .account__statistic__bar--filled"
     ).style.width = `${
-      (hardProblems.length * 100) / hardProblemsLength != 0
-        ? hardProblemsLength
-        : 1
+      (hardProblems.length * 100) /
+      (hardProblemsLength != 0 ? hardProblemsLength : 1)
     }%`;
     document.querySelector(
       ".account__statistic--medium .account__statistic__bar--filled"
     ).style.width = `${
-      (mediumProblems.length * 100) / mediumProblemsLength != 0
-        ? mediumProblemsLength
-        : 1
+      (mediumProblems.length * 100) /
+      (mediumProblemsLength != 0 ? mediumProblemsLength : 1)
     }%`;
     document.querySelector(
       ".account__statistic--easy .account__statistic__bar--filled"
     ).style.width = `${
-      (easyProblems.length * 100) / easyProblemsLength != 0
-        ? easyProblemsLength
-        : 1
+      (easyProblems.length * 100) /
+      (easyProblemsLength != 0 ? easyProblemsLength : 1)
     }%`;
 
     let a = document.createElement("a");
