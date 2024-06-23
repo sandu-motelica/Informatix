@@ -8,7 +8,7 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const addProblemBtn = document.querySelector(".add-problem");
 const pickProblemBtn = document.querySelector(".pick-one");
-if (user.role === "teacher") {
+if (user.role === "teacher" || user.role === "admin") {
   pickProblemBtn.style.display = "none";
   document.querySelector(
     ".add-problem a"

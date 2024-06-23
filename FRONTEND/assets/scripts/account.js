@@ -3,6 +3,11 @@ import Fetch from "../../utils/Fetch.js";
 import { rootPath } from "./constants.js";
 unauthorizedRedirect();
 
+const user = JSON.parse(localStorage.getItem("user"));
+if (user.role != "student") {
+  document.querySelector(".account__stats-wrapper").style.display = "none";
+}
+
 let easyProblemsLength = 0;
 let mediumProblemsLength = 0;
 let hardProblemsLength = 0;
