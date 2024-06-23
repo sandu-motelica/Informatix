@@ -136,6 +136,11 @@ input {
 .rating-star-selected {
   color: var(--secondary-color);
 }
+#problem-rating {
+  font-weight: 500;
+  margin-left: 0.5rem;
+  font-size: 1.1rem;
+}
 
 @media screen and (max-width: 53em) {
   .problem > div {
@@ -150,11 +155,15 @@ input {
   }
 }
 
+.send-comment-icon {
+  height: 2.4rem;
+}
+
 .discussion-section {
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  margin-top: 4rem;
+  margin: 5.4rem 0;
 }
 
 .discussion-section__list {
@@ -186,12 +195,30 @@ input {
 
 .discussion-section__date {
   margin-left: auto;
+  color: var(--semilight-color);
 }
 
 .discussion-section__form {
   display: flex;
-  flex-direction: column;
   gap: 2rem;
+}
+
+#comment-add-btn {
+  padding: 0;
+  width: 5.2rem;
+}
+
+.discussion-section__form #comment-description {
+  max-height: 5rem;
+  border-radius: var(--rounded-radius);
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 1.75rem 2.2rem;
+}
+
+.discussion-section__form #comment-description::-webkit-scrollbar {
+  width: 0px;
+  background: transparent;
 }
 
 .discussion-section__form button {
@@ -204,15 +231,18 @@ input {
 }
 
 .problem__marks > button {
-  width: 2rem;
-  height: 2rem;
+  width: 2.2rem;
+  height: 2.2rem;
   background-color: var(--secondary-color);
   color: white;
-  border-radius: 0.5rem;
-  border: 1px solid var(--dark-color-2);
+  border-radius: 0.4rem;
+  border: 1px solid #414141;
   cursor: pointer;
+}
+.problem__marks > button:disabled:hover {
+  background-color: #404040;
 }
 
 .problem__marks > button:disabled {
-  background-color: gray;
+  background-color: var(--dark-color-2);
 }
