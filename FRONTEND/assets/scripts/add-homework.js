@@ -9,7 +9,24 @@ unauthorizedRedirect();
 const errElement = document?.querySelector(".error");
 
 const problemsList = document.getElementById("problems-list");
-const pedingProblemsList = document.querySelector(".pending-problems");
+const pendingProblemsList = document.querySelector(".pending-problems");
+
+const deleteProblemBtn = `<button class="btn delete-problem">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="delete-problem__icon"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m14.74 9-.346 9m-4.788 0L9.26 9m9.968-3.21c.342.052.682.107 1.022.166m-1.022-.165L18.16 19.673a2.25 2.25 0 0 1-2.244 2.077H8.084a2.25 2.25 0 0 1-2.244-2.077L4.772 5.79m14.456 0a48.108 48.108 0 0 0-3.478-.397m-12 .562c.34-.059.68-.114 1.022-.165m0 0a48.11 48.11 0 0 1 3.478-.397m7.5 0v-.916c0-1.18-.91-2.164-2.09-2.201a51.964 51.964 0 0 0-3.32 0c-1.18.037-2.09 1.022-2.09 2.201v.916m7.5 0a48.667 48.667 0 0 0-7.5 0"
+                    />
+                  </svg>
+                </button>`;
 
 document.querySelector(
   ".btn-add-problem"
@@ -81,11 +98,19 @@ const getPendingProblems = async () => {
       problems.forEach((item) => {
         const el = document.createElement("li");
         el.classList.add("pending-pr");
-        el.setAttribute("data-id", item?._id);
-        const titlu = document.createElement("span");
+        el.setAttribute("data-id", item?.id_problem);
+        const titlu = document.createElement("a");
         titlu.textContent = item.title;
+        titlu.href = `${rootPath}/problem.html?id=${item?.id_problem}`;
+        const inf = document.createElement("div");
+        inf.classList.add("pending-problems-info");
+        const infText = document.createElement("span");
+        infText.textContent = "pending";
+        inf.innerHTML += deleteProblemBtn;
+        inf.appendChild(infText);
         el.appendChild(titlu);
-        pedingProblemsList.appendChild(el);
+        el.appendChild(inf);
+        pendingProblemsList.appendChild(el);
       });
     } catch (e) {
       console.log(e);
@@ -137,6 +162,37 @@ window.addHomework = async () => {
     console.log(e);
   }
 };
+
+// const deleteButtons = document.querySelectorAll(".delete-problem");
+const pendingProblems = document.querySelectorAll(".pending-pr");
+
+// deleteButtons.forEach((btn, i) => {
+//   btn.addEventListener("click", async () => {
+//     console.log("Apasa " + i);
+//       try {
+//         const problemId = pendingProblems[i].dataset.id;
+//         console.log(problemId);
+//         // const data = await Fetch.remove("/problem/pending", {
+//         //   problemId,
+//         // });
+//         if (data.statusCode != 200) {
+//           if (!data.errors?.length || data.errors?.length === 0) {
+//             errElement.textContent = data?.message || "Eroare la stergere";
+//           } else if (data?.errors?.length) {
+//             errElement.textContent = data.errors[0].msg;
+//           }
+//         } else {
+//           console.log(data);
+//           // pendingProblemsList.removeChild(
+//           //   pendingProblems[i]
+//           // );
+//         }
+//       } catch (e) {
+//         console.log(e);
+//       }
+//   });
+// });
+
 if (searchParams.has("id")) {
   getProblems();
   getPendingProblems();

@@ -52,11 +52,9 @@ const getProblems = async () => {
   ).map((item) => item.getAttribute("data-name"));
 
   if (data?.statusCode === 200) {
-    console.log(data);
     try {
       const { problems } = data;
       problems.forEach((item) => {
-        console.log(item.tags);
         if (
           activeTags.filter((value) => item.tags.includes(value)).length != 0 ||
           activeTags.length == 0
@@ -119,11 +117,9 @@ const getRateData = async () => {
       : {}),
   });
   if (data?.statusCode === 200) {
-    console.log(data);
     try {
       const { problems } = data;
       problems.forEach((item) => {
-        console.log(item);
         let tr = document.createElement("tr");
         tr.setAttribute("data-id", item?.id);
 
@@ -198,7 +194,6 @@ function generateTagsButtons(categories) {
 
 const getTags = async () => {
   const data = await Fetch.get("/tag");
-  console.log(data);
   return generateTagsButtons(
     data.map((item) => ({ id: item._id, name: item.name, count: item.count }))
   );

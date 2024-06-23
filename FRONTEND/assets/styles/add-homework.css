@@ -154,11 +154,35 @@
   cursor: pointer;
 }
 
-.pending-pr::after {
-  content: "pending";
+.pending-pr span {
   color: #767676;
 }
 
 .pending-problems-header {
   display: none;
+}
+
+.pending-problems-info {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+}
+
+.delete-problem {
+  padding: 0.1rem;
+  background-color: transparent;
+  display: flex;
+  transition: all 0.2s;
+  color: #767676;
+}
+.delete-problem:hover {
+  color: #c2255c;
+}
+
+.delete-problem__icon {
+  height: 1.6rem;
+}
+
+.pending-pr:hover .delete-problem {
+  display: flex;
 }

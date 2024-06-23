@@ -215,6 +215,27 @@ export const removeProblem = async (req, res) => {
   }
 };
 
+export const removePendingProblems = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const userId = req.user.payload.id;
+    const body = JSON.parse(req.data);
+    const { problemId } = body;
+    const user = await User.findOne({ _id: userId });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+
+    await PendingHomeworkProblem.deleteOne({ id_problem: problemId });
+    await Problem.deleteOne({ _id: problemId });
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ message: "Problem successfully deleted" }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
 export const getNumberOfProbWithDiff = async (req, res) => {
   try {
     await authMiddleware(req, res);
@@ -237,6 +258,7 @@ export const updateProblem = async (req, res) => {
     const body = JSON.parse(req.data);
     const { problemId, status } = body;
     await Problem.findByIdAndUpdate(problemId, { status: status });
+    await PendingHomeworkProblem.deleteOne({ id_problem: problemId });
     res.statusCode = 200;
     res.end(JSON.stringify({ problemId: problemId }));
   } catch (e) {

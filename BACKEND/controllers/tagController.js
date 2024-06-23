@@ -15,7 +15,7 @@ export const getTags = async (req, res) => {
       (item) => item?.id_problem?.status === "approved"
     );
 
-    console.log("problemTags", filteredProblemTags);
+    // console.log("problemTags", filteredProblemTags);
     const counter = new Map();
 
     filteredProblemTags.forEach((item) => {
@@ -40,9 +40,9 @@ export const getTags = async (req, res) => {
 export const getProblemTag = async (req, res) => {
   try {
     const data = queryParams(req);
-    console.log("datax", data);
+    // console.log("datax", data);
   } catch (e) {
-    console.log("eeee", e);
+    // console.log("eeee", e);
     errorMiddleware(res, e);
   }
 };
