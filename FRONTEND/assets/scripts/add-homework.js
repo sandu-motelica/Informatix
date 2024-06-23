@@ -13,7 +13,7 @@ const errElement = document?.querySelector(".error");
 const problemsList = document.getElementById("problems-list");
 const pendingProblemsList = document.querySelector(".pending-problems");
 
-const deleteProblemBtn = `<button class="btn delete-problem">
+const deleteProblemBtn = `<button class="btn delete-problem" type="button">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     fill="none"
