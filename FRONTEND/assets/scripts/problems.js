@@ -13,6 +13,8 @@ if (user.role === "teacher") {
   document.querySelector(
     ".add-problem a"
   ).href = `${rootPath}/add-problem.html`;
+
+  document.getElementById("status-select").style.display = "none";
 } else {
   addProblemBtn.style.display = "none";
 }
