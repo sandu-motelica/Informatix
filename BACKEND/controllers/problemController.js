@@ -311,3 +311,17 @@ const getProblemsRating = async (problemId) => {
   ]);
   return data[0]?.averageValue || 0;
 };
+
+export const getPublicProblems = async (req, res) => {
+  try {
+    const problems = await Problem.find({});
+    res.statusCode = 200;
+    res.end(
+      JSON.stringify({
+        problems,
+      })
+    );
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};

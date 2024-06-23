@@ -8,7 +8,7 @@ async function request(url, params = {}, method = "GET") {
       Authorization: `Bearer ${localStorage.getItem("token")}`,
       // origin: "http://localhost:3000",
     },
-    credentials: "include",
+    // credentials: "include",
   };
 
   if (params) {
