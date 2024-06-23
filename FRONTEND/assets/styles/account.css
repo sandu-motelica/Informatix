@@ -106,7 +106,7 @@
 
 .account__statistic--easy .account__statistic__bar--filled {
   background-color: green;
-  width: 7%;
+  /* width: 7%; */
 }
 
 .account__statistic--medium .account__statistic__bar {
@@ -115,7 +115,7 @@
 
 .account__statistic--medium .account__statistic__bar--filled {
   background-color: yellow;
-  width: 2%;
+  /* width: 2%; */
 }
 
 .account__statistic--hard .account__statistic__bar {
@@ -124,7 +124,7 @@
 
 .account__statistic--hard .account__statistic__bar--filled {
   background-color: red;
-  width: 5%;
+  /* width: 5%; */
 }
 
 .account__stats-solved-problems {

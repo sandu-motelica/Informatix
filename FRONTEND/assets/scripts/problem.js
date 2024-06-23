@@ -28,10 +28,13 @@ const getSolution = async () => {
       textArea.disabled = true;
       if (solution.grade) {
         const grades = document.querySelectorAll(".problem__marks button");
+        document.querySelector(".problem__marks").style.display = "flex";
         grades.forEach((grade) => {
-          if (solution.grade != grade.getAttribute("data-value"))
+          if (solution.grade != grade.getAttribute("data-value")) {
             grade.disabled = true;
-          else grade.style.pointerEvents = "none";
+          } else {
+            grade.style.pointerEvents = "none";
+          }
         });
       }
     } else {
@@ -126,7 +129,7 @@ window.exportProblem = () => {
   const blob = new Blob([JSON.stringify(problem)], { type: "text/json" });
   const link = document.createElement("a");
 
-  link.download = problem.title;
+  link.download = problem.title + ".json";
   link.href = window.URL.createObjectURL(blob);
   link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
 
