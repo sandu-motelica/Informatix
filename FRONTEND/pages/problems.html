@@ -1,193 +1,106 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../assets/images/general/logo.png" />
+    <link rel="stylesheet" href="../assets/styles/problems.css" />
+    <title>InformatiX</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="../assets/images/general/logo.png" />
-  <link rel="stylesheet" href="../assets/styles/problems.css" />
-  <title>InformatiX</title>
-</head>
-
-<body>
-  <main class="container grid problems-grid margin-top-md margin-bt-bg">
-    <section class="problems">
-      <h2 class="header-secondary">Probleme propuse</h2>
-      <ul class="problems__filter-tab">
-        <li>
-          <select name="dificulty-level" id="dificulty-select" onchange="filterProblems()">
-            <option selected disabled value="">Dificultate</option>
-            <option value="all">Toate</option>
-            <option value="easy">Usor</option>
-            <option value="medium">Mediu</option>
-            <option value="hard">Dificil</option>
-          </select>
-        </li>
-        <li>
-          <select name="status" id="status-select" onchange="filterProblems()">
-            <option selected disabled value="">Stare</option>
-            <option value="all">Toate</option>
-            <option value="resolved">Rezolvată</option>
-            <option value="unresolved">Nerezolvată</option>
-          </select>
-        </li>
-        <li class="filter__search-tab">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-            stroke="currentColor" class="search-icon">
-            <path stroke-linecap="round" stroke-linejoin="round"
-              d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z" />
-          </svg>
-          <input id="search-input" type="text" placeholder="Cauta problema" onkeydown="searchProblem(event)" />
-        </li>
-        <li class="pick-one" onclick="openRandomProblem(event)">
-          <button class="btn btn-pick">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-              stroke="currentColor" class="pick-one-icon">
-              <path stroke-linecap="round" stroke-linejoin="round"
-                d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3" />
+  <body>
+    <main class="container grid problems-grid margin-top-md margin-bt-bg">
+      <section class="problems">
+        <h2 class="header-secondary">Probleme propuse</h2>
+        <ul class="problems__filter-tab">
+          <li>
+            <select
+              name="dificulty-level"
+              id="dificulty-select"
+              onchange="filterProblems()"
+            >
+              <option selected disabled value="">Dificultate</option>
+              <option value="all">Toate</option>
+              <option value="easy">Usor</option>
+              <option value="medium">Mediu</option>
+              <option value="hard">Dificil</option>
+            </select>
+          </li>
+          <li>
+            <select
+              name="status"
+              id="status-select"
+              onchange="filterProblems()"
+            >
+              <option selected disabled value="">Stare</option>
+              <option value="all">Toate</option>
+              <option value="resolved">Rezolvată</option>
+              <option value="unresolved">Nerezolvată</option>
+            </select>
+          </li>
+          <li class="filter__search-tab">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="search-icon"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+              />
             </svg>
-          </button>
-          <span>Alege una</span>
-        </li>
-      </ul>
-      <table class="problems__table">
-        <thead>
-          <tr>
-            <th scope="col">Data publicării</th>
-            <th scope="col">Titlu</th>
-            <th scope="col">Dificultate</th>
-            <th scope="col">Rată</th>
-            <th scope="col">Categorie</th>
-            <th scope="col">Stare</th>
-          </tr>
-        </thead>
-        <tbody id="problems-list">
-          <!-- <tr>
-            <th>12.01.2022</th>
-            <th><a href="./problem.html?id=12">Numar palindrom</a></th>
-            <th>Ușor</th>
-            <th>5/13</th>
-            <th>Matematica</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
+            <input
+              id="search-input"
+              type="text"
+              placeholder="Cauta problema"
+              onkeydown="searchProblem(event)"
+            />
+          </li>
+          <li class="pick-one" onclick="openRandomProblem(event)">
+            <button class="btn btn-pick">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke-width="1.5"
+                stroke="currentColor"
+                class="pick-one-icon"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  d="M19.5 12c0-1.232-.046-2.453-.138-3.662a4.006 4.006 0 0 0-3.7-3.7 48.678 48.678 0 0 0-7.324 0 4.006 4.006 0 0 0-3.7 3.7c-.017.22-.032.441-.046.662M19.5 12l3-3m-3 3-3-3m-12 3c0 1.232.046 2.453.138 3.662a4.006 4.006 0 0 0 3.7 3.7 48.656 48.656 0 0 0 7.324 0 4.006 4.006 0 0 0 3.7-3.7c.017-.22.032-.441.046-.662M4.5 12l3 3m-3-3-3 3"
+                />
               </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>23.11.2022</th>
-            <th>Cel mai mare divizor comun</th>
-            <th>Simplu</th>
-            <th>9/10</th>
-            <th>Informatica</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>12.12.2021</th>
-            <th>Numere prime</th>
-            <th>Mediu</th>
-            <th>3/10</th>
-            <th>Matematica</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>04.01.2022</th>
-            <th>Divizibilitate</th>
-            <th>Simplu</th>
-            <th>9/10</th>
-            <th>Matematica</th>
-            <th></th>
-          </tr>
-          <tr>
-            <th>12.01.2022</th>
-            <th>Numere prime</th>
-            <th>Dificil</th>
-            <th>9/22</th>
-            <th>Matematica</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>12.01.2022</th>
-            <th>Suma a doua numere</th>
-            <th>Simplu</th>
-            <th>9/10</th>
-            <th>Matematica</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>12.01.2022</th>
-            <th>Numere prime</th>
-            <th>Dificil</th>
-            <th>9/10</th>
-            <th>Statistica</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>12.01.2022</th>
-            <th>Numere prime</th>
-            <th>Simplu</th>
-            <th>9/10</th>
-            <th>Matematica</th>
-            <th></th>
-          </tr>
-          <tr>
-            <th>14.02.2023</th>
-            <th>Permutari</th>
-            <th>Simplu</th>
-            <th>9/10</th>
-            <th>Backtracking</th>
-            <th>
-              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
-                stroke="currentColor" class="status-icon">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                  d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
-              </svg>
-            </th>
-          </tr>
-          <tr>
-            <th>31.06.2023</th>
-            <th>Numere prime</th>
-            <th>Simplu</th>
-            <th>4/11</th>
-            <th>Algoritmica</th>
-            <th></th>
-          </tr> -->
-        </tbody>
-      </table>
-      <!-- <ul class="problems-pagination">
+            </button>
+            <span>Alege una</span>
+          </li>
+          <li class="add-problem">
+            <a class="btn btn-add-problem"></a>
+          </li>
+        </ul>
+        <table class="problems__table">
+          <thead>
+            <tr>
+              <th scope="col">Data publicării</th>
+              <th scope="col">Titlu</th>
+              <th scope="col">Dificultate</th>
+              <th scope="col">Rată</th>
+              <th scope="col">Categorie</th>
+              <th scope="col">Stare</th>
+            </tr>
+          </thead>
+          <tbody id="problems-list"></tbody>
+        </table>
+        <!-- <ul class="problems-pagination">
         <li class="left-arrow">
           <a href="#">
             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
@@ -210,16 +123,15 @@
           </a>
         </li>
       </ul> -->
-    </section>
-    <section class="problems__tags">
-      <h2 class="header-secondary">Categorii populare</h2>
-      <input type="text" placeholder="Cauta" oninput="searchTag(event)" />
-      <div class="problems__tags-wrapper" id="choice-tags-list"></div>
-      <div class="problems__tags-wrapper" id="tags-list"></div>
-    </section>
-  </main>
-  <script type="module" src="../assets/scripts/header.js"></script>
-  <script type="module" src="../assets/scripts/problems.js"></script>
-</body>
-
+      </section>
+      <section class="problems__tags">
+        <h2 class="header-secondary">Categorii populare</h2>
+        <input type="text" placeholder="Cauta" oninput="searchTag(event)" />
+        <div class="problems__tags-wrapper" id="choice-tags-list"></div>
+        <div class="problems__tags-wrapper" id="tags-list"></div>
+      </section>
+    </main>
+    <script type="module" src="../assets/scripts/header.js"></script>
+    <script type="module" src="../assets/scripts/problems.js"></script>
+  </body>
 </html>

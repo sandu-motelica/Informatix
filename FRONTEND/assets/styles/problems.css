@@ -106,7 +106,8 @@ select option:disabled {
   padding: 0 1rem;
 }
 
-.pick-one {
+.pick-one,
+.add-problem {
   flex-grow: 1;
   display: flex;
   align-items: center;
@@ -117,6 +118,22 @@ select option:disabled {
 .pick-one span {
   color: var(--primary-color);
   font-size: 1.4rem;
+}
+
+.add-problem .btn-add-problem {
+  background-color: var(--primary-color);
+  font-size: 1.4rem;
+  width: 14rem;
+  padding: 1rem;
+}
+
+.add-problem .btn-add-problem:link,
+.add-problem .btn-add-problem:visited {
+  color: #ddd;
+}
+
+.btn-add-problem::after {
+  content: "Adaugă problemă";
 }
 
 .btn-pick {
@@ -131,18 +148,20 @@ select option:disabled {
   height: 2.2rem;
 }
 
+@media screen and (max-width: 52em) {
+}
+.problems__filter-tab input {
+  width: 100%;
+}
+.problems__filter-tab {
+  gap: 1rem;
+}
 @media screen and (max-width: 57em) {
   .problems-grid {
     grid-template-columns: 1fr;
   }
 }
 @media screen and (max-width: 43em) {
-  .problems__filter-tab input {
-    width: 100%;
-  }
-  .problems__filter-tab {
-    gap: 1rem;
-  }
   .pick-one {
     flex-shrink: 0;
   }
@@ -155,5 +174,11 @@ select option:disabled {
   }
   .problems__table th {
     padding: 1.2rem 0.6rem;
+  }
+  .btn-add-problem::after {
+    content: "+ Problemă";
+  }
+  .btn-add-problem {
+    width: 10rem;
   }
 }

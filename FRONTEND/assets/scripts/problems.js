@@ -1,10 +1,21 @@
 import unauthorizedRedirect from "./unauthorized.js";
 import Fetch from "../../utils/Fetch.js";
 unauthorizedRedirect();
+import { rootPath } from "./constants.js";
 
 const tags = document.getElementsByClassName("tag");
 const user = JSON.parse(localStorage.getItem("user"));
 
+const addProblemBtn = document.querySelector(".add-problem");
+const pickProblemBtn = document.querySelector(".pick-one");
+if (user.role === "teacher") {
+  pickProblemBtn.style.display = "none";
+  document.querySelector(
+    ".add-problem a"
+  ).href = `${rootPath}/add-problem.html`;
+} else {
+  addProblemBtn.style.display = "none";
+}
 window.searchTag = (event) => {
   Array.from(tags).forEach((item) => {
     if (event.target.value === "") item.style.display = "flex";
@@ -22,7 +33,7 @@ window.searchTag = (event) => {
 window.openRandomProblem = (event) => {
   const rows = document.querySelectorAll("#problems-list tr");
   const problemIDS = Array.from(rows).map((row) => row.getAttribute("data-id"));
-  window.location.href = `/FRONTEND/pages/problem.html?id=${
+  window.location.href = `${rootPath}/problem.html?id=${
     problemIDS[parseInt(Math.random() * problemIDS.length)]
   }`;
 };
@@ -71,7 +82,9 @@ const getProblems = async () => {
 
           tr.innerHTML = `
           <th>${day}/${month}/${year}</th>
-          <th><a href="./problem.html?id=${item?.id}">${item?.title}</a></th>
+          <th><a href="${rootPath}/problem.html?id=${item?.id}">${
+            item?.title
+          }</a></th>
           <th>${item?.difficulty}</th>
           <th>${item?.success_rate}</th>
           <th>${item?.tags[0]}</th>
@@ -138,7 +151,9 @@ const getRateData = async () => {
 
         tr.innerHTML = `
           <th>${day}/${month}/${year}</th>
-          <th><a href="./problem.html?id=${item?.id}">${item?.title}</a></th>
+          <th><a href="${rootPath}/problem.html?id=${item?.id}">${
+          item?.title
+        }</a></th>
           <th>${item?.difficulty}</th>
           <th>5/13</th>
           <th>${item?.tags[0]}</th>
