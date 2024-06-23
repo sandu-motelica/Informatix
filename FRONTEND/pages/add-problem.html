@@ -1,68 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../assets/images/general/logo.png" />
+    <link rel="stylesheet" href="../assets/styles/add-problem.css" />
+    <title>InformatiX</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="../assets/images/general/logo.png" />
-  <link rel="stylesheet" href="../assets/styles/add-problem.css" />
-  <title>InformatiX</title>
-</head>
-
-<body onload="init()">
-  <main class="container margin-top-md">
-    <section class="add-problem add-problem-wrapper">
-      <div class="add-problems__block add-problems__categories">
-        <div class="add-problems__difficulty">
-          <p>Selecteaza dificultatea problemei:</p>
-          <div>
-            <input checked type="radio" id="easy" name="dificulty" value="easy" />
-            <label for="easy">Ușor</label><br />
-          </div>
-          <div>
-            <input type="radio" id="medium" name="dificulty" value="medium" />
-            <label for="medium">Mediu</label><br />
-          </div>
-          <div>
-            <input type="radio" id="hard" name="dificulty" value="hard" />
-            <label for="hard">Dificil</label>
-          </div>
-        </div>
-        <hr />
-        <div class="add-problems__category">
-          <p>Selecteaza categoriile problemei:</p>
-          <section class="problems__tags">
-            <input type="text" placeholder="Cauta" oninput="searchTag(event)" />
+  <body onload="init()">
+    <main class="container margin-top-md">
+      <section class="add-problem add-problem-wrapper">
+        <div class="add-problems__block add-problems__categories">
+          <div class="add-problems__difficulty">
+            <p>Selecteaza dificultatea problemei:</p>
             <div>
-              <div class="problems__tags-wrapper" id="choice-tags-list"></div>
-              <div class="problems__tags-wrapper" id="tags-list"></div>
-              <div class="problems__empty-categories">
-                <p>Nu există această categorie. Dorești să o adaugi?</p>
-                <button class="btn btn-secondary" onclick="addCategory(event)">
-                  Adauga categorie
-                </button>
-              </div>
+              <input
+                checked
+                type="radio"
+                id="easy"
+                name="dificulty"
+                value="easy"
+              />
+              <label for="easy">Ușor</label><br />
             </div>
-          </section>
+            <div>
+              <input type="radio" id="medium" name="dificulty" value="medium" />
+              <label for="medium">Mediu</label><br />
+            </div>
+            <div>
+              <input type="radio" id="hard" name="dificulty" value="hard" />
+              <label for="hard">Dificil</label>
+            </div>
+          </div>
+          <hr />
+          <div class="add-problems__category">
+            <p>Selecteaza categoriile problemei:</p>
+            <section class="problems__tags">
+              <input
+                type="text"
+                placeholder="Cauta"
+                oninput="searchTag(event)"
+              />
+              <div>
+                <div class="problems__tags-wrapper" id="choice-tags-list"></div>
+                <div class="problems__tags-wrapper" id="tags-list"></div>
+                <div class="problems__empty-categories">
+                  <p>Nu există această categorie. Dorești să o adaugi?</p>
+                  <button
+                    class="btn btn-secondary"
+                    onclick="addCategory(event)"
+                  >
+                    Adauga categorie
+                  </button>
+                </div>
+              </div>
+            </section>
+          </div>
         </div>
-      </div>
-      <div class="add-problems__block add-problems__content">
-        <form id="problem-form">
-          <input type="text" placeholder="Titlul problemei" name="titlu_problema" />
-          <textarea placeholder="Conditia problemei" maxlength="2500"></textarea>
-          <span class="error"></span>
-          <button class="btn btn-primary" type="button" onclick="addProblem()">
-            Adauga problema
-          </button>
-          <input type="file" name="uploadFile" id="import-file" accept=".json" />
-          <pre id="fileContent"></pre>
-        </form>
-      </div>
-    </section>
-  </main>
-  <script type="module" src="../assets/scripts/header.js"></script>
-  <script type="module" src="../assets/scripts/add-problem.js"></script>
-</body>
-
+        <div class="add-problems__block add-problems__content">
+          <form id="problem-form">
+            <input
+              type="text"
+              placeholder="Titlul problemei"
+              name="titlu_problema"
+            />
+            <textarea
+              placeholder="Conditia problemei"
+              maxlength="2500"
+            ></textarea>
+            <span class="error"></span>
+            <button
+              class="btn btn-primary"
+              type="button"
+              onclick="addProblem()"
+            >
+              Adauga problema
+            </button>
+            <input
+              type="file"
+              name="uploadFile"
+              id="import-file"
+              accept=".json"
+            />
+            <pre id="fileContent"></pre>
+          </form>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="../assets/scripts/header.js"></script>
+    <script type="module" src="../assets/scripts/add-problem.js"></script>
+  </body>
 </html>

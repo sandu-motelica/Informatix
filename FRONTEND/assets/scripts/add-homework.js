@@ -114,6 +114,7 @@ const getPendingProblems = async () => {
         el.appendChild(inf);
         pendingProblemsList.appendChild(el);
       });
+      attachDeleteEvents();
     } catch (e) {
       console.log(e);
     }
@@ -168,35 +169,33 @@ window.addHomework = async () => {
   }
 };
 
-// const deleteButtons = document.querySelectorAll(".delete-problem");
-const pendingProblems = document.querySelectorAll(".pending-pr");
-
-// deleteButtons.forEach((btn, i) => {
-//   btn.addEventListener("click", async () => {
-//     console.log("Apasa " + i);
-//       try {
-//         const problemId = pendingProblems[i].dataset.id;
-//         console.log(problemId);
-//         // const data = await Fetch.remove("/problem/pending", {
-//         //   problemId,
-//         // });
-//         if (data.statusCode != 200) {
-//           if (!data.errors?.length || data.errors?.length === 0) {
-//             errElement.textContent = data?.message || "Eroare la stergere";
-//           } else if (data?.errors?.length) {
-//             errElement.textContent = data.errors[0].msg;
-//           }
-//         } else {
-//           console.log(data);
-//           // pendingProblemsList.removeChild(
-//           //   pendingProblems[i]
-//           // );
-//         }
-//       } catch (e) {
-//         console.log(e);
-//       }
-//   });
-// });
+const attachDeleteEvents = () => {
+  const pendingProblems = document.querySelectorAll(".pending-pr");
+  const deleteButtons = document.querySelectorAll(".delete-problem");
+  deleteButtons.forEach((btn, i) => {
+    btn.addEventListener("click", async () => {
+      try {
+        const problemId = pendingProblems[i].dataset.id;
+        console.log(problemId);
+        const data = await Fetch.remove("/problem/pending", {
+          problemId,
+        });
+        if (data.statusCode != 200) {
+          if (!data.errors?.length || data.errors?.length === 0) {
+            errElement.textContent = data?.message || "Eroare la stergere";
+          } else if (data?.errors?.length) {
+            errElement.textContent = data.errors[0].msg;
+          }
+        } else {
+          console.log(data);
+          pendingProblemsList.removeChild(pendingProblems[i]);
+        }
+      } catch (e) {
+        console.log(e);
+      }
+    });
+  });
+};
 
 if (searchParams.has("id")) {
   getProblems();

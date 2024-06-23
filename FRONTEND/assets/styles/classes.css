@@ -34,3 +34,23 @@
   text-align: center;
   color: #aaa;
 }
+
+@media screen and (max-width: 54em) {
+  .class-container {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 3rem;
+  }
+}
+@media screen and (max-width: 36em) {
+  .class-container {
+    grid-template-columns: 1fr;
+    gap: 2.4rem;
+  }
+  .class-container .btn-create-class {
+    height: 10rem;
+    margin-bottom: 0.6rem;
+  }
+  .class-container .class-link {
+    height: 14rem;
+  }
+}

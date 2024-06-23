@@ -12,7 +12,7 @@ export const getComments = async (req, res) => {
       "username"
     );
     res.statusCode = 200;
-    res.end(JSON.stringify(data));
+    res.end(JSON.stringify(data.reverse()));
   } catch (e) {
     errorMiddleware(res, e);
   }

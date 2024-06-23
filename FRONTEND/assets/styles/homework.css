@@ -196,3 +196,12 @@ body {
 .eval-content {
   font-size: 1.8rem;
 }
+
+@media screen and (max-width: 52.5em) {
+  .homework-wrapper {
+    grid-template-columns: 1fr;
+  }
+  .homework-eval {
+    margin-bottom: 3rem;
+  }
+}

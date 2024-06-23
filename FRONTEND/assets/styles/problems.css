@@ -146,10 +146,14 @@ select option:disabled {
   .pick-one {
     flex-shrink: 0;
   }
-  table tr th:first-child {
+  table tr th:first-child,
+  table tr th:nth-child(5) {
     display: none;
   }
   .pick-one span {
     display: none;
+  }
+  .problems__table th {
+    padding: 1.2rem 0.6rem;
   }
 }

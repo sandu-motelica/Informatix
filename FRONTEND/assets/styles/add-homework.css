@@ -35,7 +35,7 @@
 
 .btn-add-homework {
   height: 8rem;
-  width: 100%;
+  width: 20rem;
   border-radius: var(--default-radius);
 }
 
@@ -121,7 +121,6 @@
   background-color: var(--dark-color-2);
   border-radius: var(--default-radius);
   height: 3.2rem;
-  margin-right: 20rem;
 }
 
 .filter__search-tab input {
@@ -171,7 +170,7 @@
 .delete-problem {
   padding: 0.1rem;
   background-color: transparent;
-  display: flex;
+  display: none;
   transition: all 0.2s;
   color: #767676;
 }
@@ -185,4 +184,40 @@
 
 .pending-pr:hover .delete-problem {
   display: flex;
+}
+
+@media screen and (max-width: 60em) {
+  .add-homework-wrapper {
+    grid-template-columns: 1fr;
+    margin-bottom: 5.4rem;
+    gap: 2rem;
+  }
+  .btn-add-homework {
+    width: 100%;
+    height: 6rem;
+  }
+}
+@media screen and (max-width: 40em) {
+  .add-problem-section p {
+    display: none;
+  }
+}
+@media screen and (max-width: 35em) {
+  .add-problem-section p {
+    display: none;
+  }
+  table tr th:nth-child(4) {
+    display: none;
+  }
+  .filter__search-tab {
+    flex-grow: 1;
+    width: 8rem;
+  }
+  .add-problem-section {
+    justify-content: flex-start;
+    gap: 1.6rem;
+  }
+  .add-problem-section input {
+    width: 100%;
+  }
 }
