@@ -7,6 +7,7 @@ import {
   rateProblem,
   getPendingProblems,
   removePendingProblems,
+  getPublicProblems,
 } from "../controllers/problemController.js";
 import { router } from "./index.js";
 
@@ -21,5 +22,6 @@ router.on("DELETE", `${DEFAULT_PATH}`, removeProblem);
 // router.on("DELETE", `${DEFAULT_PATH}/`, removeProblem);
 router.on("PUT", `${DEFAULT_PATH}`, updateProblem);
 router.on("GET", `${DEFAULT_PATH}/difficulty`, getNumberOfProbWithDiff);
+router.on("GET", `${DEFAULT_PATH}/public`, getPublicProblems);
 
 export default router;
