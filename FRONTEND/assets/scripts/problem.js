@@ -129,7 +129,7 @@ window.exportProblem = () => {
   const blob = new Blob([JSON.stringify(problem)], { type: "text/json" });
   const link = document.createElement("a");
 
-  link.download = problem.title;
+  link.download = problem.title + ".json";
   link.href = window.URL.createObjectURL(blob);
   link.dataset.downloadurl = ["text/json", link.download, link.href].join(":");
 
