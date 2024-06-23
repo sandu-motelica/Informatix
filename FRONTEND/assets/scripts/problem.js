@@ -28,10 +28,13 @@ const getSolution = async () => {
       textArea.disabled = true;
       if (solution.grade) {
         const grades = document.querySelectorAll(".problem__marks button");
+        document.querySelector(".problem__marks").style.display = "flex";
         grades.forEach((grade) => {
-          if (solution.grade != grade.getAttribute("data-value"))
+          if (solution.grade != grade.getAttribute("data-value")) {
             grade.disabled = true;
-          else grade.style.pointerEvents = "none";
+          } else {
+            grade.style.pointerEvents = "none";
+          }
         });
       }
     } else {
