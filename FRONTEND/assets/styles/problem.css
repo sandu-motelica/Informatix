@@ -198,3 +198,21 @@ input {
   margin-left: auto;
   margin-right: auto;
 }
+
+.problem__marks {
+  margin-left: auto;
+}
+
+.problem__marks > button {
+  width: 2rem;
+  height: 2rem;
+  background-color: var(--secondary-color);
+  color: white;
+  border-radius: 0.5rem;
+  border: 1px solid var(--dark-color-2);
+  cursor: pointer;
+}
+
+.problem__marks > button:disabled {
+  background-color: gray;
+}
