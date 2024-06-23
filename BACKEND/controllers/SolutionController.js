@@ -37,14 +37,14 @@ export const getSolutions = async (req, res) => {
           acc[problem._id] = problem.title;
           return acc;
         }, {});
-        console.log(problemNameMap);
+        // console.log(problemNameMap);
         solutions = solutions.map((solution) => {
           return {
             ...new SolutionDto(solution),
             problemName: problemNameMap[solution.id_problem] || "Unknown",
           };
         });
-        console.log(solutions);
+        // console.log(solutions);
       } else if (user.role === "teacher") {
         solutions = await Solution.find({
           id_homework: data.id_homework,
@@ -128,7 +128,7 @@ export const addSolution = async (req, res) => {
         id_student: userId,
         id_homework,
       }).lean();
-      console.log(rezolvata);
+      // console.log(rezolvata);
       if (rezolvata) {
         throw ApiError.BadRequest("Ai rezolvat deja problema");
       }

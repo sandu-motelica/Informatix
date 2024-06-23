@@ -46,6 +46,7 @@ const getClassInfo = async () => {
     const data = await Fetch.get("/class", {
       id: searchParams.get("id"),
     });
+    console.log(data);
     if (data.classes) {
       document.querySelector(".class-content__title").textContent =
         data.classes.name;

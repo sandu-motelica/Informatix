@@ -8,7 +8,7 @@ const choiceTagsList = document.getElementById("choice-tags-list");
 const errElement = document?.querySelector(".add-problem-wrapper .error");
 
 const userRole = JSON.parse(localStorage.getItem("user"))?.role;
-if (userRole != "teacher") window.location.href = "/FRONTEND/pages/index.html";
+if (userRole != "teacher") window.location.href = `${rootPath}/index.html`;
 
 window.searchTag = (event) => {
   Array.from(tags).forEach((item) => {

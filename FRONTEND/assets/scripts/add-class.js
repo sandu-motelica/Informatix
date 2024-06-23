@@ -1,5 +1,11 @@
 import Fetch from "../../utils/Fetch.js";
 const errElement = document?.querySelector(".error");
+import { rootPath } from "./constants.js";
+
+const user = JSON.parse(localStorage.getItem("user"));
+if (user.role !== "teacher") {
+  window.location.href = `${rootPath}/classes.html`;
+}
 
 window.addClass = async () => {
   try {

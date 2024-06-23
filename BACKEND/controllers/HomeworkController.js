@@ -3,6 +3,7 @@ import { Problem } from "../models/problemModel.js";
 import { HomeworkProblems } from "../models/homeworkProblemsModel.js";
 import { PendingHomeworkProblem } from "../models/pendingHomeworkProblems.js";
 import { Class } from "../models/classModel.js";
+import { ClassStudents } from "../models/classStudentsModel.js";
 import { User } from "../models/userModel.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
@@ -25,6 +26,23 @@ export const getHomeworks = async (req, res) => {
       if (!homework) {
         throw ApiError.BadRequest("Homework not found");
       }
+      const classData = await Class.findOne({ _id: homework.id_class }).lean();
+      if (
+        user.role === "teacher" &&
+        classData.id_profesor.toString() !== userId.toString()
+      ) {
+        throw ApiError.BadRequest("Permission denied!");
+      } else if (user.role === "student") {
+        const isMember = await ClassStudents.findOne({
+          id_class: homework.id_class,
+          id_student: userId,
+        }).lean();
+
+        if (!isMember) {
+          throw ApiError.BadRequest("Permission denied!");
+        }
+      }
+
       let problems = await HomeworkProblems.find({
         id_homework: data.id_homework,
       }).lean();
@@ -39,6 +57,22 @@ export const getHomeworks = async (req, res) => {
       });
       homeworks = { homework: new HomeworkDto(homework), problems: problems };
     } else if (data.id_class) {
+      const classData = await Class.findOne({ _id: data.id_class }).lean();
+      if (
+        user.role === "teacher" &&
+        classData.id_profesor.toString() !== userId.toString()
+      ) {
+        throw ApiError.BadRequest("Permission denied!");
+      } else if (user.role === "student") {
+        const isMember = await ClassStudents.findOne({
+          id_class: data.id_class,
+          id_student: userId,
+        }).lean();
+
+        if (!isMember) {
+          throw ApiError.BadRequest("Permission denied!");
+        }
+      }
       homeworks = await Homework.find({ id_class: data.id_class }).lean();
       homeworks = homeworks.map((hw) => new HomeworkDto(hw));
     } else {
@@ -68,16 +102,19 @@ export const createHomework = async (req, res) => {
     }
     const userId = req.user.payload.id;
     const user = await User.findOne({ _id: userId });
-    if (!user || user.role !== "teacher") {
-      throw ApiError.BadRequest("Permission denied");
+    if (!user) {
+      throw ApiError.BadRequest("User does not exists");
     }
-
+    const clasa = Class.findOne({ _id: id_class });
+    if (!clasa) {
+      throw ApiError.BadRequest("Class does not exists");
+    }
     const classData = await Class.findOne({
       _id: id_class,
       id_profesor: userId,
     });
     if (!classData) {
-      throw ApiError.BadRequest("Class not found or you're not the creator");
+      throw ApiError.BadRequest("Permission denied");
     }
 
     const homework = await Homework.create({ name, id_class });
