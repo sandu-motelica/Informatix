@@ -3,6 +3,10 @@ import Fetch from "../../utils/Fetch.js";
 import { rootPath } from "./constants.js";
 unauthorizedRedirect();
 
+let easyProblemsLength = 0;
+let mediumProblemsLength = 0;
+let hardProblemsLength = 0;
+
 const searchParams = new URLSearchParams(window.location.search);
 const id = searchParams.get("id");
 
@@ -56,7 +60,28 @@ const getSolutions = async () => {
     document.querySelector(
       ".account__statistic--hard .account__statistic__solutions"
     ).innerHTML = hardProblems.length;
-    console.log(data);
+
+    document.querySelector(
+      ".account__statistic--hard .account__statistic__bar--filled"
+    ).style.width = `${
+      (hardProblems.length * 100) / hardProblemsLength != 0
+        ? hardProblemsLength
+        : 1
+    }%`;
+    document.querySelector(
+      ".account__statistic--medium .account__statistic__bar--filled"
+    ).style.width = `${
+      (mediumProblems.length * 100) / mediumProblemsLength != 0
+        ? mediumProblemsLength
+        : 1
+    }%`;
+    document.querySelector(
+      ".account__statistic--easy .account__statistic__bar--filled"
+    ).style.width = `${
+      (easyProblems.length * 100) / easyProblemsLength != 0
+        ? easyProblemsLength
+        : 1
+    }%`;
 
     let a = document.createElement("a");
     a.href = `${rootPath}/problem.html?id=${item.id_problem.id}&solution=${item.id}`;
@@ -67,8 +92,6 @@ const getSolutions = async () => {
     solutionsBlock.appendChild(a);
   });
 };
-
-getSolutions();
 
 const getProblems = async () => {
   const data = await Fetch.get("/problem", {
@@ -93,7 +116,10 @@ const getProblems = async () => {
   document.querySelector(
     ".account__statistic--hard .account__statistic__problems"
   ).innerHTML = hardProblems.length;
-  console.log(easyProblems);
+  easyProblemsLength = easyProblems.length;
+  mediumProblemsLength = mediumProblems.length;
+  hardProblemsLength = hardProblems.length;
 };
 
-getProblems();
+await getProblems();
+await getSolutions();
