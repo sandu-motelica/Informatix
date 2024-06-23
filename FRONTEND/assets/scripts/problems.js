@@ -3,6 +3,7 @@ import Fetch from "../../utils/Fetch.js";
 unauthorizedRedirect();
 
 const tags = document.getElementsByClassName("tag");
+const user = JSON.parse(localStorage.getItem("user"));
 
 window.searchTag = (event) => {
   Array.from(tags).forEach((item) => {
@@ -75,6 +76,9 @@ const getProblems = async () => {
           <th>${item?.success_rate}</th>
           <th>${item?.tags[0]}</th>
           <th>
+          ${
+            user.role === "student"
+              ? `
             ${
               item?.is_solved
                 ? `
@@ -86,6 +90,9 @@ const getProblems = async () => {
             `
                 : "Nerezolvata"
             }
+            `
+              : `<a href="./solutions.html?id=${item?.id}">Vezi solutii</a>`
+          }
           </th>
         `;
           document.getElementById("problems-list").appendChild(tr);

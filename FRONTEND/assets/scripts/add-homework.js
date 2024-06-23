@@ -6,6 +6,8 @@ const searchParams = new URLSearchParams(window.location.search);
 
 unauthorizedRedirect();
 
+const addedProblems = new Set();
+
 const errElement = document?.querySelector(".error");
 
 const problemsList = document.getElementById("problems-list");
@@ -55,9 +57,9 @@ const getProblems = async () => {
       problems.forEach((item) => {
         let tr = document.createElement("tr");
         tr.setAttribute("data-id", item?.id);
-
+        if (addedProblems.has(item?.id)) tr.classList.add("checked");
         tr.innerHTML = `
-          <th>
+          <th >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               viewBox="0 0 24 24"
@@ -123,6 +125,9 @@ const attachCheckedEvents = () => {
   problemsList.forEach((line) => {
     line.addEventListener("click", async () => {
       line.classList.toggle("checked");
+      const id = line.getAttribute("data-id").toString();
+      if (addedProblems.has(id)) addedProblems.delete(id);
+      else addedProblems.add(id);
     });
   });
 };

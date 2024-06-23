@@ -83,7 +83,10 @@ export const getSolutions = async (req, res) => {
       Object.keys(solutionSchema.paths).forEach((key) => {
         if (data[key]) solutionsFilter[key] = data[key];
       });
-      solutions = await Solution.find(solutionsFilter).lean();
+      solutions = await Solution.find(solutionsFilter)
+        .populate("id_problem")
+        .populate("id_student")
+        .lean();
       solutions = solutions.map((solution) => new SolutionDto(solution));
     }
 
