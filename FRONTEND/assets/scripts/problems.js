@@ -8,11 +8,13 @@ const user = JSON.parse(localStorage.getItem("user"));
 
 const addProblemBtn = document.querySelector(".add-problem");
 const pickProblemBtn = document.querySelector(".pick-one");
-if (user.role === "teacher") {
+if (user.role === "teacher" || user.role === "admin") {
   pickProblemBtn.style.display = "none";
   document.querySelector(
     ".add-problem a"
   ).href = `${rootPath}/add-problem.html`;
+
+  document.getElementById("status-select").style.display = "none";
 } else {
   addProblemBtn.style.display = "none";
 }
@@ -86,7 +88,7 @@ const getProblems = async () => {
             item?.title
           }</a></th>
           <th>${item?.difficulty}</th>
-          <th>${item?.success_rate}</th>
+          <th>${parseFloat(item?.success_rate).toFixed(2)}</th>
           <th>${item?.tags[0]}</th>
           <th>
           ${
