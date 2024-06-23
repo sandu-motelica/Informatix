@@ -21,6 +21,7 @@ async function request(url, params = {}, method = "GET") {
 
   const response = await fetch(_apiHost + url, options);
   // if (response.status === 401) return updateAccessToken();
+  if (response.status === 401) localStorage.clear();
 
   const result = await response.json();
   result.statusCode = response.status;
