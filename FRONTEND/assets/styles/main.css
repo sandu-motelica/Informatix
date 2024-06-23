@@ -207,6 +207,20 @@ a:active {
   color: var(--dark-color-3);
 }
 
+#export-problem,
+#import-problem {
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  display: flex;
+  gap: 0.5rem;
+}
+
+#export-problem {
+  margin-left: auto;
+}
+
 #choice-tags-list button {
   background-color: var(--primary-color);
 }
