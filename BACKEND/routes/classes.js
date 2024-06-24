@@ -4,7 +4,7 @@ import {
   getClasses,
   deleteClass,
   deleteUser,
-} from "../controllers/classController.js";
+} from "../controllers/ClassController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/class";

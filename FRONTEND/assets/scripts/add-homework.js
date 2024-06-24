@@ -187,7 +187,6 @@ const attachDeleteEvents = () => {
             errElement.textContent = data.errors[0].msg;
           }
         } else {
-          console.log(data);
           pendingProblemsList.removeChild(pendingProblems[i]);
         }
       } catch (e) {

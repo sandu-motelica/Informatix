@@ -2,7 +2,7 @@ import {
   getTags,
   getProblemTag,
   addTag,
-} from "../controllers/tagController.js";
+} from "../controllers/TagController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/tag";

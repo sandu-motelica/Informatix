@@ -80,14 +80,16 @@ const getProblems = async () => {
           const month = String(date.getMonth() + 1).padStart(2, "0");
           const day = String(date.getDate()).padStart(2, "0");
           const year = date.getFullYear();
-
+          let succesRate =
+            item?.accepted !== 0 ? item?.accepted / item?.submissions : 0;
+          succesRate = (succesRate * 100).toFixed(1);
           tr.innerHTML = `
           <th>${day}/${month}/${year}</th>
           <th><a href="${rootPath}/problem.html?id=${item?.id}">${
             item?.title
           }</a></th>
           <th>${mapDifficulty(item?.difficulty)}</th>
-          <th>${parseFloat(item?.success_rate * 100).toFixed(1)}%</th>
+          <th>${succesRate}%</th>
           <th>${item?.tags[0]}</th>
           <th>
           ${

@@ -27,11 +27,9 @@ const getProblems = async () => {
     status: "pending",
   });
   if (data?.statusCode === 200) {
-    console.log(data);
     try {
       const { problems } = data;
       problems.forEach((item) => {
-        console.log(item);
         let tr = document.createElement("tr");
         tr.setAttribute("data-id", item?.id);
 
@@ -54,7 +52,6 @@ const getProblems = async () => {
         document.getElementById("problems-list").appendChild(tr);
       });
       const buttons = document.querySelectorAll("button[data-id]");
-      console.log(buttons);
       buttons.forEach((currentBtn) => {
         currentBtn.addEventListener("click", () =>
           updateProblemStatus(

@@ -10,7 +10,7 @@ import {
   getPublicProblems,
   getCountProblems,
   getProfesorProblem,
-} from "../controllers/problemController.js";
+} from "../controllers/ProblemController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/problem";

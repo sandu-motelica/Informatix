@@ -5,7 +5,7 @@ import {
   userRefresh,
   userRegister,
   userInfo,
-} from "../controllers/userController.js";
+} from "../controllers/UserController.js";
 import { router } from "./index.js";
 
 const DEFAULT_PATH = "/user";

@@ -45,6 +45,23 @@
   flex-direction: row;
   gap: 2rem;
   height: fit-content;
+  padding-bottom: 1.6rem;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.account__statistics {
+  font-size: 1.4rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 3rem;
+  color: var(--semilight-color);
+}
+
+.account__statistics strong {
+  margin-left: 0.5rem;
+  color: #fff;
 }
 
 .account__info__details > img {

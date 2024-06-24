@@ -214,6 +214,21 @@ input {
   gap: 2rem;
 }
 
+.problem__stat {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.problem__accepted,
+.problem__submitted {
+  font-size: 1.3rem;
+  color: var(--semilight-color);
+}
+.problem__accepted strong,
+.problem__submitted strong {
+  color: var(--light-color);
+}
 #comment-add-btn {
   padding: 0;
   width: 5.2rem;
@@ -337,4 +352,11 @@ input {
 
 .problems__tags-wrapper > button {
   color: var(--secondary-color);
+}
+
+@media screen and (max-width: 29em) {
+  .problem__accepted,
+  .problem__submitted {
+    display: none;
+  }
 }

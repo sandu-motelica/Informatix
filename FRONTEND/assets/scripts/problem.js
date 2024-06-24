@@ -59,7 +59,6 @@ const getProblem = async () => {
     const data = await Fetch.get("/problem", {
       _id: searchParams.get("id"),
     });
-    console.log(data);
     if (data.problems?.length) {
       problem = data.problems[0];
       const tagsBlock = document.querySelector(".problems__tags-wrapper");
@@ -81,6 +80,12 @@ const getProblem = async () => {
         problem.description;
       document.querySelector(".problem__difficulty").textContent =
         mapDifficulty(problem.difficulty);
+      document.querySelector(
+        ".problem__accepted"
+      ).innerHTML = `Acceptate: <strong>${problem.accepted}</strong>`;
+      document.querySelector(
+        ".problem__submitted"
+      ).innerHTML = `Trimise: <strong>${problem.submissions}</strong>`;
 
       const starEl = document.querySelectorAll(".rating-star-icon");
 

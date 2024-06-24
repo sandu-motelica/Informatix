@@ -21,8 +21,6 @@ export const getProblems = async (req, res) => {
 
     const userId = req.user.payload.id;
 
-    //TODO: Improve this part
-    //Get specific fields only for problem model
     const problemsFilter = {};
     Object.keys(problemSchema.paths).forEach((key) => {
       if (data[key]) problemsFilter[key] = data[key];
@@ -30,7 +28,6 @@ export const getProblems = async (req, res) => {
 
     if (data.search) {
       problemsFilter.title = new RegExp(data.search, "i");
-      // problemsFilter.description = new RegExp(data.search, "i");
     }
 
     const problems = await Problem.find(problemsFilter);
@@ -79,16 +76,12 @@ export const getProblems = async (req, res) => {
           id_homework: { $exists: false },
         }).lean();
 
-        const successRate =
-          trySolutions.length > 0
-            ? successfulSolutions.length / trySolutions.length
-            : 0;
-
         return {
           ...new ProblemDto(problem),
           tags: problemTagsMap[problem._id] || [],
           is_solved: solvedProblemsSet.has(problem._id.toString()),
-          success_rate: successRate,
+          accepted: successfulSolutions.length,
+          submissions: trySolutions.length,
         };
       })
     );

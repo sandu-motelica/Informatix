@@ -84,7 +84,6 @@ window.register = async () => {
   });
 
   if (data.statusCode != 200) {
-    console.log(data);
     const errElement = document?.querySelector(
       ".account-connect__register .error"
     );

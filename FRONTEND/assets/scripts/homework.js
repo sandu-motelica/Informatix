@@ -123,7 +123,6 @@ const getSolution = async () => {
           nota.textContent = "Nota: " + (suma / count).toFixed(2);
           nota.style.color = "#1da09c";
         }
-        console.log(nota);
       } else {
         let lastName = null;
         let list;

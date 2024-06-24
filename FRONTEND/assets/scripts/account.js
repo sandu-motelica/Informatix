@@ -37,7 +37,6 @@ const getStudentSolutions = async () => {
   const data = await Fetch.get("/solution", {
     id_student: user.id,
   });
-
   const solutionsBlock = document.querySelector(
     ".account__stats-solved-problems"
   );
@@ -87,7 +86,9 @@ const getStudentSolutions = async () => {
   ).innerHTML = `<span>Nota medie:</span><strong>${
     suma !== 0 ? (suma / notedProblems.length).toFixed(2) : "fara note"
   }</strong> `;
+  let corecte = 0;
   data.solutions.forEach((item) => {
+    if (item.grade >= 8) corecte++;
     const dateStr = item?.created_time;
     const date = new Date(dateStr);
     const month = String(date.getMonth() + 1).padStart(2, "0");
@@ -102,6 +103,10 @@ const getStudentSolutions = async () => {
     }</span><span>${day}/${month}/${year}</span></span>`;
     solutionsBlock.appendChild(a);
   });
+  document.querySelector(".account__statistics--submitted strong").textContent =
+    data.solutions.length;
+  document.querySelector(".account__statistics--corect strong").textContent =
+    corecte;
 };
 const getProfesorProblem = async () => {
   const user = JSON.parse(localStorage.getItem("user"));
