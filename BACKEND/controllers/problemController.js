@@ -64,18 +64,24 @@ export const getProblems = async (req, res) => {
 
     let problemsWithDetails = await Promise.all(
       problems.map(async (problem) => {
-        const totalSolutions = await Solution.find({
-          id_problem: problem._id,
-        }).lean();
+        // const totalSolutions = await Solution.find({
+        //   id_problem: problem._id,
+        // }).lean();
 
         const successfulSolutions = await Solution.find({
           id_problem: problem._id,
           grade: { $gte: 8 },
+          id_homework: { $exists: false },
+        }).lean();
+        const trySolutions = await Solution.find({
+          id_problem: problem._id,
+          grade: { $gte: 1 },
+          id_homework: { $exists: false },
         }).lean();
 
         const successRate =
-          totalSolutions.length > 0
-            ? successfulSolutions.length / totalSolutions.length
+          trySolutions.length > 0
+            ? successfulSolutions.length / trySolutions.length
             : 0;
 
         return {
@@ -197,9 +203,9 @@ export const addProblem = async (req, res) => {
     const body = JSON.parse(req.data);
     const { title, description, difficulty, tagNames, homework } = body;
 
-    if (title.length < 4 || title.length > 20)
+    if (title.length < 4 || title.length > 30)
       throw ApiError.BadRequest(
-        "Invalid problem title (min 4 characters, max 20 characters)"
+        "Invalid problem title (min 4 characters, max 30 characters)"
       );
     if (description.length < 5)
       throw ApiError.BadRequest(
