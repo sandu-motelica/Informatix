@@ -6,6 +6,7 @@ unauthorizedRedirect();
 const user = JSON.parse(localStorage.getItem("user"));
 if (user.role !== "student") {
   document.querySelector(".account__stats-wrapper").style.display = "none";
+  document.querySelector(".account__statistics").style.display = "none";
 } else if (user.role !== "teacher")
   document.querySelector(".profesor-problems").style.display = "none";
 
