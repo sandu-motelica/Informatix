@@ -329,3 +329,12 @@ input {
   color: var(--white-color);
   transform: rotate(90deg);
 }
+
+.problems__tags-wrapper {
+  gap: 0.5rem;
+  padding-bottom: 1rem;
+}
+
+.problems__tags-wrapper > button {
+  color: var(--secondary-color);
+}

@@ -59,8 +59,16 @@ const getProblem = async () => {
     const data = await Fetch.get("/problem", {
       _id: searchParams.get("id"),
     });
+    console.log(data);
     if (data.problems?.length) {
       problem = data.problems[0];
+      const tagsBlock = document.querySelector(".problems__tags-wrapper");
+      problem?.tags.forEach((item) => {
+        const btn = document.createElement("button");
+        btn.innerHTML = item;
+        tagsBlock.appendChild(btn);
+      });
+
       if (
         (problem.id_author.toString() === user.id.toString() ||
           user.role === "admin") &&
@@ -72,7 +80,7 @@ const getProblem = async () => {
       document.querySelector(".problem__content-text").textContent =
         problem.description;
       document.querySelector(".problem__difficulty").textContent =
-        problem.difficulty;
+        mapDifficulty(problem.difficulty);
 
       const starEl = document.querySelectorAll(".rating-star-icon");
 
@@ -267,6 +275,21 @@ window.removeProblem = async () => {
     }
   } catch (e) {
     console.log(e);
+  }
+};
+
+const mapDifficulty = (difficulty) => {
+  switch (difficulty) {
+    case "easy":
+      return "Ușor";
+
+    case "medium":
+      return "Mediu";
+    case "hard":
+      return "Dificil";
+
+    default:
+      return "";
   }
 };
 
