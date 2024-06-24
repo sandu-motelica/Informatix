@@ -217,6 +217,8 @@
 
               <span>Trimite</span>
             </button>
+            <button class="btn delete-btn">Șterge problemă</button>
+            <span class="error"></span>
           </div>
         </div>
       </section>
@@ -249,6 +251,38 @@
         <ul class="discussion-section__list"></ul>
       </div>
     </main>
+    <div class="popup-delete">
+      <div class="popup-delete__content">
+        <p class="popup-delete__qst"></p>
+        <div class="popup-delete__btns">
+          <button
+            class="btn btn-delete btn-delete__confirm"
+            type="button"
+            onclick="removeProblem()"
+          >
+            Da
+          </button>
+          <button class="btn btn-delete btn-delete__reject popup-delete__close">
+            Nu
+          </button>
+        </div>
+        <span class="error-delete"></span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="close-icon popup-delete__close"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M6 18 18 6M6 6l12 12"
+          />
+        </svg>
+      </div>
+    </div>
     <script type="module" src="../assets/scripts/problem.js"></script>
     <script type="module" src="../assets/scripts/header.js"></script>
   </body>

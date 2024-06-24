@@ -130,9 +130,8 @@ const getProfesorProblem = async () => {
     line.appendChild(link);
     problemsBlock.appendChild(line);
   });
-  document.querySelector(".account__info__rank strong").textContent = (
-    sum / count
-  ).toFixed(2);
+  document.querySelector(".account__info__rank strong").textContent =
+    sum > 0 ? (sum / count).toFixed(2) : "0";
 };
 
 const getStudentProblems = async () => {

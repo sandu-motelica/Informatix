@@ -9,7 +9,7 @@ export const getComments = async (req, res) => {
     const { problemId } = queryParams(req);
     const data = await Comment.find({ id_problem: problemId }).populate(
       "id_user",
-      "username"
+      "username role"
     );
     res.statusCode = 200;
     res.end(JSON.stringify(data.reverse()));
