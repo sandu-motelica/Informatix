@@ -62,11 +62,13 @@ const getProblem = async () => {
     if (data.problems?.length) {
       problem = data.problems[0];
       const tagsBlock = document.querySelector(".problems__tags-wrapper");
-      problem?.tags.forEach((item) => {
-        const btn = document.createElement("button");
-        btn.innerHTML = item;
-        tagsBlock.appendChild(btn);
-      });
+      if (!tagsBlock.lastElementChild) {
+        problem?.tags.forEach((item) => {
+          const btn = document.createElement("button");
+          btn.innerHTML = item;
+          tagsBlock.appendChild(btn);
+        });
+      }
 
       if (
         (problem.id_author.toString() === user.id.toString() ||
