@@ -4,6 +4,7 @@ export default class ProblemDto {
   description;
   id_author;
   difficulty;
+  status;
   created_time;
 
   constructor(model) {
@@ -12,6 +13,7 @@ export default class ProblemDto {
     this.description = model.description;
     this.id_author = model.id_author;
     this.difficulty = model.difficulty;
+    this.status = model.status;
     this.created_time = model.created_time;
   }
 }

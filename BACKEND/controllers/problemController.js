@@ -109,6 +109,37 @@ export const getProblems = async (req, res) => {
   }
 };
 
+export const getProfesorProblem = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const userId = req.user.payload.id;
+    const user = await User.findOne({
+      _id: userId,
+    });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+    let problems = await Problem.find({
+      id_author: userId,
+    }).lean();
+
+    problems = problems.map((problem) => {
+      {
+        return new ProblemDto(problem);
+      }
+    });
+    await Promise.all(
+      problems.map((problem) => getProblemsRating(problem.id))
+    ).then((results) => {
+      problems.forEach((problem, index) => (problem.rating = results[index]));
+    });
+    res.statusCode = 200;
+    res.end(JSON.stringify(problems.reverse()));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
 export const getPendingProblems = async (req, res) => {
   try {
     await authMiddleware(req, res);
@@ -127,6 +158,31 @@ export const getPendingProblems = async (req, res) => {
     });
     res.statusCode = 200;
     res.end(JSON.stringify({ problems }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
+export const getCountProblems = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const userId = req.user.payload.id;
+    const user = await User.findOne({
+      _id: userId,
+    });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+    const problems = await Problem.find({ status: "approved" }).lean();
+    problems.map((problem) => problem.difficulty);
+    const easy = problems.filter((item) => item.difficulty === "easy").length;
+    const medium = problems.filter(
+      (item) => item.difficulty === "medium"
+    ).length;
+    const hard = problems.filter((item) => item.difficulty === "hard").length;
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ easy, medium, hard }));
   } catch (e) {
     errorMiddleware(res, e);
   }
