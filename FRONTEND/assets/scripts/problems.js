@@ -87,7 +87,7 @@ const getProblems = async () => {
             item?.title
           }</a></th>
           <th>${mapDifficulty(item?.difficulty)}</th>
-          <th>${parseFloat(item?.success_rate).toFixed(2)}</th>
+          <th>${parseFloat(item?.success_rate * 100).toFixed(1)}%</th>
           <th>${item?.tags[0]}</th>
           <th>
           ${

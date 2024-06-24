@@ -1,87 +1,103 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="icon" href="../assets/images/general/logo.png" />
+    <link rel="stylesheet" href="../assets/styles/account.css" />
+    <title>InformatiX</title>
+  </head>
 
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet" />
-  <link rel="icon" href="../assets/images/general/logo.png" />
-  <link rel="stylesheet" href="../assets/styles/account.css" />
-  <title>InformatiX</title>
-</head>
-
-<body>
-  <main class="container margin-top-md">
-    <section class="account account-wrapper">
-      <div class="account__info">
-        <div class="account__info__details">
-          <img src="../assets/images/account/account_avatar.jpeg" alt="avatar" />
-          <div>
-            <p class="account__info__name"></p>
-            <!-- <p class="account__info__rank">Rank <strong>100</strong></p> -->
-          </div>
-        </div>
-        <!-- <button class="btn btn-secondary">Editeaza profilul</button> -->
-      </div>
-      <div class="account__stats-wrapper">
-        <div class="account__stats account__stats-main">
-          <p class="account__stats__title">Probleme rezolvate</p>
-          <div class="account__statistic account__statistic--easy">
-            <div class="account__statistic__numbers">
-              <p>Ușor</p>
-              <p>
-                <strong class="account__statistic__solutions"></strong> /
-                <span class="account__statistic__problems"></span>
+  <body>
+    <main class="container margin-top-md">
+      <section class="account account-wrapper">
+        <div class="account__info">
+          <div class="account__info__details">
+            <img
+              src="../assets/images/account/account_avatar.jpeg"
+              alt="avatar"
+            />
+            <div>
+              <p class="account__info__email"></p>
+              <p class="account__info__name"></p>
+              <p class="account__info__rank">
+                <strong></strong>
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                  class="star-icon"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
               </p>
             </div>
-            <div class="account__statistic__bar">
-              <div class="account__statistic__bar account__statistic__bar--filled"></div>
-            </div>
           </div>
-          <div class="account__statistic account__statistic--medium">
-            <div class="account__statistic__numbers">
-              <p>Mediu</p>
-              <p>
-                <strong class="account__statistic__solutions"></strong> / <span
-                  class="account__statistic__problems"></span>
-              </p>
-            </div>
-            <div class="account__statistic__bar">
-              <div class="account__statistic__bar account__statistic__bar--filled"></div>
-            </div>
-          </div>
-          <div class="account__statistic account__statistic--hard">
-            <div class="account__statistic__numbers">
-              <p>Dificil</p>
-              <p>
-                <strong class="account__statistic__solutions"></strong> / <span
-                  class="account__statistic__problems"></span>
-              </p>
-            </div>
-            <div class="account__statistic__bar">
-              <div class="account__statistic__bar account__statistic__bar--filled"></div>
-            </div>
-          </div>
+          <!-- <button class="btn btn-remove-profile">Ștergere cont</button> -->
         </div>
-        <div class="account__stats account__stats-solved-problems">
-          <!-- <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a>
-          <a class="account__stats__problem" href="/">Test problem <span>2 months ago</span></a> -->
+        <div class="account__stats-wrapper">
+          <div class="account__stats account__stats-main">
+            <h2 class="account__stats__title">Probleme rezolvate</h2>
+            <div class="account__statistic account__statistic--easy">
+              <div class="account__statistic__numbers">
+                <p>Ușor</p>
+                <p>
+                  <strong class="account__statistic__solutions"></strong> /
+                  <span class="account__statistic__problems"></span>
+                </p>
+              </div>
+              <div class="account__statistic__bar">
+                <div
+                  class="account__statistic__bar account__statistic__bar--filled"
+                ></div>
+              </div>
+            </div>
+            <div class="account__statistic account__statistic--medium">
+              <div class="account__statistic__numbers">
+                <p>Mediu</p>
+                <p>
+                  <strong class="account__statistic__solutions"></strong> /
+                  <span class="account__statistic__problems"></span>
+                </p>
+              </div>
+              <div class="account__statistic__bar">
+                <div
+                  class="account__statistic__bar account__statistic__bar--filled"
+                ></div>
+              </div>
+            </div>
+            <div class="account__statistic account__statistic--hard">
+              <div class="account__statistic__numbers">
+                <p>Dificil</p>
+                <p>
+                  <strong class="account__statistic__solutions"></strong> /
+                  <span class="account__statistic__problems"></span>
+                </p>
+              </div>
+              <div class="account__statistic__bar">
+                <div
+                  class="account__statistic__bar account__statistic__bar--filled"
+                ></div>
+              </div>
+            </div>
+          </div>
+          <div class="account__stats account__stats-solved-problems"></div>
         </div>
-      </div>
-    </section>
-  </main>
-  <script type="module" src="../assets/scripts/header.js"></script>
-  <script type="module" src="../assets/scripts/account.js"></script>
-</body>
-
+        <div class="profesor-problems">
+          <h2>Probleme propuse de mine:</h2>
+          <ul class="profesor-problems-list"></ul>
+        </div>
+      </section>
+    </main>
+    <script type="module" src="../assets/scripts/header.js"></script>
+    <script type="module" src="../assets/scripts/account.js"></script>
+  </body>
 </html>

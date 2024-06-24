@@ -1,5 +1,7 @@
 import { rootPath } from "./constants.js";
 import Fetch from "../../utils/Fetch.js";
+const deleteQst = document.querySelector(".popup-delete__qst");
+const errEl = document.querySelector(".error");
 
 const searchParams = new URLSearchParams(window.location.search);
 
@@ -59,6 +61,12 @@ const getProblem = async () => {
     });
     if (data.problems?.length) {
       problem = data.problems[0];
+      if (
+        (problem.id_author.toString() === user.id.toString() ||
+          user.role === "admin") &&
+        !searchParams.get("solution")
+      )
+        document.querySelector(".delete-btn").style.display = "flex";
 
       document.querySelector(".problem__title").textContent = problem.title;
       document.querySelector(".problem__content-text").textContent =
@@ -76,10 +84,10 @@ const getProblem = async () => {
 
       document.getElementById("problem-rating").textContent =
         problem.rating.toFixed(1);
+      deleteQst.textContent = `Confirmi ștergerea probleme "${problem.title}"?`;
     } else {
       window.location.href = `${rootPath}/problems.html`;
     }
-    console.log(data);
   } catch (e) {
     console.log(e);
   }
@@ -99,7 +107,7 @@ window.sendSolution = async () => {
         content,
       });
       if (data.statusCode >= 400) {
-        alert(data.message);
+        errEl.textContent = data.message;
         return;
       }
       window.location.href = `${rootPath}/homework.html?id=${searchParams.get(
@@ -112,10 +120,9 @@ window.sendSolution = async () => {
         content,
       });
       if (data.statusCode >= 400) {
-        alert(data.message);
+        errEl.textContent = data.message;
         return;
       }
-
       window.location.href = window.location.href + `&solution=${data.id}`;
     }
   } catch (e) {
@@ -160,9 +167,8 @@ const rateProblem = async (rate) => {
       id_problem: searchParams.get("id"),
       rate,
     });
-    console.log(data);
     if (data.statusCode != 200) {
-      alert("Problem was already rated");
+      errEl.textContent = "Problem was already rated";
       return;
     }
     getProblem();
@@ -180,7 +186,6 @@ window.init = () => {
   });
 
   const buttonsRate = document.querySelectorAll(".problem__evaluate li");
-
   buttonsRate.forEach((rating) => {
     rating.addEventListener("click", () =>
       rateProblem(rating.getAttribute("data-value"))
@@ -199,7 +204,9 @@ const getComments = async () => {
     data.forEach((item) => {
       let li = document.createElement("li");
       li.innerHTML = `
-    <p class="discussion-section__author">@${item.id_user.username}</p>
+    <p class="discussion-section__author" style="color:${
+      item.id_user.role === "teacher" ? "#fea116" : "#fff"
+    }">@${item.id_user.username}</p>
     </p>
     <p class="discussion-section__description">${item.content}</p>
     <p class="discussion-section__date">${new Date(
@@ -227,6 +234,37 @@ window.addComment = async () => {
     }
     document.getElementById("comment-description").value = "";
     await getComments();
+  } catch (e) {
+    console.log(e);
+  }
+};
+
+const popup = document.querySelector(".popup-delete");
+document.querySelector(".delete-btn").addEventListener("click", function () {
+  popup.style.display = "flex";
+});
+
+const closeBtns = document.querySelectorAll(".popup-delete__close");
+closeBtns.forEach((btn) => {
+  btn.addEventListener("click", function () {
+    popup.style.display = "none";
+  });
+});
+
+window.removeProblem = async () => {
+  try {
+    const data = await Fetch.remove("/problem", {
+      problemId: searchParams.get("id"),
+    });
+    if (data.statusCode != 200) {
+      if (!data.errors?.length || data.errors?.length === 0) {
+        errEl.textContent = data?.message || "User inexistent";
+      } else if (data?.errors?.length) {
+        errEl.textContent = data.errors[0].msg;
+      }
+    } else {
+      window.location.href = `${rootPath}/problems.html`;
+    }
   } catch (e) {
     console.log(e);
   }

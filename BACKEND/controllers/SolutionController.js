@@ -76,6 +76,15 @@ export const getSolutions = async (req, res) => {
 
         solutions.sort((a, b) => a.studentName.localeCompare(b.studentName));
       }
+    } else if (data.id_student) {
+      const solutionsFilter = {};
+      Object.keys(solutionSchema.paths).forEach((key) => {
+        if (data[key]) solutionsFilter[key] = data[key];
+      });
+      solutions = await Solution.find(solutionsFilter)
+        .populate("id_problem")
+        .lean();
+      solutions = solutions.map((solution) => new SolutionDto(solution));
     } else {
       const solutionsFilter = {};
       Object.keys(solutionSchema.paths).forEach((key) => {

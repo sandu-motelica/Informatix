@@ -147,24 +147,24 @@ export const userInfo = async (req, res) => {
   const userId = req.user.payload.id;
   const user = await User.findOne({ _id: userId });
 
-  const solutions = await Solution.find({ id_student: userId }).lean();
-  const problems = await Problem.find().lean();
-  const problemDifficultyMap = {};
-  problems.forEach((problem) => {
-    problemDifficultyMap[problem._id.toString()] = problem.difficulty;
-  });
+  // const solutions = await Solution.find({ id_student: userId }).lean();
+  // const problems = await Problem.find().lean();
+  // const problemDifficultyMap = {};
+  // problems.forEach((problem) => {
+  //   problemDifficultyMap[problem._id.toString()] = problem.difficulty;
+  // });
 
-  const solutionsWithDifficulty = solutions.map((solution) => {
-    const problemId = solution.id_problem.toString();
-    const difficulty = problemDifficultyMap[problemId];
-    return { ...solution, difficulty };
-  });
+  // const solutionsWithDifficulty = solutions.map((solution) => {
+  //   const problemId = solution.id_problem.toString();
+  //   const difficulty = problemDifficultyMap[problemId];
+  //   return { ...solution, difficulty };
+  // });
 
   res.statusCode = 200;
   res.end(
     JSON.stringify({
       user: new UserDto(user),
-      solutions: solutionsWithDifficulty,
+      // solutions: solutionsWithDifficulty,
     })
   );
 };

@@ -2,7 +2,6 @@ import { Class } from "../models/classModel.js";
 import { User } from "../models/userModel.js";
 import { Homework } from "../models/homeworkModel.js";
 import { HomeworkProblems } from "../models/homeworkProblemsModel.js";
-
 import { ClassStudents } from "../models/classStudentsModel.js";
 import errorMiddleware from "../middlewares/errorMiddleware.js";
 import ApiError from "../exceptions/apiError.js";
@@ -16,15 +15,18 @@ export const getClasses = async (req, res) => {
     await authMiddleware(req, res);
     const data = queryParams(req);
     const userId = req.user.payload.id;
-    const type = await User.findOne({
+    const user = await User.findOne({
       _id: userId,
     }).lean();
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
     let classes;
-    if (type.role === "teacher") {
+    if (user.role === "teacher") {
       classes = await Class.find({
         id_profesor: userId,
       }).lean();
-    } else if (type.role === "student") {
+    } else if (user.role === "student") {
       classes = await ClassStudents.find({
         id_student: userId,
       }).lean();
@@ -32,6 +34,19 @@ export const getClasses = async (req, res) => {
       classes = await Class.find({ _id: { $in: classesId } }).lean();
     }
     if (data.id) {
+      if (user.role === "teacher") {
+        const member = await Class.findOne({
+          _id: data.id,
+          id_profesor: userId,
+        }).lean();
+        if (!member) throw ApiError.BadRequest("Permission denied!");
+      } else if (user.role === "student") {
+        const member = await ClassStudents.findOne({
+          id_class: data.id,
+          id_student: userId,
+        }).lean();
+        if (!member) throw ApiError.BadRequest("Permission denied!");
+      }
       const classData = await Class.findOne({ _id: data.id }).lean();
       if (!classData) {
         throw ApiError.BadRequest("Class not found");

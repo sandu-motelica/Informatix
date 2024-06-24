@@ -1,5 +1,10 @@
 @import "./main.css";
 
+body {
+  position: relative;
+  min-height: 100vh;
+}
+
 .problem {
   display: flex;
   flex-direction: row;
@@ -174,7 +179,7 @@ input {
 
 .discussion-section__list > li {
   background-color: var(--dark-color-2);
-  padding: 1rem;
+  padding: 1.4rem;
   border-radius: 1rem;
   display: flex;
   flex-direction: column;
@@ -245,4 +250,76 @@ input {
 
 .problem__marks > button:disabled {
   background-color: var(--dark-color-2);
+}
+
+.delete-btn {
+  display: none;
+  font-size: 1.2rem;
+  background-color: #c2255c;
+  padding: 0.8rem 1.2rem;
+}
+
+.popup-delete {
+  display: none;
+  position: absolute;
+  top: 5.4rem;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+  height: calc(100vh - 5.4rem);
+  background-color: rgb(44, 44, 44, 0.7);
+  justify-content: center;
+  align-items: center;
+  overflow-y: hidden;
+}
+
+.popup-delete__content {
+  width: 40rem;
+  padding: 5rem;
+  background-color: #252525;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 1rem;
+  position: relative;
+}
+.popup-delete__qst {
+  font-size: 1.6rem;
+  text-align: center;
+  margin-bottom: 2.4rem;
+}
+.popup-delete__btns {
+  display: flex;
+  align-items: center;
+  gap: 2.4rem;
+}
+
+.btn-delete {
+  border-radius: var(--default-radius);
+  padding: 0.6rem 1.8rem;
+  background-color: #2c2c2c;
+}
+
+.btn-delete__confirm {
+  color: #c2255c;
+}
+
+.btn-delete__reject {
+  color: #1da09c;
+}
+
+.close-icon {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  height: 1.6rem;
+  transform: rotate(0);
+  transition: all 0.3s;
+  color: var(--semilight-color);
+}
+.close-icon:hover {
+  cursor: pointer;
+  color: var(--white-color);
+  transform: rotate(90deg);
 }

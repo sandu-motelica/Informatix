@@ -23,7 +23,7 @@ const getHomeworkInfo = async () => {
     const data = await Fetch.get("/homework", {
       id_homework: searchParams.get("id"),
     });
-    if (data) {
+    if (data.homework) {
       document.querySelector(".homework-content__title").textContent =
         data.homework.name;
       deleteQst.textContent = `Confirmi ștergerea temei "${data.homework.name}"?`;

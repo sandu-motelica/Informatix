@@ -7,11 +7,32 @@
   margin-bottom: 9.2rem;
 }
 
-.account__info {
+.account__info,
+.profesor-problems {
   padding: 2rem;
   border-radius: var(--default-radius);
   background-color: var(--dark-color-3);
   height: fit-content;
+}
+
+.profesor-problems h2 {
+  font-size: 1.6rem;
+  padding-bottom: 2rem;
+  border-bottom: 1px solid var(--secondary-color);
+}
+
+.profesor-problems-list {
+  margin-top: 1.6rem;
+  border-radius: var(--default-radius);
+  overflow: hidden;
+}
+.account__stats__problem:first-child {
+  border-top-left-radius: var(--default-radius);
+  border-top-right-radius: var(--default-radius);
+}
+.account__stats__problem:last-child {
+  border-bottom-left-radius: var(--default-radius);
+  border-bottom-right-radius: var(--default-radius);
 }
 
 .account__info > button {
@@ -22,9 +43,8 @@
 .account__info__details {
   display: flex;
   flex-direction: row;
-  gap: 1rem;
-  padding-bottom: 1rem;
-  border-bottom: 0.1rem solid;
+  gap: 2rem;
+  height: fit-content;
 }
 
 .account__info__details > img {
@@ -36,8 +56,11 @@
 .account__info__details > div {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  padding: 1rem 0;
+  justify-content: space-around;
+}
+
+.account__info__email {
+  color: #aaa;
 }
 
 .account__info__name {
@@ -47,6 +70,18 @@
 
 .account__info__rank {
   font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.account__info__rank span {
+  margin-right: 0.4rem;
+}
+
+.star-icon {
+  height: 1.5rem;
+  margin-left: 0.4rem;
+  color: var(--secondary-color);
 }
 
 .account__stats-wrapper {
@@ -65,9 +100,9 @@
 }
 
 .account__stats__title {
-  font-size: 1.5rem;
+  font-size: 1.6rem;
   border-bottom: 0.1rem solid rgba(245, 245, 220, 0.152);
-  padding-bottom: 1rem;
+  padding-bottom: 2rem;
 }
 
 .account__statistic {
@@ -106,7 +141,6 @@
 
 .account__statistic--easy .account__statistic__bar--filled {
   background-color: green;
-  /* width: 7%; */
 }
 
 .account__statistic--medium .account__statistic__bar {
@@ -115,7 +149,6 @@
 
 .account__statistic--medium .account__statistic__bar--filled {
   background-color: yellow;
-  /* width: 2%; */
 }
 
 .account__statistic--hard .account__statistic__bar {
@@ -124,7 +157,6 @@
 
 .account__statistic--hard .account__statistic__bar--filled {
   background-color: red;
-  /* width: 5%; */
 }
 
 .account__stats-solved-problems {
@@ -133,15 +165,16 @@
   gap: 0.5rem;
 }
 
-a.account__stats__problem {
+a.account__stats__problem,
+.profesor-problems-list li a {
   display: flex;
   justify-content: space-between;
-  padding: 1.5rem 1rem;
+  padding: 1.6rem;
   font-size: 1.4rem;
   color: white;
-  border-radius: var(--default-radius);
 }
 
+.profesor-problems-list li:nth-child(odd),
 .account__stats__problem:nth-child(odd) {
   background-color: var(--dark-color);
 }
@@ -163,8 +196,14 @@ input[type="radio"] {
   accent-color: var(--primary-color);
 }
 
+.solution-eval {
+  margin-right: 2.4rem;
+  color: #888;
+}
+
 @media screen and (max-width: 60rem) {
   .account-wrapper {
     grid-template-columns: 1fr;
+    row-gap: 2rem;
   }
 }

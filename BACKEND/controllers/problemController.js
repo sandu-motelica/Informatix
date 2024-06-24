@@ -1,6 +1,7 @@
 import { Problem, problemSchema } from "../models/problemModel.js";
 import { User } from "../models/userModel.js";
 import { Tag } from "../models/tagModel.js";
+import { Comment } from "../models/commentModel.js";
 import { ProblemTags } from "../models/problemTagsModel.js";
 import { Solution } from "../models/solutionModel.js";
 import ProblemDto from "../dtos/problemDto.js";
@@ -10,6 +11,7 @@ import authMiddleware from "../middlewares/authMiddleware.js";
 import queryParams from "../utils/queryParams.js";
 import { Rating } from "../models/ratingModel.js";
 import { PendingHomeworkProblem } from "../models/pendingHomeworkProblems.js";
+import { HomeworkProblems } from "../models/homeworkProblemsModel.js";
 
 export const getProblems = async (req, res) => {
   try {
@@ -109,6 +111,38 @@ export const getProblems = async (req, res) => {
   }
 };
 
+export const getProfesorProblem = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const userId = req.user.payload.id;
+    const user = await User.findOne({
+      _id: userId,
+    });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+
+    let problems = await Problem.find({
+      id_author: userId,
+    }).lean();
+
+    problems = problems.map((problem) => {
+      {
+        return new ProblemDto(problem);
+      }
+    });
+    await Promise.all(
+      problems.map((problem) => getProblemsRating(problem.id))
+    ).then((results) => {
+      problems.forEach((problem, index) => (problem.rating = results[index]));
+    });
+    res.statusCode = 200;
+    res.end(JSON.stringify(problems.reverse()));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
 export const getPendingProblems = async (req, res) => {
   try {
     await authMiddleware(req, res);
@@ -132,15 +166,44 @@ export const getPendingProblems = async (req, res) => {
   }
 };
 
+export const getCountProblems = async (req, res) => {
+  try {
+    await authMiddleware(req, res);
+    const userId = req.user.payload.id;
+    const user = await User.findOne({
+      _id: userId,
+    });
+    if (!user) {
+      throw ApiError.BadRequest("User does not exist");
+    }
+    const problems = await Problem.find({ status: "approved" }).lean();
+    problems.map((problem) => problem.difficulty);
+    const easy = problems.filter((item) => item.difficulty === "easy").length;
+    const medium = problems.filter(
+      (item) => item.difficulty === "medium"
+    ).length;
+    const hard = problems.filter((item) => item.difficulty === "hard").length;
+
+    res.statusCode = 200;
+    res.end(JSON.stringify({ easy, medium, hard }));
+  } catch (e) {
+    errorMiddleware(res, e);
+  }
+};
+
 export const addProblem = async (req, res) => {
   try {
     await authMiddleware(req, res);
     const body = JSON.parse(req.data);
     const { title, description, difficulty, tagNames, homework } = body;
 
-    if (title.length < 5 || description.length < 5)
+    if (title.length < 4 || title.length > 20)
       throw ApiError.BadRequest(
-        "Invalid problem title or description (min 5 characters)"
+        "Invalid problem title (min 4 characters, max 20 characters)"
+      );
+    if (description.length < 5)
+      throw ApiError.BadRequest(
+        "Invalid problem description (min 5 characters)"
       );
     if (tagNames.length < 1)
       throw ApiError.BadRequest("Select problem category (at least one)");
@@ -148,6 +211,9 @@ export const addProblem = async (req, res) => {
     const user = await User.findOne({ _id: id_author });
     if (!user) {
       throw ApiError.BadRequest("User does not exist");
+    }
+    if (user.role !== "teacher") {
+      throw ApiError.UnauthorizedError("User is not a teacher");
     }
 
     const problem = await Problem.create({
@@ -200,12 +266,20 @@ export const removeProblem = async (req, res) => {
       throw ApiError.BadRequest("User does not exist");
     }
 
-    if (problem.id_author.toString() !== userId && user.role !== "admin") {
+    if (
+      problem.id_author.toString() !== userId.toString() &&
+      user.role !== "admin"
+    ) {
       throw ApiError.Unauthorized(
         "You are not the author of this problem or an admin"
       );
     }
 
+    await ProblemTags.deleteMany({ id_problem: problemId });
+    await Comment.deleteMany({ id_problem: problemId });
+    await HomeworkProblems.deleteMany({ id_problem: problemId });
+    await Rating.deleteMany({ id_problem: problemId });
+    await Solution.deleteMany({ id_problem: problemId });
     await Problem.deleteOne({ _id: problemId });
 
     res.statusCode = 200;
