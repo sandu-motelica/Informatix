@@ -230,3 +230,19 @@ a:active {
     font-size: 56.25%;
   }
 }
+
+.approve-btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+}
+
+.decline-btn {
+  border: "none";
+  background-color: var(--secondary-color);
+  border: none;
+  padding: 0.2rem 1rem;
+  cursor: pointer;
+}

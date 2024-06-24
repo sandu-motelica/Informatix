@@ -1,5 +1,6 @@
 import Fetch from "../../utils/Fetch.js";
 import { rootPath } from "./constants.js";
+
 const searchParams = new URLSearchParams(window.location.search);
 const problemId = searchParams.get("id");
 
@@ -8,7 +9,6 @@ const getSolutions = async () => {
     id_problem: problemId,
   });
 
-  console.log(data);
   data.solutions
     .filter((item) => !item.id_homework)
     .forEach((solution) => {
@@ -21,7 +21,6 @@ const getSolutions = async () => {
       const day = String(date.getDate()).padStart(2, "0");
       const year = date.getFullYear();
 
-      const problem = solution.id_problem;
       const author = solution.id_student;
 
       tr.innerHTML = `

@@ -29,31 +29,6 @@ async function request(url, params = {}, method = "GET") {
   return result;
 }
 
-// const updateAccessToken = async (url, params, method) => {
-//   const options = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Authorization: `Bearer ${localStorage.getItem("token")}`,
-//       // Origin: "http://localhost:3000",
-//     },
-//     credentials: "include",
-//   };
-
-//   const response = await fetch(_apiHost + "/user/refresh", options);
-//   const data = await response.json();
-//   console.log(data.status);
-//   if (data.message == "Unauthorized") {
-//     // alert(1);
-//     // localStorage.clear();
-//     // window.location = "/";
-//   } else {
-//     localStorage.setItem("user", JSON.stringify(data.user));
-//     localStorage.setItem("token", data.accessToken);
-//     request(url, params, method);
-//   }
-// };
-
 function objectToQueryString(obj) {
   return Object.keys(obj)
     .map((key) => key + "=" + obj[key])

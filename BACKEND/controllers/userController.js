@@ -97,7 +97,6 @@ export const userRegister = async (req, res) => {
       (usernameExists = await User.findOne({ username })),
       (emailExists = await User.findOne({ email })),
     ]);
-    console.log(username, email);
     if (usernameExists || emailExists) {
       errorMiddleware(res, {
         status: 409,
@@ -136,9 +135,6 @@ export const userRefresh = async (req, res) => {
   try {
     const cookies = cookieParser(req.headers.cookie);
     const refreshToken = cookies["refreshToken"];
-    console.log("cookiess", req.headers);
-    const updatedRefreshToken = await updateToken(refreshToken);
-    console.log(updatedRefreshToken);
     res.end(JSON.stringify(updatedRefreshToken));
   } catch (e) {
     console.log(e);

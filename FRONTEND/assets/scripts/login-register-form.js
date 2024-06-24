@@ -3,7 +3,6 @@ import Fetch from "../../utils/Fetch.js";
 const adminLogin = window.location.href.includes("/admin/login") ? true : false;
 
 const loggedRedirect = () =>
-  //TODO: Should be updated
   (window.location.href = !adminLogin
     ? "/FRONTEND/pages/problems.html"
     : "/FRONTEND/pages/admin/dashboard.html");

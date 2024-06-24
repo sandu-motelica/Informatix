@@ -24,7 +24,7 @@ window.searchTag = (event) => {
   });
 
   const localTags = document.getElementsByClassName("tag");
-  console.log(localTags);
+
   const visibleTagsLength = Array.from(localTags)?.filter(
     (item) => item.style.display === "flex"
   );
@@ -70,22 +70,12 @@ function generateTagsButtons(categories) {
   });
 }
 
-// valori temporare
-// generateTagsButtons([
-//   { name: "Divizibilitate", count: 120 },
-//   { name: "Primalitate", count: 22 },
-//   { name: "Tablouri unidimensionale", count: 11 },
-//   { name: "Tablouri bidimensionale", count: 1120 },
-//   { name: "Olimpiada", count: 129990 },
-// ]);
-
 const resetForm = () => {
   errElement.textContent = "";
   document.getElementById("problem-form").reset();
   while (choiceTagsList.firstChild) {
     choiceTagsList.removeChild(choiceTagsList.firstChild);
   }
-  //TODO: Updated with db tags
   getTags();
 
   document.getElementById("easy").checked = true;
@@ -185,8 +175,6 @@ const getTags = async () => {
   );
 };
 
-getTags();
-
 window.init = () => {
   document
     .getElementById("import-file")
@@ -232,3 +220,5 @@ function handleFileLoad(event) {
     console.log(e);
   }
 }
+
+getTags();

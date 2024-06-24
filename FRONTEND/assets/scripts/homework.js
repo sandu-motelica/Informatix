@@ -1,8 +1,6 @@
 import Fetch from "../../utils/Fetch.js";
 import { rootPath } from "./constants.js";
 const searchParams = new URLSearchParams(window.location.search);
-// const errElement = document?.querySelector(".error");
-// const profName = document.querySelector(".homework-content__profesor");
 const deleteQst = document.querySelector(".popup-delete__qst");
 let numarProbleme = 0;
 const problemsList = document.querySelector(".homework-problems");
@@ -10,6 +8,7 @@ const solutionList = document.querySelector(".homework-solutions");
 const solutionHeader = document.querySelector(".solutions-section h2");
 const nota = document.querySelector(".eval-content");
 let isStudent = false;
+
 const user = JSON.parse(localStorage.getItem("user"));
 if (user.role === "student") {
   document.querySelector(".delete-btn").style.display = "none";
@@ -17,7 +16,6 @@ if (user.role === "student") {
   solutionHeader.textContent = "Soluțiile mele:";
 } else {
   solutionHeader.textContent = "Soluțiile elevilor:";
-  // profName.style.display = "none";
 }
 
 const getHomeworkInfo = async () => {
@@ -114,9 +112,7 @@ const getSolution = async () => {
           el.appendChild(link);
           solutionList.appendChild(el);
         });
-        console.log(count);
-        console.log(numarProbleme);
-        console.log(suma);
+
         if (count === 0) {
           nota.textContent = "Neevaluată";
           nota.style.color = "#fea116";

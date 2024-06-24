@@ -1,9 +1,9 @@
 import { rootPath } from "./constants.js";
-const searchParams = new URLSearchParams(window.location.search);
-const problemHeadline = document.getElementsByClassName("problem__title")[0];
 import Fetch from "../../utils/Fetch.js";
 const deleteQst = document.querySelector(".popup-delete__qst");
 const errEl = document.querySelector(".error");
+
+const searchParams = new URLSearchParams(window.location.search);
 
 let problem = {};
 
@@ -220,8 +220,6 @@ const getComments = async () => {
   }
 };
 
-getComments();
-
 window.addComment = async () => {
   try {
     const description = document.getElementById("comment-description").value;
@@ -271,3 +269,5 @@ window.removeProblem = async () => {
     console.log(e);
   }
 };
+
+getComments();
