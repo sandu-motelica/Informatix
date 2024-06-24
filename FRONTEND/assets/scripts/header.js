@@ -18,7 +18,7 @@ header.innerHTML = `
             <li class="nav-list-el"><a href="/FRONTEND/pages/classes.html">Clase</a></li>
             <li class="nav-list-el"><a href="/FRONTEND/pages/account.html">Profil</a></li>
             <li class="nav-list-el disconnect">
-              <button class="btn btn-logout">
+              <button aria-label="logout" class="btn btn-logout">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
@@ -34,7 +34,7 @@ header.innerHTML = `
                   />
                 </svg>
               </button>
-              <a class="disconnect-link" type="button">Deconectare</a>
+              <a class="disconnect-link" role="button">Deconectare</a>
             </li>
             <li class="logo-mobile-menu">
               <span class="logo"

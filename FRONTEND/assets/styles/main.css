@@ -2,7 +2,7 @@
 :root {
   /* colors */
   --white-color: #fff;
-  --primary-color: #1da09c;
+  --primary-color: #17807d;
   --primary-gradient: linear-gradient(120deg, #1da09c, #4ab3b0);
   --secondary-color: #fea116;
   --error-color: red;
@@ -98,7 +98,7 @@ a:active {
 }
 
 .btn-primary {
-  background-color: var(--primary-color);
+  background-color: #17807d;
 }
 
 .btn-secondary {

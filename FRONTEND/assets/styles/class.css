@@ -222,8 +222,9 @@ body {
   height: 100%;
 }
 
-.add-homework-link {
-  background-color: #1da09c;
+.class-content-homework .add-homework-link {
+  background-color: #17807d;
+  color: var(--white-color);
 }
 
 @media screen and (max-width: 49em) {

@@ -31,10 +31,8 @@ if (user.role === "teacher") {
 const getClasses = async () => {
   const data = await Fetch.get("/class");
   if (data?.statusCode === 200) {
-    console.log(data);
     try {
       const classes = data;
-      // console.log("clasess");
       if (classes.length === 0 && user.role != "teacher") {
         const defaultMess = document.createElement("p");
         defaultMess.classList.add("default-message");

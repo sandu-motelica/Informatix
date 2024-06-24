@@ -14,7 +14,7 @@
 
   <body onload="init()">
     <main class="container margin-top-md">
-      <section class="add-problem add-problem-wrapper">
+      <div class="add-problem add-problem-wrapper">
         <div class="add-problems__block add-problems__categories">
           <div class="add-problems__difficulty">
             <p>Selecteaza dificultatea problemei:</p>
@@ -40,7 +40,7 @@
           <hr />
           <div class="add-problems__category">
             <p>Selecteaza categoriile problemei:</p>
-            <section class="problems__tags">
+            <div class="problems__tags">
               <input
                 type="text"
                 placeholder="Cauta"
@@ -59,7 +59,7 @@
                   </button>
                 </div>
               </div>
-            </section>
+            </div>
           </div>
         </div>
         <div class="add-problems__block add-problems__content">
@@ -81,6 +81,7 @@
             >
               Adauga problema
             </button>
+            <label aria-label="uploadfile" for="import-file"></label>
             <input
               type="file"
               name="uploadFile"
@@ -90,7 +91,7 @@
             <pre id="fileContent"></pre>
           </form>
         </div>
-      </section>
+      </div>
     </main>
     <script type="module" src="../assets/scripts/header.js"></script>
     <script type="module" src="../assets/scripts/add-problem.js"></script>

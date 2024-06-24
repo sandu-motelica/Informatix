@@ -59,7 +59,7 @@
             </button>
           </div>
           <div class="problem__content">
-            <h1 class="problem__title"></h1>
+            <h1 class="problem__title">&nbsp;</h1>
             <span class="problem__difficulty"></span>
             <p class="problem__content-text"></p>
           </div>
@@ -225,13 +225,13 @@
       <div id="discussion" class="discussion-section">
         <div class="discussion-section__form">
           <textarea
-            name=""
             id="comment-description"
             cols="30"
             rows="10"
             placeholder="Pont problema"
           ></textarea>
           <button
+            aria-label="add-comment"
             id="comment-add-btn"
             class="btn btn-primary"
             onclick="addComment()"

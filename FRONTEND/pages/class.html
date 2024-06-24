@@ -57,6 +57,7 @@
             <form method="post" id="member-form">
               <input type="text" placeholder="Nume membru" name="nume_membru" />
               <button
+                aria-label="add-member"
                 class="btn btn-primary btn-add-member"
                 type="button"
                 onclick="addMember()"
@@ -82,10 +83,10 @@
         </div>
         <div class="class-content">
           <div class="class-content-header">
-            <h1 class="class-content__title"></h1>
+            <h1 class="class-content__title">&nbsp;</h1>
             <div class="class-content-header__right">
               <span class="class-content__profesor"></span>
-              <button class="btn delete-btn">
+              <button aria-label="delete-class" class="btn delete-btn">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"

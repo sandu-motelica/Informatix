@@ -13,6 +13,7 @@
   width: 100%;
   font-size: 2.2rem;
   border: 1px solid #464646;
+  color: #fff;
 }
 
 .class-container .class-link {
@@ -50,6 +51,7 @@
     height: 10rem;
     margin-bottom: 0.6rem;
   }
+
   .class-container .class-link {
     height: 14rem;
   }

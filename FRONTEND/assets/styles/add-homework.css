@@ -108,7 +108,7 @@
 
 .btn-add-problem {
   font-size: 1.4rem;
-  color: var(--light-color) !important;
+  color: var(--color-white) !important;
 }
 
 .problem-link {
