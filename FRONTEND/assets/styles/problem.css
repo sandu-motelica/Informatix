@@ -164,6 +164,12 @@ input {
   height: 2.4rem;
 }
 
+.problem__content-text {
+  overflow-wrap: break-word;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .discussion-section {
   display: flex;
   flex-direction: column;
