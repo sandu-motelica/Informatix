@@ -102,7 +102,7 @@ const getProblems = async () => {
                   d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z" />
               </svg>
             `
-                : "Nerezolvata"
+                : "Nerezolvată"
             }
             `
               : `<a href="./solutions.html?id=${item?.id}">Vezi solutii</a>`
@@ -171,7 +171,7 @@ const getTags = async () => {
 const mapDifficulty = (difficulty) => {
   switch (difficulty) {
     case "easy":
-      return "Usor";
+      return "Ușor";
 
     case "medium":
       return "Mediu";
