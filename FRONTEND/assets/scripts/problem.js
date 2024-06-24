@@ -1,7 +1,7 @@
 import { rootPath } from "./constants.js";
-const searchParams = new URLSearchParams(window.location.search);
-const problemHeadline = document.getElementsByClassName("problem__title")[0];
 import Fetch from "../../utils/Fetch.js";
+
+const searchParams = new URLSearchParams(window.location.search);
 
 let problem = {};
 
@@ -47,7 +47,6 @@ const getSolution = async () => {
   }
 };
 
-console.log(searchParams.get("solution"));
 if (searchParams.get("solution")) {
   document.querySelector(".problem__submit").style.display = "none";
   getSolution();
@@ -59,7 +58,6 @@ const getProblem = async () => {
       _id: searchParams.get("id"),
     });
     if (data.problems?.length) {
-      console.log(data);
       problem = data.problems[0];
 
       document.querySelector(".problem__title").textContent = problem.title;
@@ -182,7 +180,7 @@ window.init = () => {
   });
 
   const buttonsRate = document.querySelectorAll(".problem__evaluate li");
-  console.log(buttonsRate);
+
   buttonsRate.forEach((rating) => {
     rating.addEventListener("click", () =>
       rateProblem(rating.getAttribute("data-value"))
@@ -210,14 +208,10 @@ const getComments = async () => {
   `;
       document.querySelector(".discussion-section__list").appendChild(li);
     });
-
-    console.log("data", data);
   } catch (e) {
     console.log(e);
   }
 };
-
-getComments();
 
 window.addComment = async () => {
   try {
@@ -237,3 +231,5 @@ window.addComment = async () => {
     console.log(e);
   }
 };
+
+getComments();

@@ -14,7 +14,6 @@ export default async (req, res) => {
     }
 
     const userData = await validateAccessToken(accessToken);
-    // console.log(userData)
     if (!userData) {
       throw ApiError.UnauthorizedError();
     }

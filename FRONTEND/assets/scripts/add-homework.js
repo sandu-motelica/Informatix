@@ -176,7 +176,7 @@ const attachDeleteEvents = () => {
     btn.addEventListener("click", async () => {
       try {
         const problemId = pendingProblems[i].dataset.id;
-        console.log(problemId);
+
         const data = await Fetch.remove("/problem/pending", {
           problemId,
         });

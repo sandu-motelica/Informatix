@@ -28,8 +28,6 @@ const getUserInfo = async () => {
   }
 };
 
-getUserInfo();
-
 const getSolutions = async () => {
   const user = JSON.parse(localStorage.getItem("user"));
   const data = await Fetch.get("/solution", {
@@ -123,5 +121,6 @@ const getProblems = async () => {
   hardProblemsLength = hardProblems.length;
 };
 
+getUserInfo();
 await getProblems();
 await getSolutions();

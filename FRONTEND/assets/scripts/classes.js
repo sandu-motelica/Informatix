@@ -34,7 +34,7 @@ const getClasses = async () => {
     console.log(data);
     try {
       const classes = data;
-      // console.log("clasess");
+
       if (classes.length === 0 && user.role != "teacher") {
         const defaultMess = document.createElement("p");
         defaultMess.classList.add("default-message");
