@@ -18,9 +18,10 @@
     "@types/bcryptjs": "^2.4.6",
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
+    "cookie": "~> 0.7.0",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
-    "find-my-way": "^8.1.0",
+    "find-my-way": "~> 8.2.2",
     "jsonwebtoken": "^9.0.2",
     "mongodb": "^6.5.0",
     "mongoose": "^8.3.2"
