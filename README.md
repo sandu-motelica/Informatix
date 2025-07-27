@@ -1,6 +1,6 @@
-# In<form>atiX
+# In\<form\>atiX
 
-In<form>atiX is a full-stack web platform for high school students to learn programming through curated problem-solving. It allows teachers to manage virtual classrooms, assign homeworks, and evaluate submissions, while students can solve problems, track progress, and interact via comments and ratings.
+In\<form\>atiX is a full-stack web platform for high school students to learn programming through curated problem-solving. It allows teachers to manage virtual classrooms, assign homeworks, and evaluate submissions, while students can solve problems, track progress, and interact via comments and ratings.
 
 ---
 
